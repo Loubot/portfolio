@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
+var fs = require( 'fs' )
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,6 +33,15 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', index);
 app.use('/users', users);
+
+/* Include all express controllers */
+fs.readdirSync('./controllers').forEach(function (file) {
+    if(file.substr(-3) == '.js') {
+        route = require('./controllers/' + file);
+        route.controller( app );
+        // route.controller( app, jwt, strategy );
+    }
+});
 
 
 var models = require('./models')
