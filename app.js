@@ -6,7 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var fs = require( 'fs' )
+var auth = require('passport-local-authenticate');
 
+auth.hash('password', function(err, hashed) {
+  console.log(hashed.hash); // Hashed password
+  console.log(hashed.salt); // Salt
+
+  auth.verify( 'password', hashed, function( err, verified ) {
+    console.log(verified); // False, passwords don't match
+  })
+
+  
+  
+});
 
 var index = require('./routes/index');
 var users = require('./routes/users');
