@@ -2,9 +2,9 @@
   "development": {
     "username": "test",
     "password": "test",
-    "database": "portfolio",
+    "database": "portfolio-dev",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

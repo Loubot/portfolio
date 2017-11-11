@@ -53,6 +53,10 @@ fs.readdirSync('./controllers').forEach(function (file) {
 
 var models = require('./models')
 
+models.sequelize.sync().then(function() {
+    console.log('sequelize done')
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
