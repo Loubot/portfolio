@@ -22,6 +22,7 @@
     "node-sass-middleware": "0.9.8",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
+    "passport-local-authenticate": "^1.2.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.22.6",
