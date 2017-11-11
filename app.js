@@ -7,10 +7,17 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var fs = require( 'fs' )
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// Initialise passport
+var passport = require("passport");
+app.use( passport.initialize() )
+var strategy = require('./config/strategy')( passport )
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
