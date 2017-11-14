@@ -13,6 +13,7 @@
     "angular-messages": "^1.6.6",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "credential": "^2.0.0",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
