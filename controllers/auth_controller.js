@@ -60,14 +60,15 @@ module.exports.controller = function( app ) {
 				res.sendStatus( 401 )
 			} else {
 				models.User.findOrCreate({
-					where: { email: req.body.email, password: JSON.parse( hash ).hash }
+					where: { email: req.body.email, password: hash }
 				}).spread( ( user, created ) => {
 					if ( created ) {
-						user.update({
-							password: hash.hash
-						}).then( ( user ) => {
-							console.log( user )
-							res.json( user )
+						console.log( user.password )
+						pw.verify( user.password, req.body.password, function( err, isValid ) {
+							var msg;
+						  if (err) { throw err; }
+						  msg = isValid ? 'Passwords match!' : 'Wrong password.';
+						  res.json(msg);
 						})
 					} else {
 						res.sendStatus( 400 )
