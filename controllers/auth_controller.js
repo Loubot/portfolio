@@ -12,6 +12,12 @@ module.exports.controller = function( app ) {
 		console.log('login')
 		if (req.body.email && req.body.password ) {
 	        var email = req.body.email;
+	        pw.verify( user.password, req.body.password, function( err, isValid ) {
+	        	var msg;
+	          if (err) { throw err; }
+	          msg = isValid ? 'Passwords match!' : 'Wrong password.';
+	          res.json(msg);
+	        })
 	        models.User.findOne({
 	        			where: { email: req.body.email }
 	        		}).then( user => {
@@ -63,13 +69,11 @@ module.exports.controller = function( app ) {
 					where: { email: req.body.email, password: hash }
 				}).spread( ( user, created ) => {
 					if ( created ) {
-						console.log( user.password )
-						pw.verify( user.password, req.body.password, function( err, isValid ) {
-							var msg;
-						  if (err) { throw err; }
-						  msg = isValid ? 'Passwords match!' : 'Wrong password.';
-						  res.json(msg);
-						})
+						var payload = user.id
+
+						var token = jwt.encode(payload, config.jwtSecret);
+						res.json( token )
+						
 					} else {
 						res.sendStatus( 400 )
 					}
