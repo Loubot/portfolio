@@ -1,13 +1,19 @@
 <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-<div>
-  <md-input-container>
-    <label>Title</label>
-    <input ng-model="user.title">
-  </md-input-container>
+	<form ng-submit="login()" layout="column">
+	 	
 
-  <md-input-container>
-    <label>Email</label>
-    <input ng-model="user.email" type="email">
-  </md-input-container>
-</div>
+	  	<md-input-container>
+	    	<label>Email</label>
+	    	<input ng-model="user.email" type="email">
+	  	</md-input-container>
+
+	  	<md-input-container>
+	  	   	<label>Password</label>
+	  	   	<input ng-model="user.password" type="password">
+	  	 	</md-input-container>
+
+	  	<md-input-container>
+	  		<input class="md-button md-raised md-primary" type="submit" aria-label="signin button" value="Login" name="login_button">
+	  	</md-input-container>
+	</form>
 </md-content>

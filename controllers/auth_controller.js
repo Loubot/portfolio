@@ -11,24 +11,36 @@ module.exports.controller = function( app ) {
 	app.post('/login', function( req, res ) {
 		console.log('login')
 		if (req.body.email && req.body.password ) {
-	        var email = req.body.email;
-	        pw.verify( user.password, req.body.password, function( err, isValid ) {
-	        	var msg;
-	          if (err) { throw err; }
-	          msg = isValid ? 'Passwords match!' : 'Wrong password.';
-	          res.json(msg);
-	        })
+	        console.log( '1')
+	        
 	        models.User.findOne({
 	        			where: { email: req.body.email }
 	        		}).then( user => {
+	        			console.log( '2')
 	        			if (user) {
-				            var payload = {
-				                id: user.id
-				            };
-				            var token = jwt.encode(payload, config.jwtSecret);
-				            res.json({
-				                token: token
-				            });
+	        				console.log('3')
+	        				pw.verify( user.password, req.body.password, function( err, isValid ) {
+	        					console.log( '4')
+	        				  	if (err) { 
+	        				  		console.log(err)
+	        				  		throw err; 
+	        				  	}
+	        				  	console.log(isValid)
+	        				  	if ( isValid ) {
+	        				  		console.log('5')
+	        				  		var payload = {
+	        				  	    	id: user.id
+	        				  		}
+	        				  		var token = jwt.encode(payload, config.jwtSecret);
+	        				  		res.json({
+	        				  	    token: token
+	        				  		});
+	        				  	} else {
+	        				  		console.log('6')
+	        				  		res.sendStatus( 401 )
+	        				  	}
+	        				})
+				            
 				        } else {
 				            res.sendStatus(401);
 				        }

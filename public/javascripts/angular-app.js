@@ -18,6 +18,12 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             templateUrl: "../angular-views/static-views/index.html"
         })
 
+        $stateProvider.state('admin', {
+            url: "/admin-page",
+            controller: "adminController",
+            templateUrl: "../angular-views/admin-views/admin-page.html"
+        })
+
         // $stateProvider.state("user", {
         //     url: "/user",
         //     controller: "user-controller",
@@ -25,3 +31,8 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
         // })
     }
 ])
+
+
+app.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark')
+});
