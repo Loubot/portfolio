@@ -44,7 +44,7 @@ app.use('/users', users);
 fs.readdirSync('./controllers').forEach(function (file) {
     if(file.substr(-3) == '.js') {
         route = require('./controllers/' + file);
-        route.controller( app );
+        route.controller( app, strategy );
         // route.controller( app, jwt, strategy );
     }
 });

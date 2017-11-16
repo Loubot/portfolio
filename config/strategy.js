@@ -11,12 +11,14 @@ var params = {
 
 module.exports = function( passport ) {  
     var strategy = new Strategy(params, function(payload, done) {
+        console.log( payload )
         var user = models.User.findOne({
-            where: { id: payload.id }
+            where: { id: payload }
         }).then( user => {
             if (user) {
                 return done(null, {
-                    id: user.id
+                    id: user.id,
+                    email: user.email
                 });
             } else {
                 return done(new Error("User not found"), null);

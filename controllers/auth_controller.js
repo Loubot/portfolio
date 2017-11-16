@@ -7,7 +7,7 @@ var credential = require('credential')
 var pw = credential()
 Promise = require('bluebird')
 
-module.exports.controller = function( app ) {
+module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
 		console.log('login')
 		if (req.body.email && req.body.password ) {
@@ -75,18 +75,23 @@ module.exports.controller = function( app ) {
 
 		pw.hash( req.body.password, function( err, hash ) {
 			if ( err ){
+			
 				res.sendStatus( 401 )
 			} else {
+			
 				models.User.findOrCreate({
 					where: { email: req.body.email, password: hash }
 				}).spread( ( user, created ) => {
+				
 					if ( created ) {
+					
 						var payload = user.id
 
 						var token = jwt.encode(payload, config.jwtSecret);
 						res.json( token )
 						
 					} else {
+					
 						res.sendStatus( 400 )
 					}
 					
