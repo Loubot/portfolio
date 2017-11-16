@@ -9,32 +9,25 @@ Promise = require('bluebird')
 
 module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
-		console.log('login')
+		console.log( 'login' )
 		if (req.body.email && req.body.password ) {
-	        console.log( '1')
-	        
+	        console.log('1')
 	        models.User.findOne({
 	        			where: { email: req.body.email }
 	        		}).then( user => {
-	        			console.log( '2')
 	        			if (user) {
-	        				console.log('3')
 	        				pw.verify( user.password, req.body.password, function( err, isValid ) {
-	        					console.log( '4')
 	        				  	if (err) { 
 	        				  		console.log(err)
 	        				  		throw err; 
 	        				  	}
 	        				  	console.log(isValid)
 	        				  	if ( isValid ) {
-	        				  		console.log('5')
 	        				  		var payload = {
 	        				  	    	id: user.id
 	        				  		}
 	        				  		var token = jwt.encode(payload, config.jwtSecret);
-	        				  		res.json({
-	        				  	    token: token
-	        				  		});
+	        				  		res.json( token )
 	        				  	} else {
 	        				  		console.log('6')
 	        				  		res.sendStatus( 401 )
@@ -63,14 +56,6 @@ module.exports.controller = function( app, strategy ) {
 
 	app.post('/register', function( req, res ) {
 		console.log('register')
-
-		// pw.hash( req.body.password, function( err, hash ) {
-		// 	if ( err ){
-		// 		res.sendStatus( 401 )
-		// 	} else {
-		// 		res.json( hash )
-		// 	}
-		// })
 
 
 		pw.hash( req.body.password, function( err, hash ) {
