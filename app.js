@@ -47,7 +47,13 @@ fs.readdirSync('./controllers').forEach(function (file) {
         route.controller( app, strategy );
         // route.controller( app, jwt, strategy );
     }
-});
+})
+
+
+/* Put catch all route after controller declaration. This preserves /api/* functionality*/
+app.get('/[^\.]+$', function(req, res){
+    res.render( 'index' );
+})
 
 
 var models = require('./models')
