@@ -16,7 +16,7 @@ angular.module('portfolio').controller( 'staticController', [
 					password: $scope.user.password
 				}
 			}).then(function successCallback( res ) {
-				window.localStorage.setItem( 'token', res.data.token )
+				window.localStorage.setItem( 'token', res.data )
 				$state.go('admin')
 			}, function errorCallback(err) {
 			    console.log( err )
