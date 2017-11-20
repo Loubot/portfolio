@@ -14,16 +14,17 @@ angular.module('portfolio').controller( 'adminController', [
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
-				params: { Key: $scope.file.name }
+				params: { Key: $scope.file.name, type: $scope.file.type }
 			}).then( function successCallBack( res ) {
 				console.log( res.data )
+
 				$http({
 					method: 'PUT',
 					url: res.data,
 					headers: {
 						"Content-type": $scope.file.type
 					},
-					file: $scope.file
+					data: $scope.file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp )
 				}), function s3Error( dooo ) {
