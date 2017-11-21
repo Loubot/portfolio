@@ -1,3 +1,11 @@
 <input name="file" type="file" file />
 
 <md-button ng-click="upload()">Go</md-button>
+
+
+<div layout="column">
+	<div ng-repeat="img in img_urls">
+		<img ng-src="{{img}}">
+	</div>
+
+</div>

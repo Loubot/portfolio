@@ -5,16 +5,34 @@ angular.module('portfolio').controller( 'adminController', [
 	"$http",
 	function( $scope, $http ) {
 		console.log('adminController')
+		$scope.img_urls = new Array()
+		/* Get all objects in port-practise bucket */
+		$http({
+			method: 'GET',
+			url: 'http://localhost:5000/s3-list-all',
+			headers: {
+				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+			}
+		}).then( function successCallBack( res ) {
+			console.log( res.data )
+			for ( let img of res.data.Contents ){
+				$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/port-practise/" + img.Key )
+
+			}
+			console.log($scope.img_urls)
+		}), function error( err ) {
+			console.log( err )
+		}
 
 		$scope.upload = function() {
 			console.log( $scope.file )
 			$http({
 				method: 'GET',
-				url: 'http://localhost:5000/user',
+				url: 'http://localhost:5000/s3-url',
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
-				params: { Key: $scope.file.name, type: $scope.file.type }
+				params: { Key: $scope.file.name, type: $scope.file.type, request_type: 'putObject' }
 			}).then( function successCallBack( res ) {
 				console.log( res.data )
 
