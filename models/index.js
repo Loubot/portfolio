@@ -9,7 +9,7 @@ var env       = process.env.NODE_ENV || 'development';
 var config = require("../config/config.js")
 var db        = {};
 
-console.log( process.env.NODE_ENV )
+
 
 if (process.env.NODE_ENV === 'production' ) {
   console.log("production set")
