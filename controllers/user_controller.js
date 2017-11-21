@@ -3,10 +3,8 @@
 
 var AWS = require('aws-sdk');
 AWS.config.update({region: 'eu-west-1'});
-var config = {
-  accessKeyId: process.env.PORT_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.PORT_PORT_AWS_ACCESS_KEY_ID
-};
+var config = require("../config/s3-config")
+
 AWS.config.update(config);
 var s3 = new AWS.S3();
 
@@ -26,7 +24,7 @@ module.exports.controller = function( app, strategy ) {
 		console.log( req.query )
 
 		var params = { 
-		  Bucket: 'port-practise',
+		  Bucket: config.Bucket,
 		  Delimiter: ''
 		}
 
@@ -50,7 +48,7 @@ module.exports.controller = function( app, strategy ) {
 		console.log( '/s3-url, user_controller')
 		console.log( req.query )
 		var params = {
-		    Bucket:'port-practise',
+		    Bucket: config.Bucket,
 		    Key:req.query.Key,
 		    ContentType:req.query.type,
 		    Expires: 60
@@ -59,6 +57,7 @@ module.exports.controller = function( app, strategy ) {
 		if ( req.query.request_type === 'putObject' ){
 			console.log('hup')
 			params.ACL = 'public-read'
+			console.log( params)
 		}
 		console.log( params)
 		s3.getSignedUrl( req.query.request_type, params, function (err, url) {
