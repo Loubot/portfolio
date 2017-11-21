@@ -13,7 +13,7 @@ var db        = {};
 
 if (process.env.NODE_ENV === 'production' ) {
   console.log("production set")
-  var sequelize = new Sequelize(config.production.database, config.production.username, config.production.password, config.production);
+  var sequelize = new Sequelize(config.production.database, config.production.username, config.production.password);
 } else {
   var sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, config.development);
 }
