@@ -2,17 +2,17 @@
 	<form ng-submit="register()" layout="column" class="big_gutter">
 	 	
 
-	  	<md-input-container>
+	  	<md-input-container md-no-float>
 	    	<label>Email</label>
 	    	<input ng-model="user.email" type="email">
 	  	</md-input-container>
 
-	  	<md-input-container>
+	  	<md-input-container md-no-float>
 	  	   	<label>Password</label>
 	  	   	<input ng-model="user.password" type="password">
 	  	 	</md-input-container>
 
-	  	<md-input-container>
+	  	<md-input-container md-no-float>
 	  		<input class="md-button md-raised md-primary" type="submit" aria-label="signin button" value="Register" name="register_button">
 	  	</md-input-container>
 	</form>

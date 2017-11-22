@@ -4,7 +4,8 @@ angular.module('portfolio').controller( 'staticController', [
 	"$scope",
 	"$http",
 	"$state",
-	function( $scope, $http, $state ) {
+	"Alertify",
+	function( $scope, $http, $state, Alertify ) {
 		console.log('staticController')
 
 		$scope.login = function() {
@@ -36,6 +37,7 @@ angular.module('portfolio').controller( 'staticController', [
 				$state.go('admin')
 			}, function errorCallback(err) {
 			    console.log( err )
+			    Alertify.error( err.data.errors[0].message )
 			});
 		}
 	}

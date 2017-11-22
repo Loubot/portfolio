@@ -3,7 +3,8 @@
 
 var app = angular.module( 'portfolio', [ 
     'ngMaterial',
-    'ui.router'
+    'ui.router',
+    'Alertify'
 ] )
 
 

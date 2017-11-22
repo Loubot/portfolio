@@ -5,7 +5,7 @@ var jwt = require("jwt-simple");
 var config = require("../config/strategy-config")
 var credential = require('credential')
 var pw = credential()
-Promise = require('bluebird')
+var Sequelize = require('sequelize');
 
 module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
@@ -82,7 +82,9 @@ module.exports.controller = function( app, strategy ) {
 						res.sendStatus( 400 )
 					}
 					
-				}).catch(errs => res.sendStatus( 422).json( errs));
+				}).catch(Sequelize.ValidationError, function (err) {
+					res.status(422).json( err )
+				}).catch(errs => res.status( 422).json( errs));
 			}
 		})
 		

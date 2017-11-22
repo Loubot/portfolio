@@ -3,7 +3,8 @@
 angular.module('portfolio').controller( 'adminController', [
 	"$scope",
 	"$http",
-	function( $scope, $http ) {
+	"Alertify",
+	function( $scope, $http, Alertify ) {
 		console.log('adminController')
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
