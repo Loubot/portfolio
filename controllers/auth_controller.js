@@ -70,7 +70,9 @@ module.exports.controller = function( app, strategy ) {
 				
 					if ( created ) {
 					
-						var payload = user.id
+						var payload = {
+				  	    	id: user.id
+				  		}
 
 						var token = jwt.encode(payload, config.jwtSecret);
 						res.json( token )
@@ -80,25 +82,13 @@ module.exports.controller = function( app, strategy ) {
 						res.sendStatus( 400 )
 					}
 					
-				})
+				}).catch(errs => res.sendStatus( 422).json( errs));
 			}
 		})
 		
-
-		// if ( req.body.email && req.body.password ) {
-		// 	console.log( req.body )
-		// 	models.User.findOrCreate({
-		// 		where: { email: req.body.email, password: hash_password( req.body.password ) }
-		// 	}).spread( ( user, created ) => {	
-
-		// 		var payload = user.id
-
-		// 		var token = jwt.encode(payload, config.jwtSecret);
-		// 		res.json( token )
-				
-				
-		// 		res.json( token )
-		// 	})
-		// }
 	})
 }
+
+
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.odI-H-J7Ots65seSC42x40hVC9Z-F59GVoTk76mFUhI
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.1Tb7ZLKflKv4HOx02hy7AhWra3YMEwjaeJFQB-z9ccQ
