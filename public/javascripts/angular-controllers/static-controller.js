@@ -33,6 +33,7 @@ angular.module('portfolio').controller( 'staticController', [
 				}
 			}).then(function successCallback( res ) {
 				window.localStorage.setItem( 'token', res.data )
+				console.log( window.localStorage.getItem( 'token' ))
 				$state.go('admin')
 			}, function errorCallback(err) {
 			    console.log( err )

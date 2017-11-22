@@ -3,9 +3,11 @@
 <md-button ng-click="upload()">Go</md-button>
 
 
-<div layout="column">
-	<div ng-repeat="img in img_urls">
-		<img ng-src="{{img}}">
-	</div>
+<md-content>
+	<div layout="column" layout-margin>
+		<div ng-repeat="img in img_urls">
+			<img ng-src="{{img}}">
+		</div>
 
-</div>
+	</div>
+</md-content>
