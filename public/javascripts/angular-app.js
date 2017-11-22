@@ -18,6 +18,12 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             templateUrl: "../angular-views/static-views/index.html"
         })
 
+        $stateProvider.state('register', {
+            url: "/register",
+            controller: "staticController",
+            templateUrl: "../angular-views/static-views/register.html"
+        })
+
         $stateProvider.state('admin', {
             url: "/admin-page",
             controller: "adminController",
