@@ -9,7 +9,7 @@ angular.module('portfolio').controller( 'adminController', [
 		/* Get all objects in port-practise bucket */
 		$http({
 			method: 'GET',
-			url: 'http://localhost:5000/s3-list-all',
+			url: window.location.origin + '/s3-list-all',
 			headers: {
 				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 			}
@@ -28,7 +28,7 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( $scope.file )
 			$http({
 				method: 'GET',
-				url: 'http://localhost:5000/s3-url',
+				url: window.location.origin + '/s3-url',
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
