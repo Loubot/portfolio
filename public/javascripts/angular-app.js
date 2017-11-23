@@ -43,10 +43,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
         $stateProvider.state('register', {
             url: "/register",
             views: {
-                'nav': {
-                    templateUrl: "../angular-views/static-views/nav.html",
-                    controller: "staticController"
-                },
+                
                 'body':{
                     controller: "staticController",
                     templateUrl: "../angular-views/static-views/register.html"
