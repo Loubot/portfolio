@@ -4,9 +4,17 @@ angular.module('portfolio').controller( 'staticController', [
 	"$scope",
 	"$http",
 	"$state",
+	"$mdSidenav",
+	"$mdMedia",
 	"Alertify",
-	function( $scope, $http, $state, Alertify ) {
+	function( $scope, $http, $state, $mdSidenav, $mdMedia, Alertify ) {
 		console.log('staticController')
+
+		$scope.$mdMedia = $mdMedia
+
+		$scope.openLeftMenu = function() {
+			$mdSidenav( 'left' ).toggle()
+		}
 
 		$scope.login = function() {
 			$http({
