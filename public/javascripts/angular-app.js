@@ -15,8 +15,23 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
         
         $stateProvider.state("home", {
             url: "/",
+            views: {
+                'nav': {
+                    templateUrl: "../angular-views/static-views/nav.html",
+                    controller: null
+                },
+                'body':{
+                    controller: "staticController",
+                    templateUrl: "../angular-views/static-views/index.html"
+                }
+            }
+            
+        })
+
+        $stateProvider.state("/login", {
+            url: "/login",
             controller: "staticController",
-            templateUrl: "../angular-views/static-views/index.html"
+            templateUrl: "../angular-views/static-views/login.html"
         })
 
         $stateProvider.state('register', {

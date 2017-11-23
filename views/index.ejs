@@ -3,6 +3,9 @@
   <head>
     <title></title>
     <link rel="shortcut icon" href="">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/angular-material/angular-material.css' />
+    <link rel="stylesheet" href="/ng-alertify/dist/ng-alertify.css">
     <!-- Dependencies -->
     <script type="text/javascript" src="/angular/angular.js"></script>
     <script type="text/javascript" src="/angular-animate/angular-animate.js"></script>
@@ -19,11 +22,10 @@
     <script type="text/javascript" src="/javascripts/angular-controllers/static-controller.js"></script>
     <script type="text/javascript" src="/javascripts/angular-controllers/admin-controller.js"></script>
 
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/angular-material/angular-material.css' />
-    <link rel="stylesheet" href="/ng-alertify/dist/ng-alertify.css">
+    
   </head>
   <body>
-    <div ui-view></div>
+    <div ui-view="nav"></div>
+    <div ui-view="body"></div>
   </body>
 </html>
