@@ -9,6 +9,9 @@ a {
 .font_1_75 {
   font-size: 1.75em; }
 
+.font_weight_300 {
+  font-weight: 300; }
+
 .big_gutter {
   min-width: 75% !important;
   max-width: 75% !important;
