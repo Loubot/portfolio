@@ -30,8 +30,14 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
 
         $stateProvider.state("/login", {
             url: "/login",
-            controller: "staticController",
-            templateUrl: "../angular-views/static-views/login.html"
+            views: {
+                
+                'body':{
+                    controller: "staticController",
+                    templateUrl: "../angular-views/static-views/login.html"
+                }
+            }
+            
         })
 
         $stateProvider.state('register', {
@@ -51,8 +57,17 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
 
         $stateProvider.state('admin', {
             url: "/admin-page",
-            controller: "adminController",
-            templateUrl: "../angular-views/admin-views/admin-page.html"
+            views: {
+                'nav': {
+                    templateUrl: "../angular-views/static-views/nav.html",
+                    controller: "staticController"
+                },
+                'body':{
+                    controller: "adminController",
+                    templateUrl: "../angular-views/admin-views/admin-page.html"
+                }
+            }
+            
         })
 
         // $stateProvider.state("user", {
