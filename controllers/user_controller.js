@@ -53,7 +53,7 @@ module.exports.controller = function( app, strategy ) {
 		    Bucket: config.Bucket,
 		    Key:req.query.Key,
 		    ContentType:req.query.type,
-		    Expires: 60
+		    Expires: 600
 		};
 
 		if ( req.query.request_type === 'putObject' ){

@@ -6,6 +6,9 @@ body {
 a {
   color: #00B7FF; }
 
+.center_text {
+  text-align: center !important; }
+
 .font_1_75 {
   font-size: 1.75em; }
 

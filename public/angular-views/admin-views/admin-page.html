@@ -1,13 +1,27 @@
-<input name="file" type="file" file />
 
-<md-button ng-click="upload()">Go</md-button>
 
 
 <md-content>
-	<div layout="column" layout-margin>
-		<div ng-repeat="img in img_urls">
-			<img ng-src="{{img}}">
-		</div>
 
-	</div>
+	<md-grid-list md-cols-gt-xs="3" md-cols="2" md md-row-height="16:9"  >
+        <md-grid-tile 	class="gray"
+
+            			
+            			
+            			
+            			ng-repeat="img in img_urls">
+          <img style="width: 75%; max-height:168px !important;" ng-src="{{ img }}" >
+        </md-grid-tile>
+        
+      </md-grid-list>
+	
 </md-content>
+
+<div class="big_gutter center_text">
+	<form ng-submit="upload()">
+		
+		<input name="file" type="file" file />
+		<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload">
+	</form>
+
+</div>
