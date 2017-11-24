@@ -4,6 +4,7 @@
 var AWS = require('aws-sdk');
 AWS.config.update({region: 'eu-west-1'});
 var config = require("../config/s3-config")
+console.log( config )
 
 AWS.config.update(config);
 var s3 = new AWS.S3();
@@ -22,7 +23,6 @@ module.exports.controller = function( app, strategy ) {
 	app.get( '/s3-list-all', strategy.authenticate(), function( req, res ) {
 		console.log( '/s3-list-all user_controller' )
 		console.log( req.query )
-
 		var params = { 
 		  Bucket: config.Bucket,
 		  Delimiter: ''
@@ -30,8 +30,10 @@ module.exports.controller = function( app, strategy ) {
 
 		s3.listObjects( params, function( err, data ) {
 			if ( err ) {
+				console.log( err )
 				res.status( 404 ).json( err )
 			} else {
+				console.log( data )
 				res.json( data )
 			}
 		})
