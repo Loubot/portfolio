@@ -26,7 +26,7 @@ angular.module('portfolio').controller( 'staticController', [
 				$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
 
 			}
-			console.log($scope.img_urls)
+			// console.log($scope.img_urls)
 		}), function error( err ) {
 			console.log( err )
 		}

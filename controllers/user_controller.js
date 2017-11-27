@@ -2,13 +2,16 @@
 
 
 var AWS = require('aws-sdk');
+var fs = require( 'fs')
 AWS.config.update({region: 'eu-west-1'});
 var config = require("../config/s3-config")
 console.log( config )
 
 AWS.config.update(config);
 var s3 = new AWS.S3();
+var winston = require('winston')
 
+var mkdirp = require('mkdirp')
 var jimp = require('jimp')
 
 
@@ -20,6 +23,29 @@ module.exports.controller = function( app, strategy ) {
 		console.log( '/user user_controller')
 		console.log( req.query)
 		
+	})
+
+	app.get('/image', strategy.authenticate(), function( req, res ) {
+		console.log( '/image user_controller')
+		
+		s3.getObject( { Bucket: "als-portfolio", Key: "Jellyfish.jpg" }, function( err, data ) {
+			if ( err ) {
+				winston.debug( err )
+				res.status( 404 ).json( err )
+			} else {
+				
+				mkdirp('tmp/images', function(err) {
+				 	if (err) {
+				    	return winston.debug("Can't create dir " + (JSON.stringify(err)));
+				    } else {
+				    	return winston.debug("Dir created waheeeey");
+				  	}
+				});
+				// fs.closeSync fs.openSync('./.tmp/excel_sheets/bla.xls', 'w')
+				// fs.openSync( __dirname + "../tmp/x.jpg", 'w')
+				res.json( 'ok' )
+			}
+		})
 	})
 
 	app.get( '/s3-list-all', strategy.authenticate(), function( req, res ) {
@@ -35,7 +61,7 @@ module.exports.controller = function( app, strategy ) {
 				console.log( err )
 				res.status( 404 ).json( err )
 			} else {
-				console.log( data )
+				winston.debug( data )
 				res.json( data )
 			}
 		})

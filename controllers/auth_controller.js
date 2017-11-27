@@ -6,6 +6,7 @@ var config = require("../config/strategy-config")
 var credential = require('credential')
 var pw = credential()
 var Sequelize = require('sequelize');
+var winston = require('winston')
 
 module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
