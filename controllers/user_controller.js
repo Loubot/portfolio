@@ -9,6 +9,8 @@ console.log( config )
 AWS.config.update(config);
 var s3 = new AWS.S3();
 
+var jimp = require('jimp')
+
 
 
 
