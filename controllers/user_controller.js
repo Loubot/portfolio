@@ -39,45 +39,45 @@ module.exports.controller = function( app, strategy ) {
 			winston.debug( 'end' )
 			out.end()
 
-			Jimp.read("./tmp/images/Jellyfish.jpg", function (err, lenna) {
-			    if (err) {
-			    	winston.debug( 'big err')
-			    	winston.debug( err )
-			    } else {
-			    	winston.debug( 'got here')
-			    	// winston.debug( lenna )
-			    	lenna.resize(256, 256)            // resize
-			    	     .quality(60)                 // set JPEG quality
-			    	     .greyscale()                 // set greyscale
-			    	     .write("./tmp/images/lena-small-bw.jpg"); // save
-			    	winston.debug( 'finished')
+			// Jimp.read("./tmp/images/Jellyfish.jpg", function (err, lenna) {
+			//     if (err) {
+			//     	winston.debug( 'big err')
+			//     	winston.debug( err )
+			//     } else {
+			//     	winston.debug( 'got here')
+			//     	// winston.debug( lenna )
+			//     	lenna.resize(256, 256)            // resize
+			//     	     .quality(60)                 // set JPEG quality
+			//     	     .greyscale()                 // set greyscale
+			//     	     .write("./tmp/images/lena-small-bw.jpg"); // save
+			//     	winston.debug( 'finished')
 
-			    	fs.readFile( "./tmp/images/lena-small-bw.jpg" , function( err, data ) {
-			    		winston.debug( 'read file' )
-			    		if ( err ) {
-			    			winston.debug( 'failed to read file')
-			    		} else {
-			    			// var base64data = new Buffer(data, 'binary')
-			    			s3.putObject( { 
-			    				Bucket: "als-portfolio", Key: "lena-small-bw.jpg" , Body: data, ACL: 'public-read'
-			    			}, function( err, s3_resp ) {
-			    				if ( err ) {
-			    					winston.debug( 's3 upload error' )
-			    					winston.debug( err )
-			    				} else {
-			    					winston.debug( 'upload done' )
-			    					// winston.debug( s3_resp )
-			    				}
-			    			})
-			    		}
-			    	})
+			//     	fs.readFile( "./tmp/images/lena-small-bw.jpg" , function( err, data ) {
+			//     		winston.debug( 'read file' )
+			//     		if ( err ) {
+			//     			winston.debug( 'failed to read file')
+			//     		} else {
+			//     			// var base64data = new Buffer(data, 'binary')
+			//     			s3.putObject( { 
+			//     				Bucket: "als-portfolio", Key: "lena-small-bw.jpg" , Body: data, ACL: 'public-read'
+			//     			}, function( err, s3_resp ) {
+			//     				if ( err ) {
+			//     					winston.debug( 's3 upload error' )
+			//     					winston.debug( err )
+			//     				} else {
+			//     					winston.debug( 'upload done' )
+			//     					// winston.debug( s3_resp )
+			//     				}
+			//     			})
+			//     		}
+			//     	})
 			    	
-			    }
+			//     }
 			    
-			}).catch( function( err ) {
-				winston.debug( "Jimp read error ")
-				winston.debug( err )
-			});
+			// }).catch( function( err ) {
+			// 	winston.debug( "Jimp read error ")
+			// 	winston.debug( err )
+			// });
 
 			
 		})
