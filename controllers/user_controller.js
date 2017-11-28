@@ -50,6 +50,28 @@ module.exports.controller = function( app, strategy ) {
 			    	     .quality(60)                 // set JPEG quality
 			    	     .greyscale()                 // set greyscale
 			    	     .write("./tmp/images/lena-small-bw.jpg"); // save
+			    	winston.debug( 'finished')
+
+			    	fs.readFile( "./tmp/images/lena-small-bw.jpg" , function( err, data ) {
+			    		winston.debug( 'read file' )
+			    		if ( err ) {
+			    			winston.debug( 'failed to read file')
+			    		} else {
+			    			// var base64data = new Buffer(data, 'binary')
+			    			s3.putObject( { 
+			    				Bucket: "als-portfolio", Key: "lena-small-bw.jpg" , Body: data, ACL: 'public-read'
+			    			}, function( err, s3_resp ) {
+			    				if ( err ) {
+			    					winston.debug( 's3 upload error' )
+			    					winston.debug( err )
+			    				} else {
+			    					winston.debug( 'upload done' )
+			    					// winston.debug( s3_resp )
+			    				}
+			    			})
+			    		}
+			    	})
+			    	
 			    }
 			    
 			}).catch( function( err ) {
