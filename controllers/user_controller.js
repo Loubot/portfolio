@@ -12,7 +12,7 @@ var s3 = new AWS.S3();
 var winston = require('winston')
 
 var mkdirp = require('mkdirp')
-var jimp = require('jimp')
+var Jimp = require('jimp')
 
 
 
@@ -27,25 +27,59 @@ module.exports.controller = function( app, strategy ) {
 
 	app.get('/image', strategy.authenticate(), function( req, res ) {
 		console.log( '/image user_controller')
-		
-		s3.getObject( { Bucket: "als-portfolio", Key: "Jellyfish.jpg" }, function( err, data ) {
-			if ( err ) {
+
+		// winston.debug( process.cwd() )
+
+		var out = fs.createWriteStream('./tmp/images/Jellyfish.jpg');
+
+		out.on( 'open', function( file ) {
+			s3.getObject({ Bucket: "als-portfolio", Key: "Jellyfish.jpg" }).createReadStream().pipe(out);
+			
+		}).on( 'close', function() {
+			winston.debug( 'end' )
+			out.end()
+
+			Jimp.read("./tmp/images/Jellyfish.jpg", function (err, lenna) {
+			    if (err) {
+			    	winston.debug( 'big err')
+			    	winston.debug( err )
+			    } else {
+			    	winston.debug( 'got here')
+			    	// winston.debug( lenna )
+			    	lenna.resize(256, 256)            // resize
+			    	     .quality(60)                 // set JPEG quality
+			    	     .greyscale()                 // set greyscale
+			    	     .write("./tmp/images/lena-small-bw.jpg"); // save
+			    }
+			    
+			}).catch( function( err ) {
+				winston.debug( "Jimp read error ")
 				winston.debug( err )
-				res.status( 404 ).json( err )
-			} else {
-				
-				mkdirp('tmp/images', function(err) {
-				 	if (err) {
-				    	return winston.debug("Can't create dir " + (JSON.stringify(err)));
-				    } else {
-				    	return winston.debug("Dir created waheeeey");
-				  	}
-				});
-				// fs.closeSync fs.openSync('./.tmp/excel_sheets/bla.xls', 'w')
-				// fs.openSync( __dirname + "../tmp/x.jpg", 'w')
-				res.json( 'ok' )
-			}
+			});
+
+			
 		})
+		
+		res.json('ok')
+		
+		// s3.getObject( { Bucket: "als-portfolio", Key: "Jellyfish.jpg" }, function( err, data ) {
+		// 	if ( err ) {
+		// 		winston.debug( err )
+		// 		res.status( 404 ).json( err )
+		// 	} else {
+				
+		// 		mkdirp('tmp/images', function(err) {
+		// 		 	if (err) {
+		// 		    	return winston.debug("Can't create dir " + (JSON.stringify(err)));
+		// 		    } else {
+		// 		    	return winston.debug("Dir created waheeeey");
+		// 		  	}
+		// 		});
+		// 		// fs.closeSync fs.openSync('./.tmp/excel_sheets/bla.xls', 'w')
+		// 		// fs.openSync( __dirname + "../tmp/x.jpg", 'w')
+		// 		res.json( 'ok' )
+		// 	}
+		// })
 	})
 
 	app.get( '/s3-list-all', strategy.authenticate(), function( req, res ) {
