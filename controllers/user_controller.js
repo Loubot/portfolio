@@ -31,12 +31,13 @@ module.exports.controller = function( app, strategy ) {
 		// winston.debug( process.cwd() )
 
 		var out = fs.createWriteStream('./tmp/images/Jellyfish.jpg');
+		console.log( out )
 
 		out.on( 'open', function( file ) {
 			s3.getObject({ Bucket: "als-portfolio", Key: "Jellyfish.jpg" }).createReadStream().pipe(out);
 			
 		}).on( 'close', function() {
-			winston.debug( 'end' )
+			console.log( 'end' )
 			out.end()
 
 			// Jimp.read("./tmp/images/Jellyfish.jpg", function (err, lenna) {
