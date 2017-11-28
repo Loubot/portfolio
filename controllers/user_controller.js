@@ -51,9 +51,8 @@ module.exports.controller = function( app, strategy ) {
 		    		    } else {
 		    		    	winston.debug( 'got here')
 		    		    	// winston.debug( lenna )
-		    		    	lenna.resize(256, 256)            // resize
+		    		    	lenna.scaleToFit(256, 256)            // resize
 		    		    	     .quality(60)                 // set JPEG quality
-		    		    	     .greyscale()                 // set greyscale
 		    		    	     .write("./tmp/images/lena-small-bw.jpg"); // save
 		    		    	winston.debug( 'finished')
 
