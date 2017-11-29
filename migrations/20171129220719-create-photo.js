@@ -14,7 +14,7 @@ module.exports = {
       thumbUrl: {
         type: Sequelize.STRING
       },
-      user_id: {
+      UserId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

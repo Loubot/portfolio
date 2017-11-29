@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   var Photo = sequelize.define('Photo', {
     fullSizeUrl: DataTypes.STRING,
     thumbUrl: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        models.Photo.belongsTo( models.User, { foreignKey: 'user_id' } )
+        // associations can be defined here
       }
     }
   });
