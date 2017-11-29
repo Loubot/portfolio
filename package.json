@@ -27,6 +27,7 @@
     "jwt-simple": "^0.5.1",
     "mkdirp": "^0.5.1",
     "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
     "ng-alertify": "^1.0.2",
     "node-sass-middleware": "0.9.8",
@@ -36,7 +37,7 @@
     "passport-local-authenticate": "^1.2.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.22.6",
+    "sequelize": "3.31.0",
     "sequelize-cli": "^3.0.0",
     "serve-favicon": "~2.4.5",
     "winston": "^2.4.0"
