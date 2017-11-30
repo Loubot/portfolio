@@ -35,7 +35,7 @@ angular.module('portfolio').controller( 'adminController', [
 				},
 				params: { Key: $scope.file.name, type: $scope.file.type, request_type: 'putObject' }
 			}).then( function successCallBack( res ) {
-				console.log( res.data )
+				console.log( res )
 
 				$http({
 					method: 'PUT',

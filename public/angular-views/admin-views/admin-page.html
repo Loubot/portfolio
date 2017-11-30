@@ -3,10 +3,13 @@
 
 <md-content>
 
-	<md-grid-list md-cols-gt-xs="3" md-cols="2" md md-row-height="16:9"  >
-        <md-grid-tile 	class="gray" ng-repeat="img in img_urls">
+	<md-grid-list md-cols-gt-xs="3" md-cols="2" md-row-height="180px"  >
+        <md-grid-tile 	class="gray" ng-repeat="img in img_urls" md-gutter="8px">
             <img style="width: 75%; max-height:168px !important;" ng-src="{{ img }}" >
         </md-grid-tile>
+
+        <md-grid-tile>
+        	<img ng-src="https://als-portfolio.s3.eu-west-1.amazonaws.com/download.jpg" style="width: 75%;max-height: 168px">
         
       </md-grid-list>
 	
