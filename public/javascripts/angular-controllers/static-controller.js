@@ -36,6 +36,7 @@ angular.module('portfolio').controller( 'staticController', [
 		}
 
 		$scope.login = function() {
+			console.log( $scope.user )
 			$http({
 				method: 'POST',
 				url: window.location.origin + "/login",

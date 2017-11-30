@@ -12,7 +12,7 @@ module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
 		console.log( 'login' )
 		if (req.body.email && req.body.password ) {
-	        console.log('1')
+	        
 	        models.User.findOne({
 	        			where: { email: req.body.email }
 	        		}).then( user => {
@@ -30,7 +30,7 @@ module.exports.controller = function( app, strategy ) {
 	        				  		var token = jwt.encode(payload, config.jwtSecret);
 	        				  		res.json( token )
 	        				  	} else {
-	        				  		console.log('6')
+	        				  		
 	        				  		res.sendStatus( 401 )
 	        				  	}
 	        				})
@@ -57,7 +57,7 @@ module.exports.controller = function( app, strategy ) {
 
 	app.post('/register', function( req, res ) {
 		console.log('register')
-
+		// console.log( req.body )
 
 		pw.hash( req.body.password, function( err, hash ) {
 			if ( err ){
@@ -68,7 +68,6 @@ module.exports.controller = function( app, strategy ) {
 				models.User.findOrCreate({
 					where: { email: req.body.email, password: hash }
 				}).spread( ( user, created ) => {
-				
 					if ( created ) {
 					
 						var payload = {
@@ -91,7 +90,3 @@ module.exports.controller = function( app, strategy ) {
 		
 	})
 }
-
-
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.odI-H-J7Ots65seSC42x40hVC9Z-F59GVoTk76mFUhI
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.1Tb7ZLKflKv4HOx02hy7AhWra3YMEwjaeJFQB-z9ccQ
