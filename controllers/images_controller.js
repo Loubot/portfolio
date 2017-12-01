@@ -100,7 +100,7 @@ module.exports.controller = function( app, strategy ) {
 							     .write("./tmp/images/thumb_" + req.body.file_name); // save
 							winston.debug( 'finished')
 
-							fs.readFile( ( ".tmp/images/thumb_" req.body.file_name ), function( err, file ) {
+							fs.readFile( ( ".tmp/images/thumb_" + req.body.file_name ), function( err, file ) {
 								if ( err ) {
 									winston.debug("")
 								}
