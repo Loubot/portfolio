@@ -75,8 +75,34 @@ module.exports.controller = function( app, strategy ) {
 				res.status( 422 ).json( "Can't create directory" )
 				return winston.debug("Can't create dir " + (JSON.stringify(err)));
 			} else {
-				winston.debug( "Created directory" )
-				res.json( "Created directory")
+				winston.debug( "Directory ok" )
+
+				// Create file for ediiting
+				var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
+				console.log('1')
+				out.on( 'open', function( file ) {
+					s3.getObject({ Bucket: "als-portfolio", Key: req.body.file_name }).createReadStream().pipe(out);
+					console.log('2')
+				}).on( 'close', function() {
+					out.end()
+					console.log('3')
+					Jimp.read( ( "./tmp/images/" + req.body.file_name ), function( err, img ) {
+						if ( err ) {
+							winston.debug( 'big err')
+							winston.debug( err )
+							res.status( 404 ).json( "Faied to read file from local storage" )
+							return false
+						} else {
+							console.log('4')
+							winston.debug( "Found file" )
+							img.scaleToFit(256, 256)            // resize
+							     .quality(60)                 // set JPEG quality
+							     .write("./tmp/images/thumb_" + req.body.file_name); // save
+							winston.debug( 'finished')
+							res.json( "Did it")
+						}
+					})
+				})
 			}
 		})
 	})
