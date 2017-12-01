@@ -47,7 +47,20 @@ angular.module('portfolio').controller( 'adminController', [
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
 					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + resp.config.data.name )
-					console.log( $scope.img_urls )
+					$http({
+						method: "POST",
+						url: window.location.origin + "/photo",
+						headers: {
+							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+						},
+						data: {
+							file_name: resp.config.data.name
+						}
+					}).then( function postImageCallBack( res ) {
+						console.log( res )
+					}), function postImageError( err ) {
+						console.log( err )
+					}
 				}), function s3Error( dooo ) {
 					console.log( dooo )
 				}
