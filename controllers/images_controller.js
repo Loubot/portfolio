@@ -28,7 +28,7 @@ module.exports.controller = function( app, strategy ) {
 				console.log( err )
 				res.status( 404 ).json( err )
 			} else {
-				winston.debug( data )
+				// winston.debug( data )
 				res.json( data )
 			}
 		})
@@ -51,9 +51,9 @@ module.exports.controller = function( app, strategy ) {
 		};
 
 		if ( req.query.request_type === 'putObject' ){
-			console.log('hup')
+			// console.log('hup')
 			params.ACL = 'public-read'
-			console.log( params)
+			// console.log( params)
 		}
 		console.log( params)
 		s3.getSignedUrl( req.query.request_type, params, function (err, url) {
@@ -85,7 +85,6 @@ module.exports.controller = function( app, strategy ) {
 		    		s3.getObject({ Bucket: "als-portfolio", Key: "Jellyfish.jpg" }).createReadStream().pipe(out);
 		    		
 		    	}).on( 'close', function() {
-		    		console.log( 'end' )
 		    		out.end()
 
 		    		Jimp.read("./tmp/images/Jellyfish.jpg", function (err, lenna) {

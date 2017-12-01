@@ -20,7 +20,7 @@ angular.module('portfolio').controller( 'adminController', [
 				$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
 
 			}
-			console.log($scope.img_urls)
+			// console.log($scope.img_urls)
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -45,7 +45,9 @@ angular.module('portfolio').controller( 'adminController', [
 					},
 					data: $scope.file
 				}).then( function s3CallBack( resp ) {
-					console.log( resp )
+					console.log( resp.config )
+					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + resp.config.data.name )
+					console.log( $scope.img_urls )
 				}), function s3Error( dooo ) {
 					console.log( dooo )
 				}
