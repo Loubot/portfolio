@@ -99,7 +99,17 @@ module.exports.controller = function( app, strategy ) {
 							     .quality(60)                 // set JPEG quality
 							     .write("./tmp/images/thumb_" + req.body.file_name); // save
 							winston.debug( 'finished')
-							res.json( "Did it")
+
+							fs.readFile( ( ".tmp/images/thumb_" req.body.file_name ), function( err, file ) {
+								if ( err ) {
+									winston.debug("")
+								}
+							})
+							var params = {
+							  	Body: , 
+							  	Bucket: config.Bucket, 
+							 	Key: "thumb_" + req.body.file_name,
+							};
 						}
 					})
 				})
