@@ -10,7 +10,7 @@ AWS.config.update(config);
 var s3 = 	Promise.promisifyAll( new AWS.S3() )
 var winston = require('winston')
 
-var mkdirp = Promise.promisifyAll( require('mkdirp') )
+var mkdirp =  require('mkdirp-promise')
 var Jimp = Promise.promisifyAll( require('jimp') )
 
 
@@ -78,14 +78,10 @@ module.exports.controller = function( app, strategy ) {
 	app.post('/photo', strategy.authenticate(), function( req, res ) {
 		console.log( '/image images_controller' )
 		winston.debug( req.body )
-		
-		mkdirp( 'tmp/images', function( err ) {
-			if ( err ) {
-				res.status( 422 ).json( "Can't create directory" )
-				return winston.debug("Can't create dir " + (JSON.stringify(err)));
-			} else {
-				winston.debug( "Directory ok" )
 
+		mkdirp( 'tmp/images' ).then( function() {
+			winston.debug( "Created tmp/images" )
+			
 				// Create file for ediiting
 				var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
 				
@@ -122,8 +118,13 @@ module.exports.controller = function( app, strategy ) {
 						res.status( 500 ).json( err )
 			        })
 				}) /*end on('close'*/
-			} /* end else*/
-		}) /* End mkdirp */
+			
+		}).catch( function( err ) {
+			res.status( 422 ).json( "Can't create directory" )
+			return winston.debug("Can't create dir " + (JSON.stringify(err)));
+		})
+
+		
 	}) /*End app.post( 'photo' ) */
 
 	/* /image params: { } */
