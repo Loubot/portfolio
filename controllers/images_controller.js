@@ -79,13 +79,13 @@ module.exports.controller = function( app, strategy ) {
 
 				// Create file for ediiting
 				var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
-				console.log('1')
+				
 				out.on( 'open', function( file ) {
 					s3.getObject({ Bucket: "als-portfolio", Key: req.body.file_name }).createReadStream().pipe(out);
-					console.log('2')
+					
 				}).on( 'close', function() {
 					out.end()
-					console.log('3')
+					
 					Jimp.read( ( "./tmp/images/" + req.body.file_name ), function( err, img ) {
 						if ( err ) {
 							winston.debug( 'big err')
@@ -93,23 +93,38 @@ module.exports.controller = function( app, strategy ) {
 							res.status( 404 ).json( "Faied to read file from local storage" )
 							return false
 						} else {
-							console.log('4')
+							
 							winston.debug( "Found file" )
 							img.scaleToFit(256, 256)            // resize
 							     .quality(60)                 // set JPEG quality
 							     .write("./tmp/images/thumb_" + req.body.file_name); // save
 							winston.debug( 'finished')
-
-							fs.readFile( ( ".tmp/images/thumb_" + req.body.file_name ), function( err, file ) {
+							console.log('5')
+							fs.readFile( ( "./tmp/images/thumb_" + req.body.file_name ), function( err, file ) {
 								if ( err ) {
-									winston.debug("")
+									winston.debug(err)
+								} else {
+									
+									var params = {
+									  	Body: file, 
+									  	Bucket: config.Bucket, 
+									 	Key: "thumb_" + req.body.file_name,
+									}
+
+									s3.putObject( params, function( err, data ) {
+										if ( err ) {
+											res.status( 422 ).json( err )
+										} else {
+											
+											res.json({ 
+												message: "File uploaded and thumb created",
+												s3_response: data
+											})
+										}
+									})
 								}
 							})
-							var params = {
-							  	Body: , 
-							  	Bucket: config.Bucket, 
-							 	Key: "thumb_" + req.body.file_name,
-							};
+							
 						}
 					})
 				})
