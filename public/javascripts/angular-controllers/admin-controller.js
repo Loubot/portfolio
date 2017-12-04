@@ -25,8 +25,10 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( err )
 		}
 
+		$scope.bla = {}
+
 		$scope.upload = function() {
-			console.log( $scope.file )
+			console.log( $scope.bla )
 			$http({
 				method: 'GET',
 				url: window.location.origin + '/s3-url',

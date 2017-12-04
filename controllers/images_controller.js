@@ -106,10 +106,11 @@ module.exports.controller = function( app, strategy ) {
 					return fs.readFileAsync( ( "./tmp/images/thumb_" + req.body.file_name ) )
 				}).then( function( file ) {
 					var params = {
+						ACL: 'public-read',
 					  	Body: file, 
 					  	Bucket: config.Bucket, 
-					 	Key: "thumb_" + req.body.file_name,
-					 	ACL: 'public-read'
+					 	Key: "thumb_" + req.body.file_name
+					 	
 					} /*End of params*/
 
 					return s3.putObjectAsync( params )

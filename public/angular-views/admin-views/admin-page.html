@@ -1,7 +1,8 @@
 
 
 
-<md-content>
+<md-content class="big_gutter center_text">
+
 
 	<md-grid-list md-cols-gt-xs="3" md-cols="2" md-row-height="180px"  >
         <md-grid-tile 	class="gray" ng-repeat="img in img_urls" md-gutter="8px">
@@ -15,11 +16,23 @@
 	
 </md-content>
 
-<div class="big_gutter center_text">
-	<form ng-submit="upload()">
-		
-		<input name="file" type="file" file />
-		<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload">
+<div class="big_gutter ">
+	<form ng-submit="upload()" class="center_text" layout="column" layout-align="space-around">
+		<h3>Select which category to upload this photo to!</h3>
+		<md-input-container class="width_50 center">
+		  <md-select ng-model="bla" placeholder="Select category">
+		    <md-option value="cork_city">Cork City</md-option>
+		    <md-option value="stuff">Stuff</md-option>
+		  </md-select>
+		</md-input-container>
+		<md-input-contaainer class="width_50 center">
+			<input name="file" type="file" file />
+		</md-input-contaainer>
+		<md-input-container class="width_50 center">
+			<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload">
+		</md-input-container>
 	</form>
+
+	2222 {{ bla }}
 
 </div>

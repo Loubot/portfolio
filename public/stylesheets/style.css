@@ -18,4 +18,11 @@ a {
   margin-left: auto !important;
   margin-right: auto !important; }
 
+.width_50 {
+  width: 50% !important; }
+
+.center {
+  margin: auto;
+  padding: 10px; }
+
 /*# sourceMappingURL=style.css.map */
