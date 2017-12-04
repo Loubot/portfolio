@@ -5,6 +5,7 @@ var AWS = require('aws-sdk');
 var fs = Promise.promisifyAll( require( 'fs') )
 AWS.config.update({region: 'eu-west-1'});
 var config = require("../config/s3-config")
+var models = require( '../models' )
 // console.log( config )
 AWS.config.update(config);
 var s3 = 	Promise.promisifyAll( new AWS.S3() )
@@ -77,52 +78,63 @@ module.exports.controller = function( app, strategy ) {
 
 	app.post('/photo', strategy.authenticate(), function( req, res ) {
 		console.log( '/image images_controller' )
-		winston.debug( req.body )
+		winston.debug( req.user )
 
-		mkdirp( 'tmp/images' ).then( function() {
-			winston.debug( "Created tmp/images" )
-			
-				// Create file for ediiting
-				var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
+		models.Photo.create({
+			fullSizeUrl: 'bbb'
+		}).then( function( photo ) {
+			mkdirp( 'tmp/images' ).then( function() {
+				winston.debug( "Created tmp/images" )
 				
-				out.on( 'open', function( file ) {
-					s3.getObject({ Bucket: "als-portfolio", Key: req.body.file_name }).createReadStream().pipe(out);
+					// Create file for ediiting
+					var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
 					
-				}).on( 'close', function() {
-					out.end()
+					out.on( 'open', function( file ) {
+						s3.getObject({ Bucket: "als-portfolio", Key: req.body.file_name }).createReadStream().pipe(out);
+						
+					}).on( 'close', function() {
+						out.end()
 
-					Jimp.readAsync( ( "./tmp/images/" + req.body.file_name ) ).then( function( img ) {
-						winston.debug( "Found file" )
-						img.scaleToFit(256, 256)            // resize
-						     .quality(60)                 // set JPEG quality
-						     .write("./tmp/images/thumb_" + req.body.file_name); // save
-						winston.debug( 'finished')
-						return fs.readFileAsync( ( "./tmp/images/thumb_" + req.body.file_name ) )
-					}).then( function( file ) {
-						var params = {
-						  	Body: file, 
-						  	Bucket: config.Bucket, 
-						 	Key: "thumb_" + req.body.file_name,
-						} /*End of params*/
+						Jimp.readAsync( ( "./tmp/images/" + req.body.file_name ) ).then( function( img ) {
+							winston.debug( "Found file" )
+							img.scaleToFit(256, 256)            // resize
+							     .quality(60)                 // set JPEG quality
+							     .write("./tmp/images/thumb_" + req.body.file_name); // save
+							winston.debug( 'finished')
+							return fs.readFileAsync( ( "./tmp/images/thumb_" + req.body.file_name ) )
+						}).then( function( file ) {
+							var params = {
+							  	Body: file, 
+							  	Bucket: config.Bucket, 
+							 	Key: "thumb_" + req.body.file_name,
+							 	ACL: 'public-read'
+							} /*End of params*/
 
-						return s3.putObjectAsync( params )
-					}).then( function ( data ) {
-						res.json({ 
-							message: "File uploaded and thumb created",
-							s3_response: data
-						})
-					}).catch(function (err) {
-			            winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
-						winston.debug( err )
+							return s3.putObjectAsync( params )
+						}).then( function ( data ) {
+							res.json({ 
+								message: "File uploaded and thumb created",
+								s3_response: data
+							})
+						}).catch(function (err) {
+				            winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
+							winston.debug( err )
 
-						res.status( 500 ).json( err )
-			        })
-				}) /*end on('close'*/
-			
+							res.status( 500 ).json( err )
+				        })
+					}) /*end on('close'*/
+				
+			}).catch( function( err ) {
+				res.status( 422 ).json( "Can't create directory" )
+				return winston.debug("Can't create dir " + (JSON.stringify(err)));
+			})
+
 		}).catch( function( err ) {
-			res.status( 422 ).json( "Can't create directory" )
-			return winston.debug("Can't create dir " + (JSON.stringify(err)));
+			winston.debug( "Can't create folder")
+			res.status( 422 ).json( err )
 		})
+
+		
 
 		
 	}) /*End app.post( 'photo' ) */

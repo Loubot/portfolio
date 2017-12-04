@@ -22,11 +22,21 @@ module.exports.controller = function( app, strategy ) {
 		console.log( '/user user_controller')
 		console.log( req.query)
 
-		models.User.findOne({
-			where: { id: 1 }, include: [ {model: models.Photo, as: 'photos' }]
-		}).then( user => {
+
+		models.Photo.create({
+			fullSizeUrl: 'bbb'
+		}).then( function( photo ) {
+			console.log(photo)
 			res.json( user )
+		}).catch( function( err ) {
+			console.log( err )
 		})
+
+		// models.User.findOne({
+		// 	where: { id: 1 }, include: [ {model: models.Photo, as: 'photos' }]
+		// }).then( user => {
+		// 	res.json( user )
+		// })
 		
 	})
 
