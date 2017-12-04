@@ -20,23 +20,13 @@ module.exports.controller = function( app, strategy ) {
 
 	app.get('/user', strategy.authenticate(), function( req, res ) {
 		console.log( '/user user_controller')
-		console.log( req.query)
+		// console.log( req.query)
 
-
-		models.Photo.create({
-			fullSizeUrl: 'bbb'
-		}).then( function( photo ) {
-			console.log(photo)
+		models.User.findOne({
+			where: { id: 1 }, include: [ {model: models.Photo, as: 'photos' }]
+		}).then( user => {
 			res.json( user )
-		}).catch( function( err ) {
-			console.log( err )
 		})
-
-		// models.User.findOne({
-		// 	where: { id: 1 }, include: [ {model: models.Photo, as: 'photos' }]
-		// }).then( user => {
-		// 	res.json( user )
-		// })
 		
 	})
 
