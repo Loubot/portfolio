@@ -81,6 +81,7 @@ module.exports.controller = function( app, strategy ) {
 		// winston.debug( req.user )
 		var photo = null
 		models.Photo.create({
+			UserId: req.user.id,
 			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.file_name
 		}).then( function( res ) {
 			// winston.debug( photo )
@@ -123,7 +124,7 @@ module.exports.controller = function( app, strategy ) {
 
 				}).then( function( updated ) {
 					winston.debug( "Photo updated")
-					winston.debug( updated )
+					// winston.debug( updated )
 
 				}).catch(function (err) {
 		            winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
