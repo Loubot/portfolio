@@ -8,11 +8,10 @@ var config = require("../config/s3-config")
 var models = require( '../models' )
 // console.log( config )
 AWS.config.update(config);
-var s3 = 	Promise.promisifyAll( new AWS.S3() )
+var s3 = Promise.promisifyAll( new AWS.S3() )
 var winston = require('winston')
 
-var mkdirp =  require('mkdirp-promise')
-var Jimp = Promise.promisifyAll( require('jimp') )
+
 
 
 
@@ -82,57 +81,13 @@ module.exports.controller = function( app, strategy ) {
 		var photo = null
 		models.Photo.create({
 			UserId: req.user.id,
-			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.file_name
-		}).then( function( res ) {
+			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.file_name,
+			fileName: req.body.file_name
+		}).then( function( photo ) {
+			res.json( photo )
 			// winston.debug( photo )
-			photo = res
-			return mkdirp( 'tmp/images' )
-
-		}).then( function() { 
-			winston.debug( "Created tmp/images" )
-			var out = fs.createWriteStream('./tmp/images/' + req.body.file_name );
-					
-			out.on( 'open', function( file ) {
-				s3.getObject({ Bucket: "als-portfolio", Key: req.body.file_name }).createReadStream().pipe(out);
-				
-			}).on( 'close', function() {
-				out.end()
-
-				Jimp.readAsync( ( "./tmp/images/" + req.body.file_name ) ).then( function( img ) {
-					winston.debug( "Found file" )
-					img.scaleToFit(256, 256)            // resize
-					     .quality(60)                 // set JPEG quality
-					     .write("./tmp/images/thumb_" + req.body.file_name); // save
-					winston.debug( 'finished')
-					return fs.readFileAsync( ( "./tmp/images/thumb_" + req.body.file_name ) )
-				}).then( function( file ) {
-					var params = {
-						ACL: 'public-read',
-					  	Body: file, 
-					  	Bucket: config.Bucket, 
-					 	Key: "thumb_" + req.body.file_name
-					 	
-					} /*End of params*/
-
-					return s3.putObjectAsync( params )
-				}).then( function ( data ) {
-					res.json({ 
-						message: "File uploaded and thumb created",
-						s3_response: data
-					})
-					return photo.update({ thumbUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/thumb_" + req.body.file_name })
-
-				}).then( function( updated ) {
-					winston.debug( "Photo updated")
-					// winston.debug( updated )
-
-				}).catch(function (err) {
-		            winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
-					winston.debug( err )
-
-					res.status( 500 ).json( err )
-		        })
-			}) /*end on('close'*/
+			// photo = res
+			// return mkdirp( 'tmp/images' )
 		}).catch( function( err ) {
 			winston.debug( err )
 			res.status( 500 ).json( err )
