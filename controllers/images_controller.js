@@ -44,14 +44,17 @@ module.exports.controller = function( app, strategy ) {
 		Returns s3 presigned url
 	*/
 	app.get('/s3-url', strategy.authenticate(), function( req, res ) {
-		console.log( '/s3-url, user_controller')
+		console.log( '/s3-url, images_controller')
 		console.log( req.query )
+		console.log( 'before params')
 		var params = {
 		    Bucket: config.Bucket,
 		    Key:req.query.Key,
 		    ContentType:req.query.type,
 		    Expires: 60
 		};
+
+		winston.debug( params )
 
 		if ( req.query.request_type === 'putObject' ){
 			// console.log('hup')
