@@ -25,6 +25,25 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( err )
 		}
 
+		// $scope.category = {}
+
+		$scope.create_category = function() {
+			console.log( $scope.category )
+			$http({
+				method: "POST",
+				url: window.location.origin + "/api/category",
+				headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				params: $scope.category
+			}).then( function successCallBack( res ) {
+				console.log( res )
+			}), function error( err ) {
+				console.log( err )
+			}
+		}
+
+
 		$scope.file = {}
 
 		$scope.upload = function() {

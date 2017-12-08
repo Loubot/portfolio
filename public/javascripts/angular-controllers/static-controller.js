@@ -31,6 +31,16 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
+		$http({
+			method: "GET",
+			url: window.location.origin + '/category',
+
+		}).then( function categories( res ) {
+			$scope.categories = res.data
+		}), function error( err ) {
+			console.log( err )
+		}
+
 		$scope.openLeftMenu = function() {
 			$mdSidenav( 'left' ).toggle()
 		}
