@@ -13,8 +13,9 @@ angular.module('portfolio').controller( 'navController', [
 		$http({
 			method: "GET",
 			url: window.location.origin + "/api/category"
-		}).then( function success( categories ) {
-			console.log( categories )
+		}).then( function success( res ) {
+			console.log( res )
+			$scope.categories = res.data
 		}), function error( err ) {
 			console.log( err )
 		}
