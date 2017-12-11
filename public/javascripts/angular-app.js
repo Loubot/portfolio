@@ -18,7 +18,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             views: {
                 'nav': {
                     templateUrl: "../angular-views/static-views/nav.html",
-                    controller: "staticController"
+                    controller: "navController"
                 },
                 'body':{
                     controller: "staticController",

@@ -5,12 +5,11 @@ angular.module('portfolio').controller( 'staticController', [
 	"$http",
 	"$state",
 	"$mdSidenav",
-	"$mdMedia",
 	"Alertify",
-	function( $scope, $http, $state, $mdSidenav, $mdMedia, Alertify ) {
+	function( $scope, $http, $state, $mdSidenav, Alertify ) {
 		console.log('staticController')
 
-		$scope.$mdMedia = $mdMedia
+		
 
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
@@ -31,19 +30,8 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
-		$http({
-			method: "GET",
-			url: window.location.origin + '/category',
 
-		}).then( function categories( res ) {
-			$scope.categories = res.data
-		}), function error( err ) {
-			console.log( err )
-		}
-
-		$scope.openLeftMenu = function() {
-			$mdSidenav( 'left' ).toggle()
-		}
+		
 
 		$scope.login = function() {
 			console.log( $scope.user )
