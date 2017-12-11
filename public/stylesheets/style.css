@@ -25,4 +25,25 @@ a {
   margin: auto;
   padding: 10px; }
 
+@media (min-width: 600px) {
+  .show_on_small {
+    display: none !important; } }
+
+@media (min-width: 600px) {
+  .show_gt_600 {
+    display: inline-block !important; 
+  }
+
+  .show_on_small{
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .show_on_small {
+    display: inline-block !important; }
+  .show_gt_600 {
+    display: none !important; } 
+}
+
 /*# sourceMappingURL=style.css.map */

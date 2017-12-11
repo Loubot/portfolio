@@ -3,8 +3,9 @@
 angular.module('portfolio').controller( 'navController', [
 	"$scope",
 	"$http",
+	"$mdSidenav",
 	"$mdMedia",
-	function( $scope, $http, $mdMedia ) {
+	function( $scope, $http, $mdSidenav, $mdMedia ) {
 		$scope.$mdMedia = $mdMedia
 		$scope.openLeftMenu = function() {
 			$mdSidenav( 'left' ).toggle()

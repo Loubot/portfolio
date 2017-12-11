@@ -4,9 +4,8 @@ angular.module('portfolio').controller( 'staticController', [
 	"$scope",
 	"$http",
 	"$state",
-	"$mdSidenav",
 	"Alertify",
-	function( $scope, $http, $state, $mdSidenav, Alertify ) {
+	function( $scope, $http, $state, Alertify ) {
 		console.log('staticController')
 
 		
