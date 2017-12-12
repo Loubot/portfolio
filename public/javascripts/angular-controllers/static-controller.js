@@ -8,13 +8,11 @@ angular.module('portfolio').controller( 'staticController', [
 	function( $scope, $http, $state, Alertify ) {
 		console.log('staticController')
 
-		
-
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
 		$http({
 			method: 'GET',
-			url: window.location.origin + '/s3-list-all',
+			url: window.location.origin + '/api/s3-list-all',
 			headers: {
 				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 			}

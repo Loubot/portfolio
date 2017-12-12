@@ -10,7 +10,7 @@ angular.module('portfolio').controller( 'adminController', [
 		/* Get all objects in port-practise bucket */
 		$http({
 			method: 'GET',
-			url: window.location.origin + '/s3-list-all',
+			url: window.location.origin + '/api/s3-list-all',
 			headers: {
 				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 			}

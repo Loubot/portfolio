@@ -16,22 +16,24 @@ var winston = require('winston')
 
 
 module.exports.controller = function( app, strategy ) {
-	/* /s3-list-all params: { } */
+	/* /api/s3-list-all params: { } */
 	/* Get a list of all images in the bucket */
-	app.get( '/s3-list-all', function( req, res ) {
-		console.log( '/s3-list-all user_controller' )
+	app.get( '/api/s3-list-all', function( req, res ) {
+		console.log( '/api/s3-list-all images_controller' )
 		console.log( req.query )
 		var params = { 
 		  Bucket: config.Bucket,
 		  Delimiter: ''
 		}
-
+		console.log( '1')
 		s3.listObjects( params, function( err, data ) {
 			if ( err ) {
+				console.log( '2')
 				console.log( err )
 				res.status( 404 ).json( err )
 			} else {
-				// winston.debug( data )
+				console.log( '3')
+				winston.debug( data )
 				res.json( data )
 			}
 		})
