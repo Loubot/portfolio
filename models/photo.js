@@ -29,8 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
 
-    Photo.hook( 'afterCreate', function( photo, options) {
-        winston.debug( 'Photo create hook' )
+    Photo.Instance.prototype.processImage = function () {
+        winston.debug( "Photo instance method processImage()")
+        var photo = this
         winston.debug( photo.dataValues )
         var category = {}
         
@@ -43,7 +44,12 @@ module.exports = (sequelize, DataTypes) => {
                 var out = fs.createWriteStream('./tmp/images/' + photo.dataValues.fileName );
 
                 out.on( 'open', function( file ) {
-                   s3.getObject({ Bucket: "als-portfolio", Key: cat.name + "/" + photo.dataValues.fileName }).createReadStream().pipe(out);
+                    winston.debug( 'bla' )
+                    winston.debug( photo.dataValues.id )
+                    s3.getObject({ 
+                        Bucket: "als-portfolio", 
+                        Key: photo.dataValues.id + "/" + photo.dataValues.fileName 
+                    }).createReadStream().pipe(out);
                    
                 }).on( 'close', function() {
                    out.end()
@@ -88,7 +94,14 @@ module.exports = (sequelize, DataTypes) => {
             winston.debug( err )
             winston.debug( 'Failed to create tmp/images')
         })
-    })
+    }
+    
+
+
+    // Photo.hook( 'afterCreate', function( photo, options) {
+    //     winston.debug( 'Photo create hook' )
+    //     
+    // })
 
     
     return Photo;

@@ -51,30 +51,49 @@ module.exports.controller = function( app, strategy ) {
 		var cat_string = req.query.category
 		var cat_json = JSON.parse( cat_string )
 		
-		var params = {
-		    Bucket: config.Bucket,
-		    Key: cat_json.name + "/" + req.query.Key,
-		    ContentType:req.query.type,
-		    Expires: 60
-		};
+		
 
-		winston.debug( params )
-
-		if ( req.query.request_type === 'putObject' ){
-			// console.log('hup')
-			params.ACL = 'public-read'
-			// console.log( params)
-		}
-		// console.log( params)
-		s3.getSignedUrl( req.query.request_type, params, function (err, url) {
-			if ( err ) {
-				res.json( 'no good ')
-				console.log( err)
-			} else {
-				res.json(url)
-			}
+		models.Photo.create({
+			fileName: req.query.Key,
+			UserId: req.user.id,
+			CategoryId: cat_json.id
+			// fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name
+		}).then( function( photo ) {
+			// winston.debug( photo )
+			photo.processImage()
 			
-		});
+			return false
+			var params = {
+			    Bucket: config.Bucket,
+			    Key: photo.id + "/" + req.query.Key,
+			    ContentType:req.query.type,
+			    Expires: 60
+			}
+
+			if ( req.query.request_type === 'putObject' ){
+				// console.log('hup')
+				params.ACL = 'public-read'
+				// console.log( params)
+			}
+			// console.log( params)
+			s3.getSignedUrl( req.query.request_type, params, function (err, url) {
+				if ( err ) {
+					res.json( 'no good ')
+					console.log( err)
+				} else {
+					res.json({
+						url: url,
+						photo: photo
+					})
+				}
+				
+			})
+		}).catch( function( err ) {
+			res.status( 500 ).json( err )
+			winston.debug( err)
+		})
+
+		
 	})
 
 	/* /photo params: { file_name, category } */
@@ -86,20 +105,21 @@ module.exports.controller = function( app, strategy ) {
 		console.log( '/image images_controller' )
 		// winston.debug( req.user )
 		var photo = null
-		models.Photo.create({
-			UserId: req.user.id,
-			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.name + "/" + req.body.file_name,
-			fileName: req.body.file_name,
-			CategoryId: req.body.category.id
-		}).then( function( photo ) {
-			res.json( photo )
-			// winston.debug( photo )
-			// photo = res
-			// return mkdirp( 'tmp/images' )
-		}).catch( function( err ) {
-			winston.debug( err )
-			res.status( 500 ).json( err )
-		})
+		res.json( 'ok' )
+		// models.Photo.create({
+		// 	UserId: req.user.id,
+		// 	fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name,
+		// 	fileName: req.body.file_name,
+		// 	CategoryId: req.body.category.id
+		// }).then( function( photo ) {
+		// 	res.json( photo )
+		// 	// winston.debug( photo )
+		// 	// photo = res
+		// 	// return mkdirp( 'tmp/images' )
+		// }).catch( function( err ) {
+		// 	winston.debug( err )
+		// 	res.status( 500 ).json( err )
+		// })
 
 		
 	}) /*End app.post( 'photo' ) */

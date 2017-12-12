@@ -48,6 +48,7 @@ angular.module('portfolio').controller( 'adminController', [
 
 		$scope.upload = function() {
 			console.log( $scope.file )
+			var photo = {}
 			$http({
 				method: 'GET',
 				url: window.location.origin + '/api/s3-url',
@@ -62,10 +63,10 @@ angular.module('portfolio').controller( 'adminController', [
 				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
-				// return false
+				photo = res.data.photo
 				$http({
 					method: 'PUT',
-					url: res.data,
+					url: res.data.url,
 					headers: {
 						"Content-type": $scope.file.type
 					},
@@ -81,7 +82,8 @@ angular.module('portfolio').controller( 'adminController', [
 						},
 						data: {
 							file_name: resp.config.data.name,
-							category: $scope.file.category
+							category: $scope.file.category,
+							photo: photo
 						}
 					}).then( function postImageCallBack( res ) {
 						console.log( res )
