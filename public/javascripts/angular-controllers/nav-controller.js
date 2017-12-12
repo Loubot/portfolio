@@ -2,10 +2,11 @@
 
 angular.module('portfolio').controller( 'navController', [
 	"$scope",
+	"$rootScope",
 	"$http",
 	"$mdSidenav",
 	"$mdMedia",
-	function( $scope, $http, $mdSidenav, $mdMedia ) {
+	function( $scope, $rootScope, $http, $mdSidenav, $mdMedia ) {
 		$scope.$mdMedia = $mdMedia
 		$scope.openLeftMenu = function() {
 			$mdSidenav( 'left' ).toggle()
@@ -15,7 +16,7 @@ angular.module('portfolio').controller( 'navController', [
 			url: window.location.origin + "/api/category"
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.categories = res.data
+			$rootScope.categories = res.data
 		}), function error( err ) {
 			console.log( err )
 		}

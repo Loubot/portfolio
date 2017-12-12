@@ -25,15 +25,15 @@ module.exports.controller = function( app, strategy ) {
 		  Bucket: config.Bucket,
 		  Delimiter: ''
 		}
-		console.log( '1')
+		
 		s3.listObjects( params, function( err, data ) {
 			if ( err ) {
-				console.log( '2')
+				
 				console.log( err )
 				res.status( 404 ).json( err )
 			} else {
-				console.log( '3')
-				winston.debug( data )
+				
+				// winston.debug( data )
 				res.json( data )
 			}
 		})
@@ -45,17 +45,20 @@ module.exports.controller = function( app, strategy ) {
 		( e.g. 'putObject', 'getObject' )
 		Returns s3 presigned url
 	*/
-	app.get('/s3-url', strategy.authenticate(), function( req, res ) {
-		winston.debug( '/s3-url, images_controller')
+	app.get('/api/s3-url', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/api/s3-url, images_controller')
 		winston.debug( req.query )
+		var cat_string = req.query.category
+		var cat_json = JSON.parse( cat_string )
+		
 		var params = {
 		    Bucket: config.Bucket,
-		    Key:req.query.Key,
+		    Key: cat_json.name + "/" + req.query.Key,
 		    ContentType:req.query.type,
 		    Expires: 60
 		};
 
-		// winston.debug( params )
+		winston.debug( params )
 
 		if ( req.query.request_type === 'putObject' ){
 			// console.log('hup')
@@ -74,19 +77,20 @@ module.exports.controller = function( app, strategy ) {
 		});
 	})
 
-	/* /photo params: { file_name } */
-	/* Expects filename of recently uploaded photo. Creates thumbsize version of file and pushes this thumb
+	/* /photo params: { file_name, category } */
+	/* Expects filename of recently uploaded photo, category. Creates thumbsize version of file and pushes this thumb
 		to s3 bucket. 
 	*/
 
-	app.post('/photo', strategy.authenticate(), function( req, res ) {
+	app.post('/api/photo', strategy.authenticate(), function( req, res ) {
 		console.log( '/image images_controller' )
 		// winston.debug( req.user )
 		var photo = null
 		models.Photo.create({
 			UserId: req.user.id,
-			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.file_name,
-			fileName: req.body.file_name
+			fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.name + "/" + req.body.file_name,
+			fileName: req.body.file_name,
+			CategoryId: req.body.category.id
 		}).then( function( photo ) {
 			res.json( photo )
 			// winston.debug( photo )

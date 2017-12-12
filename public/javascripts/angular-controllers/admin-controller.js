@@ -50,14 +50,19 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( $scope.file )
 			$http({
 				method: 'GET',
-				url: window.location.origin + '/s3-url',
+				url: window.location.origin + '/api/s3-url',
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
-				params: { Key: $scope.file.name, type: $scope.file.type, request_type: 'putObject' }
+				params: { 
+					Key: $scope.file.name, 
+					type: $scope.file.type, 
+					category: $scope.file.category, 
+					request_type: 'putObject' 
+				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
-
+				// return false
 				$http({
 					method: 'PUT',
 					url: res.data,
@@ -70,12 +75,13 @@ angular.module('portfolio').controller( 'adminController', [
 					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + resp.config.data.name )
 					$http({
 						method: "POST",
-						url: window.location.origin + "/photo",
+						url: window.location.origin + "/api/photo",
 						headers: {
 							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 						},
 						data: {
-							file_name: resp.config.data.name
+							file_name: resp.config.data.name,
+							category: $scope.file.category
 						}
 					}).then( function postImageCallBack( res ) {
 						console.log( res )
