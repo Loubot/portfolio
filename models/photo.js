@@ -29,79 +29,90 @@ module.exports = (sequelize, DataTypes) => {
     });
 
 
-    Photo.Instance.prototype.processImage = function () {
-        winston.debug( "Photo instance method processImage()")
-        var photo = this
-        winston.debug( photo.dataValues )
-        var category = {}
-        
-        mkdirp( 'tmp/images').then( function() {
-            winston.debug( 'created tmp/images')
-            sequelize.models.Category.findOne(
-                { where: { id: photo.dataValues.CategoryId }
-            }).then( function( cat ) {
-                category = cat
-                var out = fs.createWriteStream('./tmp/images/' + photo.dataValues.fileName );
+    // Photo.Instance.prototype.processImage = function () {
+    //     winston.debug( "Photo instance method processImage()")
+    //     var photo = this
+    //     winston.debug( photo.dataValues )
+    //     var category = {}
+    //     return false
+    //     mkdirp( 'tmp/images').then( function() {
+    //         winston.debug( 'created tmp/images')
+    //         sequelize.models.Category.findOne(
+    //             { where: { id: photo.dataValues.CategoryId }
+    //         }).then( function( cat ) {
+    //             category = cat
+    //             var out = fs.createWriteStream('./tmp/images/' + photo.dataValues.fileName );
 
-                out.on( 'open', function( file ) {
-                    winston.debug( 'bla' )
-                    winston.debug( photo.dataValues.id )
-                    s3.getObject({ 
-                        Bucket: "als-portfolio", 
-                        Key: photo.dataValues.id + "/" + photo.dataValues.fileName 
-                    }).createReadStream().pipe(out);
+    //             out.on( 'open', function( file ) {
+    //                 winston.debug( 'bla' )
+    //                 winston.debug( photo.dataValues.id )
+    //                 s3.getObject({ 
+    //                     Bucket: "als-portfolio", 
+    //                     Key: photo.dataValues.id + "/" + photo.dataValues.fileName 
+    //                 }).createReadStream().pipe(out);
                    
-                }).on( 'close', function() {
-                   out.end()
+    //             }).on( 'close', function() {
+    //                out.end()
 
-                   Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
-                       winston.debug( "Found file" )
-                       img.scaleToFit(256, 256)            // resize
-                            .quality(60)                 // set JPEG quality
-                            .write("./tmp/images/thumb_" + photo.dataValues.fileName); // save
-                       winston.debug( 'finished')
-                       return fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) )
-                   }).then( function( file ) {
-                       var params = {
-                           ACL: 'public-read',
-                           Body: file, 
-                           Bucket: config.Bucket, 
-                           Key: category.name + "/thumb_" + photo.dataValues.fileName
+    //                Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
+    //                    winston.debug( "Found file" )
+    //                    img.scaleToFit(256, 256)            // resize
+    //                         .quality(60)                 // set JPEG quality
+    //                         .write("./tmp/images/thumb_" + photo.dataValues.fileName); // save
+    //                    winston.debug( 'finished')
+    //                    return fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) )
+    //                }).then( function( file ) {
+    //                    var params = {
+    //                        ACL: 'public-read',
+    //                        Body: file, 
+    //                        Bucket: config.Bucket, 
+    //                        Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName
                            
-                       } /*End of params*/
+    //                    } /*End of params*/
 
-                       // winston.debug( params )
+    //                    // winston.debug( params )
 
-                       return s3.putObjectAsync( params )
-                   }).then( function ( data ) {
+    //                    return s3.putObjectAsync( params )
+    //                }).then( function ( data ) {
                        
-                       return photo.update({ thumbUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/thumb_" + photo.dataValues.fileName })
+    //                    return photo.update({ thumbUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/thumb_" + photo.dataValues.fileName })
 
-                   }).then( function( updated ) {
-                       winston.debug( "Photo updated")
-                       // winston.debug( updated )
+    //                }).then( function( updated ) {
+    //                    winston.debug( "Photo updated")
+    //                    // winston.debug( updated )
 
-                   }).catch(function (err) {
-                       winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
-                       winston.debug( err )
+    //                }).catch(function (err) {
+    //                    winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
+    //                    winston.debug( err )
 
                        
-                   })
-                }) 
-           })
+    //                })
+    //             }) 
+    //        })
             
-        }).catch( function( err ) {
-            winston.debug( err )
-            winston.debug( 'Failed to create tmp/images')
-        })
-    }
+    //     }).catch( function( err ) {
+    //         winston.debug( err )
+    //         winston.debug( 'Failed to create tmp/images')
+    //     })
+    // }
     
 
 
-    // Photo.hook( 'afterCreate', function( photo, options) {
-    //     winston.debug( 'Photo create hook' )
-    //     
-    // })
+    Photo.hook( 'afterCreate', function( photo, options, fn ) {
+        winston.debug( 'Photo create hook' )
+        winston.debug( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.dataValues.id + "/" + photo.dataValues.fileName )
+        sequelize.models.Photo.update(
+            {   fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.dataValues.id + "/" + photo.dataValues.fileName},
+            {   where: { id: photo.dataValues.id }
+        }).then( function( updated ) {
+            winston.debug( updated.dataValues )
+            fn( null, photo )
+        }).catch( function( err ) {
+            winston.debug( "Photo create hook update error")
+            winston.debug( err )
+            fn( err )
+        })
+    })
 
     
     return Photo;

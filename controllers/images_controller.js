@@ -60,9 +60,9 @@ module.exports.controller = function( app, strategy ) {
 			// fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name
 		}).then( function( photo ) {
 			// winston.debug( photo )
-			photo.processImage()
+			// photo.processImage()
 			
-			return false
+			// return false
 			var params = {
 			    Bucket: config.Bucket,
 			    Key: photo.id + "/" + req.query.Key,
@@ -102,7 +102,8 @@ module.exports.controller = function( app, strategy ) {
 	*/
 
 	app.post('/api/photo', strategy.authenticate(), function( req, res ) {
-		console.log( '/image images_controller' )
+		console.log( '/api/photo images_controller' )
+		winston.debug( req.query )
 		// winston.debug( req.user )
 		var photo = null
 		res.json( 'ok' )

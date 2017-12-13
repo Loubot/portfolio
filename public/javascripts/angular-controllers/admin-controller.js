@@ -73,7 +73,7 @@ angular.module('portfolio').controller( 'adminController', [
 					data: $scope.file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
-					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + resp.config.data.name )
+					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.id + "/" + resp.config.data.name )
 					$http({
 						method: "POST",
 						url: window.location.origin + "/api/photo",
