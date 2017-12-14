@@ -50,19 +50,14 @@ module.exports.controller = function( app, strategy ) {
 		winston.debug( req.query )
 		var cat_string = req.query.category
 		var cat_json = JSON.parse( cat_string )
+		var photo_instance = {}
 		
-		
-
-		models.Photo.create({
-			fileName: req.query.Key,
+		models.Photo.create({ 
 			UserId: req.user.id,
-			CategoryId: cat_json.id
-			// fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name
+			CategoryId: cat_json.id,
+			fileName: req.query.Key
 		}).then( function( photo ) {
-			// winston.debug( photo )
-			// photo.processImage()
-			
-			// return false
+			photo_instance = photo
 			var params = {
 			    Bucket: config.Bucket,
 			    Key: photo.id + "/" + req.query.Key,
@@ -75,7 +70,7 @@ module.exports.controller = function( app, strategy ) {
 				params.ACL = 'public-read'
 				// console.log( params)
 			}
-			// console.log( params)
+			console.log( params)
 			s3.getSignedUrl( req.query.request_type, params, function (err, url) {
 				if ( err ) {
 					res.json( 'no good ')
@@ -83,15 +78,18 @@ module.exports.controller = function( app, strategy ) {
 				} else {
 					res.json({
 						url: url,
-						photo: photo
+						photo: photo_instance
 					})
 				}
 				
 			})
 		}).catch( function( err ) {
-			res.status( 500 ).json( err )
-			winston.debug( err)
+			winston.debug( "Failed to create photo ")
+			winston.debug( err )
 		})
+		
+		
+		
 
 		
 	})
@@ -102,24 +100,40 @@ module.exports.controller = function( app, strategy ) {
 	*/
 
 	app.post('/api/photo', strategy.authenticate(), function( req, res ) {
-		console.log( '/api/photo images_controller' )
-		winston.debug( req.query )
+		winston.debug( '/api/photo images_controller' )
+		winston.debug( req.body )
+		// res.json( 'ok' )
+
+		models.Photo.findOne({
+			where: { id: req.body.photo.id }
+		}).then( function( photo ) {
+			winston.debug( "Found photo" )
+			photo.processImage( function( a, b ) {
+				if ( a ) {
+					winston.debug( 'a' )
+					res.json( a )
+				} else {
+					winston.debug( 'b' )
+					res.json( b )
+				}
+			})
+		})
+
+
 		// winston.debug( req.user )
-		var photo = null
-		res.json( 'ok' )
 		// models.Photo.create({
+		// 	fileName: req.body.Key,
 		// 	UserId: req.user.id,
-		// 	fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name,
-		// 	fileName: req.body.file_name,
-		// 	CategoryId: req.body.category.id
+		// 	CategoryId: cat_json.id
+		// 	// fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name
 		// }).then( function( photo ) {
+		// 	winston.debug( "Photo created after s3 upload" )
+		// 	winston.debug( photo )
 		// 	res.json( photo )
-		// 	// winston.debug( photo )
-		// 	// photo = res
-		// 	// return mkdirp( 'tmp/images' )
+			
 		// }).catch( function( err ) {
-		// 	winston.debug( err )
 		// 	res.status( 500 ).json( err )
+		// 	winston.debug( err)
 		// })
 
 		
