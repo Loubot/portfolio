@@ -1,7 +1,7 @@
 <md-sidenav md-component-id="left" class="md-sidenav-left">
 	<div  layout="column" layout-align="space-around">
 		<div class="font_1_75" style="margin-top: 6px;line-height: 36px;">Alan Rowell</div>
-		<md-button ng-repeat="cat in categories">{{ cat.name }}</md-button>
+		<md-button ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
 	</div>
 </md-sidenav>
 
@@ -9,5 +9,5 @@
 
 <div ng-if="$mdMedia('gt-xs')" layout="row" layout-align="space-around">
 	<div class="font_1_75" style="margin-top: 6px;line-height: 36px;">Alan Rowell</div>
-	<md-button ng-repeat="cat in categories">{{ cat.name }}</md-button>
+	<md-button ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
 </div>

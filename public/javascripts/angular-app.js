@@ -28,6 +28,20 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             
         })
 
+        $stateProvider.state( 'category', {
+            url: "/category/{id}",
+            views: {
+                'nav': { 
+                    templateUrl: "../angular-views/static-views/nav.html",
+                    controller: "navController"
+                },
+                'body': {
+                    controller: 'categoryController',
+                    templateUrl: '../angular-views/static-views/view-category.html'
+                }
+            }
+        })
+
         $stateProvider.state("/login", {
             url: "/login",
             views: {
