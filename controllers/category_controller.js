@@ -5,13 +5,31 @@ var models = require( '../models' )
 
 module.exports.controller = function( app, strategy ) {
 
-	app.get( '/api/category', function( req, res )  {
-		winston.debug( "/category categories_controller" )
+	app.get( '/api/category/index', function( req, res )  {
+		winston.debug( "/category /indexcategories_controller" )
 		models.Category.findAll()
 		.then( function( categories ) {
 			res.json( categories )
 		}).catch( function( err ) {
 			winston.debug( err )
+			res.status( 500 ).json( err )
+		})
+	})
+
+	app.get( '/api/category/', function( req, res ) {
+		winston.debug( '/category/ { id }')
+		winston.debug( req.query )
+		models.Category.findOne({ 
+			where: { id: req.query.id },
+			include: [
+			    {model: models.Photo, as:'photos'}
+			]
+
+		}).then( function( category ) {
+			winston.debug( "Found category" )
+			res.json( category )
+		}).catch( function( err ) {
+			winston.debug( 'Find category error' )
 			res.status( 500 ).json( err )
 		})
 	})

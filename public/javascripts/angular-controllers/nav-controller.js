@@ -13,7 +13,7 @@ angular.module('portfolio').controller( 'navController', [
 		}
 		$http({
 			method: "GET",
-			url: window.location.origin + "/api/category"
+			url: window.location.origin + "/api/category/index"
 		}).then( function success( res ) {
 			console.log( res )
 			$rootScope.categories = res.data
