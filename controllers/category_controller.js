@@ -27,6 +27,7 @@ module.exports.controller = function( app, strategy ) {
 
 		}).then( function( category ) {
 			winston.debug( "Found category" )
+			winston.debug( category )
 			res.json( category )
 		}).catch( function( err ) {
 			winston.debug( 'Find category error' )
@@ -40,7 +41,13 @@ module.exports.controller = function( app, strategy ) {
 		models.Category.create({
 			name: req.query.name
 		}).then( function( category ) {
-			res.json( category )
+			models.Category.findAll()
+			.then( function( categories ) {
+				res.json( categories )
+			}).catch( function( err ) {
+				res.status( 500 ).json( err )
+			})
+			// res.json( category )
 		}).catch( function( err ) {
 			winston.debug( err )
 			res.status( 500 ).json( err )

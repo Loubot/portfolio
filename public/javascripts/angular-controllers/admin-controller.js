@@ -2,9 +2,10 @@
 
 angular.module('portfolio').controller( 'adminController', [
 	"$scope",
+	"$rootScope",
 	"$http",
 	"Alertify",
-	function( $scope, $http, Alertify ) {
+	function( $scope, $rootScope,$http, Alertify ) {
 		console.log('adminController')
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
@@ -25,6 +26,16 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( err )
 		}
 
+		$http({
+			method: "GET",
+			url: window.location.origin + '/api/category/index'
+		}).then( function success( res ) {
+			console.log( res )
+			$rootScope.categories = res.data
+		}), function error( err ) {
+			console.log( err )
+		}
+
 		// $scope.category = {}
 
 		$scope.create_category = function() {
@@ -38,6 +49,7 @@ angular.module('portfolio').controller( 'adminController', [
 				params: $scope.category
 			}).then( function successCallBack( res ) {
 				console.log( res )
+				$rootScope.categories = res.data
 			}), function error( err ) {
 				console.log( err )
 			}
