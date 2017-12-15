@@ -19,7 +19,7 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( res.data )
 			for ( let img of res.data.Contents ){
 				$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
-
+				console.log( img.Key )
 			}
 			// console.log($scope.img_urls)
 		}), function error( err ) {
