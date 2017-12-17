@@ -52,9 +52,10 @@ module.exports = (sequelize, DataTypes) => {
 
                Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
                    winston.debug( "Found file" )
-                   img.crop(0, 200, 100, 100)             // resize
+                   
+                    var copy = img.clone().crop(0, 0, 100, 100)             // resize
                         .quality(60)                            // set JPEG quality
-                        .write("./tmp/images/thumb_" + photo.dataValues.fileName); // save
+                    copy.write("./tmp/images/thumb_" + photo.dataValues.fileName); // save
                    winston.debug( 'finished')
                    return fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) )
                }).then( function( file ) {
