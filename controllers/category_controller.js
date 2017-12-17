@@ -27,7 +27,7 @@ module.exports.controller = function( app, strategy ) {
 
 		}).then( function( category ) {
 			winston.debug( "Found category" )
-			winston.debug( category )
+			// winston.debug( category )
 			res.json( category )
 		}).catch( function( err ) {
 			winston.debug( 'Find category error' )
