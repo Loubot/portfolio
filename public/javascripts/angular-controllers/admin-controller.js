@@ -7,21 +7,33 @@ angular.module('portfolio').controller( 'adminController', [
 	"Alertify",
 	function( $scope, $rootScope,$http, Alertify ) {
 		console.log('adminController')
-		$scope.img_urls = new Array()
+		$scope.images = new Array()
 		/* Get all objects in port-practise bucket */
+		// $http({
+		// 	method: 'GET',
+		// 	url: window.location.origin + '/api/s3-list-all',
+		// 	headers: {
+		// 		"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+		// 	}
+		// }).then( function successCallBack( res ) {
+		// 	console.log( res.data )
+		// 	for ( let img of res.data.Contents ){
+		// 		$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
+		// 		console.log( img.Key )
+		// 	}
+		// 	// console.log($scope.img_urls)
+		// }), function error( err ) {
+		// 	console.log( err )
+		// }
+
 		$http({
 			method: 'GET',
-			url: window.location.origin + '/api/s3-list-all',
-			headers: {
-				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+			url: window.location.origin + '/api/photos'
+		}).then( function success( res ) {
+			console.log( res )
+			for ( let img of res.data ) {
+				$scope.images.push( img.thumbUrl )
 			}
-		}).then( function successCallBack( res ) {
-			console.log( res.data )
-			for ( let img of res.data.Contents ){
-				$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
-				console.log( img.Key )
-			}
-			// console.log($scope.img_urls)
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -85,7 +97,7 @@ angular.module('portfolio').controller( 'adminController', [
 					data: $scope.file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
-					$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.id + "/" + resp.config.data.name )
+					$scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.id + "/" + resp.config.data.name )
 					$http({
 						method: "POST",
 						url: window.location.origin + "/api/photo",
@@ -98,6 +110,7 @@ angular.module('portfolio').controller( 'adminController', [
 							photo: photo
 						}
 					}).then( function postImageCallBack( res ) {
+						$scope.file = {}
 						console.log( res )
 					}), function postImageError( err ) {
 						console.log( err )

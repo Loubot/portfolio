@@ -51,6 +51,8 @@ module.exports.controller = function( app, strategy ) {
 		var cat_string = req.query.category
 		var cat_json = JSON.parse( cat_string )
 		var photo_instance = {}
+
+		req.query.Key = req.query.Key.replace(/\s/g,'')
 		
 		models.Photo.create({ 
 			UserId: req.user.id,
@@ -118,23 +120,6 @@ module.exports.controller = function( app, strategy ) {
 				}
 			})
 		})
-
-
-		// winston.debug( req.user )
-		// models.Photo.create({
-		// 	fileName: req.body.Key,
-		// 	UserId: req.user.id,
-		// 	CategoryId: cat_json.id
-		// 	// fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + req.body.category.id + "/" + req.body.file_name
-		// }).then( function( photo ) {
-		// 	winston.debug( "Photo created after s3 upload" )
-		// 	winston.debug( photo )
-		// 	res.json( photo )
-			
-		// }).catch( function( err ) {
-		// 	res.status( 500 ).json( err )
-		// 	winston.debug( err)
-		// })
 
 		
 	}) /*End app.post( 'photo' ) */

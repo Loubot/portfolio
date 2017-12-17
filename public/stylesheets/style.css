@@ -55,3 +55,9 @@ a {
         display: initial !important;
     }
 }
+
+
+.profile_thumbs{
+    max-height: 100% !important;
+    max-width: 100% !important;
+}

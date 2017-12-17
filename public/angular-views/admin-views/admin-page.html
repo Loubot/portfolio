@@ -5,6 +5,7 @@
 			
 			<md-input-container class="width_50 center">
 				<input  name="file" type="file" file  aria-label="file" />
+				<span class="md-warn" style="color: red;">No characters in file name. e.g () _ *</span>
 			</md-input-container>
 
 			<h3>Select which category to upload this photo to!</h3>
@@ -24,7 +25,7 @@
 	
 	<md-content class="big_gutter center_text marging_b_15">
 		<md-grid-list md-cols-gt-xs="3" md-cols="2" md-row-height="180px"  >
-	        <md-grid-tile 	class="gray" ng-repeat="img in img_urls" md-gutter="8px">
+	        <md-grid-tile 	class="gray" ng-repeat="img in images" md-gutter="8px">
 	            <img style="width: 75%; max-height:168px !important;" src="{{ img }}" >
 	        </md-grid-tile>
 
@@ -48,6 +49,13 @@
 		</form>
 
 	</md-content>
+
+</div>
+
+<div>
+			
+
+
 
 </div>
 
