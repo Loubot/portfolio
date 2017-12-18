@@ -52,7 +52,7 @@ module.exports.controller = function( app, strategy ) {
 		var cat_json = JSON.parse( cat_string )
 		var photo_instance = {}
 
-		req.query.Key = req.query.Key.replace(/\s/g,'')
+		// req.query.Key = req.query.Key.replace(/\s/g,'')
 		
 		models.Photo.create({ 
 			UserId: req.user.id,

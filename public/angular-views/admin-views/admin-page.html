@@ -1,11 +1,11 @@
 <div class=" height_100 background_white" ng-cloak>
 
-	<md-content class="big_gutter center_text marging_b_15">
-		<form ng-submit="upload()"  layout="column" layout-align="space-around">
+	<md-content ng-if="categories.length" class="big_gutter center_text marging_b_15">
+		<form ng-submit="upload( file )"  layout="column" layout-align="space-around">
 			
 			<md-input-container class="width_50 center">
 				<input  name="file" type="file" file  aria-label="file" />
-				<span class="md-warn" style="color: red;">No characters in file name. e.g () _ *</span>
+				
 			</md-input-container>
 
 			<h3>Select which category to upload this photo to!</h3>
