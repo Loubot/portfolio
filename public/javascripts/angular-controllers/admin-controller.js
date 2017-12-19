@@ -8,32 +8,13 @@ angular.module('portfolio').controller( 'adminController', [
 	function( $scope, $rootScope,$http, Alertify ) {
 		console.log('adminController')
 		$scope.images = new Array()
-		/* Get all objects in port-practise bucket */
-		// $http({
-		// 	method: 'GET',
-		// 	url: window.location.origin + '/api/s3-list-all',
-		// 	headers: {
-		// 		"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
-		// 	}
-		// }).then( function successCallBack( res ) {
-		// 	console.log( res.data )
-		// 	for ( let img of res.data.Contents ){
-		// 		$scope.img_urls.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + img.Key )
-		// 		console.log( img.Key )
-		// 	}
-		// 	// console.log($scope.img_urls)
-		// }), function error( err ) {
-		// 	console.log( err )
-		// }
-
+		
 		$http({
 			method: 'GET',
 			url: window.location.origin + '/api/photos'
 		}).then( function success( res ) {
 			console.log( res )
-			for ( let img of res.data ) {
-				$scope.images.push( img.thumbUrl )
-			}
+			$scope.images = res.data
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -122,6 +103,25 @@ angular.module('portfolio').controller( 'adminController', [
 			}), function errors( doo ) {
 				console.log( doo )
 			}
+		} /* End of upload()*/
+
+
+		$scope.delete_pic = function( id ) {
+			console.log( id )
+			$http({
+				method: 'DELETE',
+				url: window.location.origin + "/api/photo",
+				headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				params: {
+					id: id
+				}
+			}).then( function( res ) {
+				console.log( res )
+			}).catch( function( err ) {
+				console.log( err )
+			})
 		}
 	}
 ])

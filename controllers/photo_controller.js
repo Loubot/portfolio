@@ -20,4 +20,12 @@ module.exports.controller = function( app, strategy ) {
 			res.status( 500 ).json( err )
 		})
 	})
+
+
+	app.delete( '/api/photo', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/photo photo_controller delete')
+		winston.debug( req )
+
+		res.json('ok')
+	})
 }

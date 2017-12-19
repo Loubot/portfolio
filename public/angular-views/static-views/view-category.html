@@ -5,24 +5,7 @@
         <md-grid-tile 
              md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="img in images">
           <img class="profile_thumbs" ng-src="{{ img }}" >
-          <md-grid-tile-footer>
-            <md-menu>
-         <!-- Trigger element is a md-button with an icon -->
-             <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
-               <i class="material-icons">info</i>
-             </md-button>
-             <md-menu-content width="4">
-                <md-menu-item>
-                  <md-button ng-click="">Make profile?</md-button>
-                </md-menu-item>
-
-                <md-menu-item>
-                  <md-button ng-click="" class="width_100">Delete</md-button>
-                  
-                </md-menu-item>
-             </md-menu-content>
-            </md-menu>
-          </md-grid-tile-footer>
+          
         </md-grid-tile>
         
       </md-grid-list>
