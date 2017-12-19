@@ -12,6 +12,8 @@ var config = require("../config/s3-config")
 AWS.config.update(config);
 var s3 = Promise.promisifyAll( new AWS.S3() ) 
 
+var origin_url = "https://s3-eu-west-1.amazonaws.com/" + process.env.PORT_BUCKET
+
 module.exports = (sequelize, DataTypes) => {
     var Photo = sequelize.define('Photo', {
         fullSizeUrl: DataTypes.STRING,
@@ -43,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
                 winston.debug( 'bla' )
                 winston.debug( photo.dataValues.id )
                 s3.getObject({ 
-                    Bucket: "als-portfolio", 
+                    Bucket: process.env.PORT_BUCKET, 
                     Key: photo.dataValues.id + "/" + photo.dataValues.fileName 
                 }).createReadStream().pipe(out);
                
@@ -53,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
                 Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
                     winston.debug( "Found file" )
 
-                    img.scaleToFit( 256, Jimp.AUTO )
+                    img.resize( 582, 328 )
                         .quality( 60 )
                         .write( "./tmp/images/thumb_" + photo.dataValues.fileName )
                    
@@ -74,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
                 }).then( function ( data ) {
                    
                     return photo.update({ 
-                        thumbUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.dataValues.id + "/thumb_" + photo.dataValues.fileName })
+                        thumbUrl: origin_url + "/" + photo.dataValues.id + "/thumb_" + photo.dataValues.fileName })
 
                 }).then( function( updated ) {
                    winston.debug( "Photo updated")
@@ -100,12 +102,12 @@ module.exports = (sequelize, DataTypes) => {
 
 
     Photo.hook( 'afterCreate', function( photo, options, fn ) {
-        fn( null, 'ok')
+        // fn( null, 'ok')
         // return false
         winston.debug( 'Photo create hook' )
-        winston.debug( "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.dataValues.id + "/" + photo.dataValues.fileName )
+        winston.debug( origin_url + photo.dataValues.id + "/" + photo.dataValues.fileName )
         sequelize.models.Photo.update(
-            {   fullSizeUrl: "https://s3-eu-west-1.amazonaws.com/als-portfolio/" + photo.dataValues.id + "/" + photo.dataValues.fileName},
+            {   fullSizeUrl: origin_url + "/" + photo.dataValues.id + "/" + photo.dataValues.fileName},
             {   where: { id: photo.dataValues.id }
         }).then( function( updated ) {
             winston.debug( updated.dataValues )
