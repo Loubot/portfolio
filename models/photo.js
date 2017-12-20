@@ -72,7 +72,8 @@ module.exports = (sequelize, DataTypes) => {
                                         ACL: 'public-read',
                                         Body: file, 
                                         Bucket: config.Bucket, 
-                                        Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName
+                                        Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName,
+                                        ContentType: 'image/jpg'
                                        
                                     } /*End of params*/
 
