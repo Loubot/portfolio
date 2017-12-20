@@ -8,8 +8,6 @@ angular.module('portfolio').controller( 'adminController', [
 	function( $scope, $rootScope,$http, Alertify ) {
 		console.log('adminController')
 		$scope.images = new Array()
-
-		var bucket = window.location.origin == 'http://localhost:5000' ? 'als-portfolio-dev' : 'als-portfolio'
 		
 		$http({
 			method: 'GET',
@@ -67,8 +65,7 @@ angular.module('portfolio').controller( 'adminController', [
 					Key: file.name, 
 					type: file.type, 
 					category: file.category, 
-					request_type: 'putObject',
-					bucket: bucket 
+					request_type: 'putObject' 
 				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
@@ -82,7 +79,7 @@ angular.module('portfolio').controller( 'adminController', [
 					data: file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
-					$scope.images.push( "https://s3-eu-west-1.amazonaws.com/" + bucket + "/" + photo.id + "/" + resp.config.data.name )
+					// $scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio-dev/" + photo.id + "/" + resp.config.data.name )
 					$http({
 						method: "POST",
 						url: window.location.origin + "/api/photo",
@@ -97,6 +94,8 @@ angular.module('portfolio').controller( 'adminController', [
 					}).then( function postImageCallBack( res ) {
 						$scope.file = {}
 						console.log( res )
+						$scope.images.push( res.data )
+						console.log( $scope.images )
 					}), function postImageError( err ) {
 						console.log( err )
 					}
