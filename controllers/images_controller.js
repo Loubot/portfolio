@@ -52,6 +52,8 @@ module.exports.controller = function( app, strategy ) {
 		var cat_json = JSON.parse( cat_string )
 		var photo_instance = {}
 
+
+
 		// req.query.Key = req.query.Key.replace(/\s/g,'')
 		
 		models.Photo.create({ 
@@ -61,7 +63,7 @@ module.exports.controller = function( app, strategy ) {
 		}).then( function( photo ) {
 			photo_instance = photo
 			var params = {
-			    Bucket: config.Bucket,
+			    Bucket: req.query.bucket,
 			    Key: photo.id + "/" + req.query.Key,
 			    ContentType:req.query.type,
 			    Expires: 60

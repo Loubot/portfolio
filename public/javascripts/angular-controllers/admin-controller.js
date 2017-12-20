@@ -67,7 +67,8 @@ angular.module('portfolio').controller( 'adminController', [
 					Key: file.name, 
 					type: file.type, 
 					category: file.category, 
-					request_type: 'putObject' 
+					request_type: 'putObject',
+					bucket: bucket 
 				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
