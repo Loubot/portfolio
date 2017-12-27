@@ -77,8 +77,6 @@ module.exports = (sequelize, DataTypes) => {
                                        
                                     } /*End of params*/
 
-                                    // winston.debug( params )
-
                                     return s3.putObjectAsync( params )
                                 }).then( function( data ) {
                                     return photo.update({ 
@@ -86,22 +84,15 @@ module.exports = (sequelize, DataTypes) => {
                                             })
                                 }).then( function( updated ) {
                                     winston.debug( "Photo updated")
-                                    // winston.debug( updated )
-
                                     fn( null, photo )
                                 })
                             }
                             
                         } )
-                   
-                    
-                    
                 
                 }).catch(function (err) {
                    winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
                    winston.debug( err )
-
-                   
                 })
             }) 
 
@@ -111,6 +102,37 @@ module.exports = (sequelize, DataTypes) => {
             fn( err )
         })
     }
+
+
+    Photo.hook( 'beforeDestroy', function( photo, options, fn ) {
+        winston.debug( 'Photo destroy hook' )
+        winston.debug( photo.dataValues )
+        winston.debug( options )
+        var params = {
+            Bucket: process.env.PORT_BUCKET,
+            Delete: {
+               Objects: [
+                  {
+                 Key: photo.dataValues.id + "/" + photo.dataValues.fileName
+                }, 
+                  {
+                 Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName
+                }
+               ], 
+               Quiet: false
+              }
+        }
+        s3.deleteObjects( params, function( err, data ) {
+            if ( err ) {
+                winston.debug( "Photo destroy hook failed" )
+                winston.debug( err )
+                fn( err )
+            } else {
+                winston.debug( 's3 object deleted')
+                fn( null, data )
+            }
+        })
+    })
     
 
 

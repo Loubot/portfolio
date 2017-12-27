@@ -39,8 +39,8 @@
                   				<md-button ng-click="">Make profile?</md-button>
                 			</md-menu-item> -->
 
-                			<md-menu-item>
-                  				<md-button ng-click="delete_pic( img.id )" class="width_100">Delete</md-button>
+                			<md-menu-item ng-click="delete_pic( img.id )">
+                  				<md-button  class="width_100">Delete</md-button>
                   
                 			</md-menu-item>
              			</md-menu-content>
@@ -58,6 +58,7 @@
 			<h3>Create a category</h3>
 			
 			<md-input-container class="width_50 center">
+				<label>Category</label>
 				<input ng-model="category.name" name="category.name" type="text" aria-label="category"/>
 			</md-input-container>
 			<md-input-container class="width_50 center">

@@ -121,6 +121,7 @@ angular.module('portfolio').controller( 'adminController', [
 				}
 			}).then( function( res ) {
 				console.log( res )
+				$scope.images = res.data
 			}).catch( function( err ) {
 				console.log( err )
 			})

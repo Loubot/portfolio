@@ -6,7 +6,7 @@ var models = require( '../models' )
 module.exports.controller = function( app, strategy ) {
 
 	app.get( '/api/category/index', function( req, res )  {
-		winston.debug( "/category /indexcategories_controller" )
+		winston.debug( "/category/index categories_controller" )
 		models.Category.findAll()
 		.then( function( categories ) {
 			res.json( categories )
