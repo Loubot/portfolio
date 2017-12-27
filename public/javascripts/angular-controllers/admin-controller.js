@@ -8,6 +8,8 @@ angular.module('portfolio').controller( 'adminController', [
 	function( $scope, $rootScope,$http, Alertify ) {
 		console.log('adminController')
 		$scope.images = new Array()
+
+		$scope.selected = new Array()
 		
 		$http({
 			method: 'GET',
