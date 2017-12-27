@@ -52,43 +52,41 @@ module.exports = (sequelize, DataTypes) => {
             }).on( 'close', function() {
                 out.end()
 
-                Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) 
-
-                ).then( function( img ) {
+                Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
                     winston.debug( "Found file" )
 
                     img.cover( 582, 328 )
-                        .quality( 60 )
-                        .write( ("./tmp/images/thumb_" + photo.dataValues.fileName), function( err, bla ) {
-                            if( err ) {
-                                winston.debug( "Write failed " )
-                                winston.debug( err )
-                            } else {
-                                winston.debug( "write finished")
-                                // winston.debug( bla )
-                                fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) ).then( function( file ) {
-                                    winston.debug( "Should happen after write finished")
-                                    var params = {
-                                        ACL: 'public-read',
-                                        Body: file, 
-                                        Bucket: config.Bucket, 
-                                        Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName,
-                                        ContentType: 'image/jpg'
-                                       
-                                    } /*End of params*/
+                    .quality( 60 )
+                    .write( ("./tmp/images/thumb_" + photo.dataValues.fileName), function( err, bla ) {
+                        if( err ) {
+                            winston.debug( "Write failed " )
+                            winston.debug( err )
+                        } else {
+                            winston.debug( "write finished")
+                            // winston.debug( bla )
+                            fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) ).then( function( file ) {
+                                winston.debug( "Should happen after write finished")
+                                var params = {
+                                    ACL: 'public-read',
+                                    Body: file, 
+                                    Bucket: config.Bucket, 
+                                    Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName,
+                                    ContentType: 'image/jpg'
+                                   
+                                } /*End of params*/
 
-                                    return s3.putObjectAsync( params )
-                                }).then( function( data ) {
-                                    return photo.update({ 
-                                                thumbUrl: origin_url + "/" + photo.dataValues.id + "/thumb_" + photo.dataValues.fileName 
-                                            })
-                                }).then( function( updated ) {
-                                    winston.debug( "Photo updated")
-                                    fn( null, photo )
-                                })
-                            }
-                            
-                        } )
+                                return s3.putObjectAsync( params )
+                            }).then( function( data ) {
+                                return photo.update({ 
+                                            thumbUrl: origin_url + "/" + photo.dataValues.id + "/thumb_" + photo.dataValues.fileName 
+                                        })
+                            }).then( function( updated ) {
+                                winston.debug( "Photo updated")
+                                fn( null, photo )
+                            })
+                        }
+                        
+                    } )
                 
                 }).catch(function (err) {
                    winston.debug( "Error in Jimp.read or fs.readFileAsync or s3.putObject" )
