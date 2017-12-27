@@ -17,10 +17,8 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images = new Array()
-			for ( let img of res.data.photos ) {
-				$scope.images.push( img.thumbUrl )
-			}
+			$scope.images = res.data.photos
+			
 		}), function error( err ) {
 			console.log( err )
 		}
