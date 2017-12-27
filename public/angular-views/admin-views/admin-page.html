@@ -53,7 +53,7 @@
 		
 	</div>
 
-	<md-content class="big_gutter center_text ">
+	<div class="big_gutter center_text ">
 		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
 			<h3>Create a category</h3>
 			
@@ -66,14 +66,14 @@
 			</md-input-container>
 		</form>
 
-	</md-content>
+	</div>
+
+	<div class="big_gutter" layout="row" layout-align="space-around">
+		<div ng-repeat="cat in categories">
+			<md-checkbox ng-model="c" aria-label="Finished?">
+  				{{ cat.name }}
+			</md-checkbox>
+		</div>
+	</div>
 
 </div>
-
-<div>
-			
-
-
-
-</div>
-
