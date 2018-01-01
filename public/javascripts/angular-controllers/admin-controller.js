@@ -49,6 +49,24 @@ angular.module('portfolio').controller( 'adminController', [
 			}), function error( err ) {
 				console.log( err )
 			}
+		} /*end of create category*/
+
+		$scope.delete_category = function( id ) {
+			console.log( id )
+			$http({
+				method: 'DELETE',
+				url: window.location.origin + '/api/category',
+				headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				params: {
+					id: id
+				}
+			}).then( function( res ) {
+				console.log( res )
+			}), function error( err ) {
+				console.log( err )
+			}
 		}
 
 

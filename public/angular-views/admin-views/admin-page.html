@@ -70,7 +70,7 @@
 
 	<div class="big_gutter" layout="row" layout-align="space-around">
 		<div ng-repeat="cat in categories">
-			<md-checkbox  aria-label="Finished?" ng-click="toggle( cat.id )">
+			<md-checkbox  aria-label="Finished?" ng-click="delete_category( cat.id )">
   				{{ cat.name }}
 			</md-checkbox>
 		</div>

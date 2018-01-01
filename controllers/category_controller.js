@@ -53,4 +53,20 @@ module.exports.controller = function( app, strategy ) {
 			res.status( 500 ).json( err )
 		})
 	})
+
+
+	app.delete( '/api/category', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/api/category categories_controller' )
+		winston.debug( req.query )
+
+		models.Category.destroy({
+			where: { id: req.query.id }
+		}).then( function( resp ) {
+			winston.debug( resp )
+			res.json( resp )
+		}).catch( function( err ) {
+			winston.debug( err )
+			res.status( 500 ).json( err )
+		})
+	})
 }
