@@ -54,9 +54,9 @@ module.exports = (sequelize, DataTypes) => {
 
                 Jimp.readAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( img ) {
                     winston.debug( "Found file" )
-
-                    img.cover( 582, 328 )
-                    .quality( 60 )
+                    img.scale( .2 )
+                    // img.cover( 582, 328 )
+                    // .quality( 60 )
                     .write( ("./tmp/images/thumb_" + photo.dataValues.fileName), function( err, bla ) {
                         if( err ) {
                             winston.debug( "Write failed " )

@@ -24,28 +24,31 @@
 
 	
 	<div class="big_gutter center_text marging_b_15">
-		<md-grid-list md-cols="3" md-row-height="16:9" md-gutter="10px" >
+		<md-grid-list md-row-height="2:2" md-cols="3">
 	        <md-grid-tile 	md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="img in images" >
-	            <img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" >
+	            
+	            	<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" layout-fill>
 
-	            <md-grid-tile-footer>
-            		<md-menu>
-         			<!-- Trigger element is a md-button with an icon -->
-             			<md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
-               				<i class="material-icons">info</i>
-             			</md-button>
-             			<md-menu-content width="4">
-                			<!-- <md-menu-item>
-                  				<md-button ng-click="">Make profile?</md-button>
-                			</md-menu-item> -->
+		            <md-grid-tile-footer>
+	            		<md-menu>
+	         			<!-- Trigger element is a md-button with an icon -->
+	             			<md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+	               				<i class="material-icons">info</i>
+	             			</md-button>
+	             			<md-menu-content width="4">
+	                			<!-- <md-menu-item>
+	                  				<md-button ng-click="">Make profile?</md-button>
+	                			</md-menu-item> -->
 
-                			<md-menu-item ng-click="delete_pic( img.id )">
-                  				<md-button  class="width_100">Delete</md-button>
-                  
-                			</md-menu-item>
-             			</md-menu-content>
-            		</md-menu>
-          		</md-grid-tile-footer>
+	                			<md-menu-item ng-click="delete_pic( img.id )">
+	                  				<md-button  class="width_100">Delete</md-button>
+	                  
+	                			</md-menu-item>
+	             			</md-menu-content>
+	            		</md-menu>
+	          		</md-grid-tile-footer>
+
+	            
 	        </md-grid-tile>
 
 	        
