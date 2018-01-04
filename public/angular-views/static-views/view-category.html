@@ -1,12 +1,10 @@
 <div>
 
 	<div ng-if="images.length" class="big_gutter center_text marging_b_15">
-		<md-grid-list md-cols="3" md-row-height="16:16" md-gutter="10px" >
-	        <md-grid-tile  ng-repeat="img in images"  >
+		<md-grid-list md-cols="6" md-row-height="500px" md-gutter="10px" >
+	        <md-grid-tile  ng-repeat="img in images" md-colspan="{{ getColSpan( img ) }}" md-rowspan="{{ getRowSpan( img ) }}">
 	            
-	            <img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}"  >
-
-	            
+	            <img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}"  layout-fill>
 
 	        </md-grid-tile>
 

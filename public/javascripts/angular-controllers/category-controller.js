@@ -6,12 +6,21 @@ angular.module('portfolio').controller( 'categoryController', [
 	"$http",
 	function( $scope, $stateParams, $http ) {
 		$scope.images = []
-		$scope.doThis = function( img ) {
-			var image = new Image()
-			image.src = img.thumbUrl
-			image.onload = function() {
-				console.log( this.height )
+		
+
+		$scope.getColSpan = function( img ) {
+			// console.log( img.height )
+			console.log( img.height / img.width )
+			if ( (img.height / img.width) < 1 ){
+				return 6
+			} else {
+				return 3 
 			}
+		}
+
+		$scope.getRowSpan = function( img ) {
+			console.log( img.width / img.height )
+			return 1
 		}
 
 		console.log( 'categoryController' )
