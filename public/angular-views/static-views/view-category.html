@@ -4,7 +4,7 @@
 
 		<div layout="row" layout-wrap>
 			<div ng-repeat="img in images" flex="50">
-				<img class="profile_thumbs center"  ng-src="{{ img.thumbUrl }}"  layout-fill>
+				<img class="profile_thumbs center"  ng-src="{{ img.thumbUrl }}" ng-class="figure_out_size( img )"  layout-fill>
 			</div>
 		</div>
 

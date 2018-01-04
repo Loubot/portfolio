@@ -5,27 +5,14 @@ angular.module('portfolio').controller( 'categoryController', [
 	"$stateParams",
 	"$http",
 	function( $scope, $stateParams, $http ) {
-		$scope.images = []
-		
-
-		$scope.getColSpan = function( img ) {
-			// console.log( img.height )
-			console.log( img.height / img.width )
-			// console.log( img.height / img.width )
-			if ( (img.height / img.width) < 1 ){
-				return 8
-			} else {
-				return 3
-			}
-		}
-
-		$scope.getRowSpan = function( img ) {
-			// console.log( img.width / img.height )
-			return 1
-		}
-
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
+
+		$scope.images = []
+
+		$scope.figure_out_size = function( img ) {
+			// console.log( img.height )
+		}
 
 		$http({
 			method: 'GET',
@@ -37,11 +24,11 @@ angular.module('portfolio').controller( 'categoryController', [
 			console.log( res )
 			var tempImages = []
 			var imageSize = function( i, total ) {
-				console.log( i )
-				console.log( total )
+				// console.log( i )
+				// console.log( total )
 				if( i === total ) {
 					
-					console.log( tempImages )
+					// console.log( tempImages )
 					$scope.images = tempImages 
 					console.log( $scope.images )
 					$scope.$apply()
@@ -55,7 +42,7 @@ angular.module('portfolio').controller( 'categoryController', [
 					img.width = this.width
 					img.height = this.height
 					tempImages.push( img )
-					console.log( tempImages )
+					// console.log( tempImages )
 					i++
 					imageSize( i, total )
 				}
