@@ -11,15 +11,16 @@ angular.module('portfolio').controller( 'categoryController', [
 		$scope.getColSpan = function( img ) {
 			// console.log( img.height )
 			console.log( img.height / img.width )
+			// console.log( img.height / img.width )
 			if ( (img.height / img.width) < 1 ){
-				return 6
+				return 8
 			} else {
-				return 3 
+				return 3
 			}
 		}
 
 		$scope.getRowSpan = function( img ) {
-			console.log( img.width / img.height )
+			// console.log( img.width / img.height )
 			return 1
 		}
 

@@ -1,7 +1,11 @@
+html{
+  background-color: #F0F0F0; 
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #FFF; 
+  background-color: #F0F0F0; 
 }
 
 a {
@@ -13,7 +17,13 @@ a {
 }
 
 .center_text {
-  text-align: center !important; }
+  text-align: center !important; 
+}
+
+.center{
+  margin: auto;
+  padding: 10px; 
+}
 
 .font_1_75 {
   font-size: 1.75em; }
@@ -42,11 +52,6 @@ a {
   width: 50% !important; 
 }
 
-.center {
-  margin: auto;
-  padding: 10px; 
-}
-
 .marging_b_15{
     margin-bottom: 15px !important;
 }
@@ -67,5 +72,21 @@ a {
 
 .profile_thumbs{
     /*height: 100% !important;*/
-    width: 100% !important;
+    /*width: 100% !important;*/
+}
+
+md-grid-list {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+md-grid-tile {
+  /*border: solid 1px #000;*/
+  /*background: #ccc;*/
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  /*width: calc(((33.3333% - 1.33333px) * 1) - 1px) !important;*/
+  top: auto !important;
+  margin: 1px !important;
 }
