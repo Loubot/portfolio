@@ -91,3 +91,30 @@ a {
 .margin_auto{
   margin:auto;
 }
+
+.overlay {
+  margin: 0 auto;
+  position: absolute;
+  /*top: 0;*/
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  /*width: 100%;*/
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+  display: none;
+  color: #FFF;
+}
+
+.container:hover .overlay {
+  opacity: .5;
+  display: inline;
+}
+
+
+.container {
+  position: relative;
+  width: 50%;
+}

@@ -20,6 +20,20 @@ app.directive('imageonload', function() {
     };
 })
 
+
+app.factory( 'imageClass', [ '$rootScope', function( $rootScope ) {
+    
+    var calculate = function( height, width ) {
+        if ( ( height / width ) > 1 ) {
+            return "portrait"
+        } else {
+            return "landscape"
+        }
+    }
+
+    return calculate
+}])
+
 app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider", 
     function( $stateProvider, $urlRouterProvider, $locationProvider ) {
 

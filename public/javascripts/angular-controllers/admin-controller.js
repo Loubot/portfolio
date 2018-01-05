@@ -5,22 +5,12 @@ angular.module('portfolio').controller( 'adminController', [
 	"$rootScope",
 	"$http",
 	"Alertify",
-	function( $scope, $rootScope,$http, Alertify ) {
+	'imageClass',
+	function( $scope, $rootScope,$http, Alertify, imageClass ) {
 		console.log('adminController')
 		$scope.images = new Array()
 
 		$scope.selected = new Array()
-
-		$scope.figure_out_size = function( img ) {
-			// console.log( img.fileName )
-			// console.log( img.height / img.width )
-
-			if ( (img.height / img.width ) > 1 ) {
-				return "portrait"
-			} else {
-				return "landscape"
-			}
-		}
 		
 		$http({
 			method: 'GET',
@@ -45,6 +35,9 @@ angular.module('portfolio').controller( 'adminController', [
 				image.onload = function() {
 					img.width = this.width
 					img.height = this.height
+
+					img.class = imageClass( this.height, this.width )
+					
 					tempImages.push( img )
 					// console.log( tempImages )
 					i++

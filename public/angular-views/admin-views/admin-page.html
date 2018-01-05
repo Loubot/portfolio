@@ -30,8 +30,11 @@
 		<div ng-if="images.length" class="big_gutter center_text marging_b_15">
 
 			<div layout="row" layout-wrap>
-				<div ng-repeat="img in images" flex-gt-sm="33" flex="50" class="margin_auto">
-					<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="figure_out_size( img )"  >
+				<div ng-repeat="img in images" flex-xs="100" flex-gt-md="30" flex-gt-sm="50" class="margin_auto container">
+					<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="img.class"  >
+					<div class="overlay" ng-class="img.class">
+						hello
+					</div>
 				</div>
 			</div>
 			
