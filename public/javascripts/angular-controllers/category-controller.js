@@ -4,7 +4,8 @@ angular.module('portfolio').controller( 'categoryController', [
 	"$scope",
 	"$stateParams",
 	"$http",
-	function( $scope, $stateParams, $http ) {
+	'imageClass',
+	function( $scope, $stateParams, $http, imageClass ) {
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
 
@@ -47,6 +48,9 @@ angular.module('portfolio').controller( 'categoryController', [
 				image.onload = function() {
 					img.width = this.width
 					img.height = this.height
+
+					img.class = imageClass( this.height, this.width )
+					
 					tempImages.push( img )
 					// console.log( tempImages )
 					i++

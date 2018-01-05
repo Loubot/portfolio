@@ -4,7 +4,8 @@
 var app = angular.module( 'portfolio', [ 
     'ngMaterial',
     'ui.router',
-    'Alertify'
+    'Alertify',
+    'angular-loading-bar'
 ] )
 
 
