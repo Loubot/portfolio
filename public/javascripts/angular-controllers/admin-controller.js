@@ -10,13 +10,51 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.images = new Array()
 
 		$scope.selected = new Array()
+
+		$scope.figure_out_size = function( img ) {
+			// console.log( img.fileName )
+			// console.log( img.height / img.width )
+
+			if ( (img.height / img.width ) > 1 ) {
+				return "portrait"
+			} else {
+				return "landscape"
+			}
+		}
 		
 		$http({
 			method: 'GET',
 			url: window.location.origin + '/api/photos'
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images = res.data
+			var tempImages = []
+			var imageSize = function( i, total ) {
+				
+				if( i === total ) {
+					
+					// console.log( tempImages )
+					$scope.images = tempImages 
+					console.log( $scope.images )
+					if ( $scope.images.length) $scope.$apply()
+					return
+					// $scope.images = tempImages
+				}
+				var image = new Image()
+				var img = res.data[ i ]
+				image.src = img.thumbUrl
+				image.onload = function() {
+					img.width = this.width
+					img.height = this.height
+					tempImages.push( img )
+					// console.log( tempImages )
+					i++
+					imageSize( i, total )
+				}
+				
+			}
+
+			imageSize( 0, res.data.length )
+			
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -113,9 +151,22 @@ angular.module('portfolio').controller( 'adminController', [
 						}
 					}).then( function postImageCallBack( res ) {
 						$scope.file = {}
-						console.log( res )
-						$scope.images.push( res.data )
-						console.log( $scope.images )
+						console.log( res.data )
+
+						var image = new Image()
+						var img = res.data
+						image.src = img.thumbUrl
+						image.onload = function() {
+							img.width = this.width
+							img.height = this.height
+							
+							$scope.images.push( img )
+							$scope.$apply()
+							console.log( $scope.images )
+						}
+
+
+						
 					}), function postImageError( err ) {
 						console.log( err )
 					}

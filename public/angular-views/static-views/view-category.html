@@ -2,21 +2,11 @@
 
 	<div ng-if="images.length" class="big_gutter center_text marging_b_15">
 
-		<div layout="row" layout-wrap>
-			<div ng-repeat="img in images" flex="50">
-				<img class="profile_thumbs center"  ng-src="{{ img.thumbUrl }}" ng-class="figure_out_size( img )"  layout-fill>
+		<div layout="row" layout-wrap layout-align="space-between">
+			<div ng-repeat="img in images" flex-xs="100" flex-gt-md="30" flex-gt-sm="50" class="margin_auto">
+				<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="figure_out_size( img )"  >
 			</div>
 		</div>
-
-		<!-- <md-grid-list md-cols="12" md-row-height="300px" md-gutter="10px">
-	        <md-grid-tile ng-repeat="img in images" md-colspan="{{ getColSpan( img ) }}" md-rowspan="{{ getRowSpan( img ) }}">
-	            
-	            <img class="profile_thumbs center"  ng-src="{{ img.thumbUrl }}"  layout-fill>
-
-	        </md-grid-tile>
-
-	        
-	    </md-grid-list> -->
 		
 	</div>
 	

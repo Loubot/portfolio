@@ -23,38 +23,24 @@
 	</md-content>
 
 	
-	<div class="big_gutter center_text marging_b_15">
-		<md-grid-list md-row-height="2:2" md-cols="3">
-	        <md-grid-tile 	md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="img in images" >
-	            
-	            	<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" layout-fill>
+	
 
-		            <md-grid-tile-footer>
-	            		<md-menu>
-	         			<!-- Trigger element is a md-button with an icon -->
-	             			<md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
-	               				<i class="material-icons">info</i>
-	             			</md-button>
-	             			<md-menu-content width="4">
-	                			<!-- <md-menu-item>
-	                  				<md-button ng-click="">Make profile?</md-button>
-	                			</md-menu-item> -->
+	<div>
 
-	                			<md-menu-item ng-click="delete_pic( img.id )">
-	                  				<md-button  class="width_100">Delete</md-button>
-	                  
-	                			</md-menu-item>
-	             			</md-menu-content>
-	            		</md-menu>
-	          		</md-grid-tile-footer>
+		<div ng-if="images.length" class="big_gutter center_text marging_b_15">
 
-	            
-	        </md-grid-tile>
-
-	        
-	    </md-grid-list>
+			<div layout="row" layout-wrap>
+				<div ng-repeat="img in images" flex-gt-sm="33" flex="50" class="margin_auto">
+					<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="figure_out_size( img )"  >
+				</div>
+			</div>
+			
+		</div>
 		
 	</div>
+		
+		
+	
 
 	<div class="big_gutter center_text ">
 		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">

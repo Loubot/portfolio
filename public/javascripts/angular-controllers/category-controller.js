@@ -11,7 +11,14 @@ angular.module('portfolio').controller( 'categoryController', [
 		$scope.images = []
 
 		$scope.figure_out_size = function( img ) {
-			// console.log( img.height )
+			console.log( img.fileName )
+			console.log( img.height / img.width )
+
+			if ( (img.height / img.width ) > 1 ) {
+				return "portrait"
+			} else {
+				return "landscape"
+			}
 		}
 
 		$http({
@@ -24,8 +31,7 @@ angular.module('portfolio').controller( 'categoryController', [
 			console.log( res )
 			var tempImages = []
 			var imageSize = function( i, total ) {
-				// console.log( i )
-				// console.log( total )
+				
 				if( i === total ) {
 					
 					// console.log( tempImages )
