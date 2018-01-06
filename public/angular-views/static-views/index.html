@@ -1,15 +1,16 @@
-<md-content>
+<div class="background_white">
 
 	<div ng-if="images.length" class="big_gutter center_text marging_b_15">
-		<md-grid-list md-cols="3" md-row-height="16:9" md-gutter="10px" >
-	        <md-grid-tile 	md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="img in images" >
-	            <img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" >
 
-	        </md-grid-tile>
-
-	        
-	    </md-grid-list>
+		<div layout="row" layout-wrap>
+			<div ng-repeat="img in images" flex-xs="100" flex-gt-xs="50" flex-gt-md="33"  class="margin_auto container">
+				<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="img.class"  >
+				<div class="overlay" ng-class="img.class">
+					hello
+				</div>
+			</div>
+		</div>
 		
 	</div>
 	
-</md-content>
+</div>
