@@ -48,8 +48,20 @@ a {
     min-height: 100% !important;\
 }
 
+.no_margin{
+  margin: 0px !important;
+}
+
+.no_padding{
+  padding: 0px !important;
+}
+
 .width_50 {
   width: 50% !important; 
+}
+
+.margin_t_15{
+  margin-top: 15px;
 }
 
 .marging_b_15{
@@ -168,4 +180,8 @@ a {
   cursor: wait;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.transtlate_y_5{
+  transform: translateY(5px);
 }

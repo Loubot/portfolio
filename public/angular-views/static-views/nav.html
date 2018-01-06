@@ -7,7 +7,7 @@
 
 <md-button ng-if="$mdMedia('xs')" ng-click="openLeftMenu()"><i class="material-icons">menu</i></md-button>
 
-<div ng-if="$mdMedia('gt-xs')" layout="row" layout-align="space-around">
+<div ng-if="$mdMedia('gt-xs')" layout="row" layout-align="space-around end">
 	<div class="font_1_75" style="margin-top: 6px;line-height: 36px;">Alan Rowell</div>
-	<md-button ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
+	<md-button class="transtlate_y_5 no_margin no_padding" ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
 </div>
