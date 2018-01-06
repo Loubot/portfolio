@@ -22,13 +22,13 @@
 
 	</div >
 
-	<div class="background_white">
+	<div class="background_white big_gutter">
 
-		<div ng-if="images.length" class="big_gutter center_text marging_b_15">
+		<div ng-if="images.length" >
 
-			<div layout="row" layout-wrap>
-				<div ng-repeat="img in images" flex-xs="100" flex-gt-xs="50" flex-gt-md="33"  class="margin_auto container">
-					<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="img.class"  >
+			<div layout="row" layout-wrap layout-align="center center" >
+				<div ng-repeat="img in images" flex-xs="100" flex-gt-xs="45" flex-gt-md="30"  class="margin_auto container">
+					<img  ng-src="{{ img.thumbUrl }}" ng-class="img.class"  >
 					<div class="overlay" ng-class="img.class">
 						hello
 					</div>

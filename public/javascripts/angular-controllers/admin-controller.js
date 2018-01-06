@@ -156,7 +156,7 @@ angular.module('portfolio').controller( 'adminController', [
 							img.class = imageClass( this.height, this.width )
 							$scope.images.push( img )
 							$scope.upload_in_progress = false
-							// $scope.$apply()
+							$scope.$apply()
 							console.log( $scope.images )
 						}
 
