@@ -8,6 +8,8 @@ angular.module('portfolio').controller( 'adminController', [
 	'imageClass',
 	function( $scope, $rootScope,$http, Alertify, imageClass ) {
 		console.log('adminController')
+
+		$scope.upload_in_progress = false
 		$scope.images = new Array()
 
 		$scope.selected = new Array()
@@ -104,6 +106,7 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.file = {}
 
 		$scope.upload = function( file ) {
+			$scope.upload_in_progress = true
 			console.log( file )
 			var photo = {}
 			$http({
@@ -150,11 +153,10 @@ angular.module('portfolio').controller( 'adminController', [
 						var img = res.data
 						image.src = img.thumbUrl
 						image.onload = function() {
-							img.width = this.width
-							img.height = this.height
-							
+							img.class = imageClass( this.height, this.width )
 							$scope.images.push( img )
-							$scope.$apply()
+							$scope.upload_in_progress = false
+							// $scope.$apply()
 							console.log( $scope.images )
 						}
 

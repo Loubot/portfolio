@@ -1,6 +1,6 @@
-<div class=" height_100 background_white" ng-cloak>
+<div class="height_100 " ng-cloak>
 
-	<md-content ng-if="categories.length" class="big_gutter center_text marging_b_15">
+	<div class="background_white big_gutter marging_b_15"  ng-if="categories.length" class="big_gutter center_text marging_b_15">
 		<form ng-submit="upload( file )"  layout="column" layout-align="space-around">
 			
 			<md-input-container class="width_50 center">
@@ -16,21 +16,18 @@
 			</md-input-container>
 
 			<md-input-container class="width_50 center">
-				<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload">
+				<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload" ng-disabled="upload_in_progress">
 			</md-input-container>
 		</form>
 
-	</md-content>
+	</div >
 
-	
-	
-
-	<div>
+	<div class="background_white">
 
 		<div ng-if="images.length" class="big_gutter center_text marging_b_15">
 
 			<div layout="row" layout-wrap>
-				<div ng-repeat="img in images" flex-xs="100" flex-gt-md="30" flex-gt-sm="50" class="margin_auto container">
+				<div ng-repeat="img in images" flex-xs="100" flex-gt-xs="50" flex-gt-md="33"  class="margin_auto container">
 					<img class="profile_thumbs"  ng-src="{{ img.thumbUrl }}" ng-class="img.class"  >
 					<div class="overlay" ng-class="img.class">
 						hello
@@ -41,11 +38,8 @@
 		</div>
 		
 	</div>
-		
-		
-	
 
-	<div class="big_gutter center_text ">
+	<div class="background_white big_gutter marging_b_15">
 		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
 			<h3>Create a category</h3>
 			
@@ -54,13 +48,17 @@
 				<input ng-model="category.name" name="category.name" type="text" aria-label="category"/>
 			</md-input-container>
 			<md-input-container class="width_50 center">
-				<input class="md-button md-primary md-raised" type="submit" name="Create category" value="Create category" aria-label="Create category">
+				<input 	class="md-button md-primary md-raised" 
+						type="submit" name="Create category" 
+						value="Create category" 
+						aria-label="Create category" 
+						ng-disabled="upload_in_progress">
 			</md-input-container>
 		</form>
 
 	</div>
 
-	<div class="big_gutter" layout="row" layout-align="space-around">
+	<div class="background_white big_gutter" layout="row" layout-align="space-around">
 		<div ng-repeat="cat in categories">
 			<md-checkbox  aria-label="Finished?" ng-click="delete_category( cat.id )">
   				{{ cat.name }}

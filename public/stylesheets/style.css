@@ -84,8 +84,8 @@ a {
 
 .portrait{
   object-fit: cover;
-  width: 250px;
-  height: 100%;
+  /*width: 250px;*/
+  height: 444px;
 }
 
 .margin_auto{
