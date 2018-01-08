@@ -12,21 +12,21 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.calculate_rows = function( img ) {
 			// console.log( img.height / img.width )
 			if ( (img.height / img.width) > 1 ) {
-				return 4
+				return 11
 			} else {
-				return 2
+				return 7
 			}
 			
 		}
 
 		$scope.calculate_cols = function( img ) {
-			// console.log( img.height / img.width )
+			console.log( img.height / img.width )
 			if ( (img.height / img.width) > 1 ) {
-				return 2
-			} else {
 				return 3
+			} else {
+				return 4
 			}
-			
+			// return 3
 		}
 
 		$scope.img_urls = new Array()
