@@ -11,15 +11,24 @@ angular.module('portfolio').controller( 'categoryController', [
 
 		$scope.images = []
 
-		$scope.figure_out_size = function( img ) {
-			console.log( img.fileName )
-			console.log( img.height / img.width )
-
-			if ( (img.height / img.width ) > 1 ) {
-				return "portrait"
+		$scope.calculate_rows = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 4
 			} else {
-				return "landscape"
+				return 2
 			}
+			
+		}
+
+		$scope.calculate_cols = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 2
+			} else {
+				return 3
+			}
+			
 		}
 
 		$http({

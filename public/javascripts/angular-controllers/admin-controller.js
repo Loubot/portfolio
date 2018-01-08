@@ -13,6 +13,26 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.images = new Array()
 
 		$scope.selected = new Array()
+
+		$scope.calculate_rows = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 4
+			} else {
+				return 2
+			}
+			
+		}
+
+		$scope.calculate_cols = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 2
+			} else {
+				return 3
+			}
+			
+		}
 		
 		$http({
 			method: 'GET',

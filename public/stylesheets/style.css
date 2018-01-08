@@ -60,6 +60,10 @@ a {
   width: 50% !important; 
 }
 
+.width_100{
+    width: 100% !important;
+}
+
 .margin_t_15{
   margin-top: 15px;
 }
@@ -89,15 +93,15 @@ a {
 
 .landscape{
   object-fit: cover;
-  width: 100%;
+  width: 75%;
   /*height: 250px;*/
   /*margin-left: 1px;*/
 }
 
 @media( min-width: 600px ) {
-  .landscape{
+  /*.landscape{
     height: 100px;
-  }
+  }*/
 }
 
 @media( min-width: 800px ) {
@@ -130,10 +134,13 @@ a {
   }
 }
 
+
 .portrait{
   object-fit: cover;
   /*width: 250px;*/
   height: 400px;
+  display: block;
+    margin: 0 auto;
 }
 
 .margin_auto{

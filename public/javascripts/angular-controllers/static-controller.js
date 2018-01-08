@@ -9,6 +9,26 @@ angular.module('portfolio').controller( 'staticController', [
 	function( $scope, $http, $state, Alertify, imageClass ) {
 		console.log('staticController')
 
+		$scope.calculate_rows = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 4
+			} else {
+				return 2
+			}
+			
+		}
+
+		$scope.calculate_cols = function( img ) {
+			// console.log( img.height / img.width )
+			if ( (img.height / img.width) > 1 ) {
+				return 2
+			} else {
+				return 3
+			}
+			
+		}
+
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
 		$http({
