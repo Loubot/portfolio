@@ -8,6 +8,12 @@ body {
   background-color: #F0F0F0; 
 }
 
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 a {
   color: #00B7FF; 
 }
@@ -91,15 +97,6 @@ a {
     /*height: 100% !important;*/
     /*width: 100% !important;*/
 }
-
-.portrait.margin_l_25{
-  margin-left: 25% !important;
-}
-
-.landscape{
-
-}
-
 
 .margin_auto{
   margin: auto !important;

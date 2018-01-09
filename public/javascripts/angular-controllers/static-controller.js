@@ -13,7 +13,7 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.calculate_rows = function( img ) {
 			
 			if( $mdMedia('xs') ) {
-				
+				console.log( 'xs' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
 					return 20
@@ -30,8 +30,40 @@ angular.module('portfolio').controller( 'staticController', [
 					// console.log( '5')
 					return 12
 				}
+			} else if( $mdMedia('gt-sm') ) {
+				console.log( img.height / img.width )
+				if ( (img.height / img.width) > 1.5 ) {
+					// console.log( '1')
+					return 33
+				} else if ( (img.height / img.width) > 1.3) {
+					// console.log( '2')
+					return 31
+				} else if( (img.height / img.width) > 1.2 ) {
+					// console.log( '3')
+					return 29
+				} else if( ( img.height / img.width ) > 1.2 ) {
+					return 27
+				} else if( ( img.height / img.width ) > 1.1 ) {
+					return 25
+				} else if( ( img.height / img.width ) > 1 ) {
+					return 23
+				} else if( ( img.height / img.width ) > .9 ) {
+					return 21
+				} else if( ( img.height / img.width ) > .8 ) {
+					// console.log('x')
+					return 19
+				} else if( ( img.height / img.width ) > .7 ) {
+					// console.log('9')
+					return 17
+				} else if( ( img.height / img.width ) > .6 ) {
+					// console.log('7')
+					return 15
+				} else {
+					
+					return 13
+				}
 			} else if( $mdMedia( 'gt-xs' ) ){
-				
+				// console.log( 'gt-xs' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
 					return 21
