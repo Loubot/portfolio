@@ -11,42 +11,56 @@ angular.module('portfolio').controller( 'staticController', [
 		console.log('staticController')
 
 		$scope.calculate_rows = function( img ) {
-			// console.log( (img.height / img.width) )
+			
 			if( $mdMedia('xs') ) {
 				
 				if ( (img.height / img.width) > 1.5 ) {
-					console.log( '1')
+					// console.log( '1')
 					return 20
 				} else if ( (img.height / img.width) > 1.3) {
-					console.log( '2')
+					// console.log( '2')
 					return 18
 				} else if( (img.height / img.width) > 1.2 ) {
-					console.log( '3')
+					// console.log( '3')
 					return 16
 				} else if( (img.height / img.width) > .7 ) {
-					console.log( '4')
+					// console.log( '4')
 					return 14
 				} else   {
-					console.log( '5')
+					// console.log( '5')
 					return 12
 				}
 			} else if( $mdMedia( 'gt-xs' ) ){
 				
 				if ( (img.height / img.width) > 1.5 ) {
-					console.log( '1')
-					return 20
+					// console.log( '1')
+					return 21
 				} else if ( (img.height / img.width) > 1.3) {
-					console.log( '2')
-					return 16
+					// console.log( '2')
+					return 20
 				} else if( (img.height / img.width) > 1.2 ) {
-					console.log( '3')
+					// console.log( '3')
+					return 19
+				} else if( ( img.height / img.width ) > 1.2 ) {
+					return 18
+				} else if( ( img.height / img.width ) > 1.1 ) {
+					return 17
+				} else if( ( img.height / img.width ) > 1 ) {
 					return 15
-				} else if( (img.height / img.width) > .7 ) {
-					console.log( '4')
+				} else if( ( img.height / img.width ) > .9 ) {
+					return 13
+				} else if( ( img.height / img.width ) > .8 ) {
+					// console.log('x')
 					return 11
-				} else   {
-					console.log( '5')
+				} else if( ( img.height / img.width ) > .7 ) {
+					// console.log('9')
 					return 9
+				} else if( ( img.height / img.width ) > .6 ) {
+					// console.log('7')
+					return 7
+				} else {
+					
+					return 5
 				}
 			}
 			
