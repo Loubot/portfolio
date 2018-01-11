@@ -163,4 +163,5 @@ a {
 
 .object_fit_cover{
     object-fit: cover;
+    object-position: 50% 50%;
 }
