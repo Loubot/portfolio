@@ -16,33 +16,33 @@ angular.module('portfolio').controller( 'staticController', [
 				console.log( 'xs' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 17
+					return 15
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 15
+					return 13
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
-					return 13
-				} else if( ( img.height / img.width ) > 1.2 ) {
 					return 12
-				} else if( ( img.height / img.width ) > 1.1 ) {
+				} else if( ( img.height / img.width ) > 1.2 ) {
 					return 11
-				} else if( ( img.height / img.width ) > 1 ) {
+				} else if( ( img.height / img.width ) > 1.1 ) {
 					return 10
-				} else if( ( img.height / img.width ) > .9 ) {
+				} else if( ( img.height / img.width ) > 1 ) {
 					return 9
+				} else if( ( img.height / img.width ) > .9 ) {
+					return 7
 				} else if( ( img.height / img.width ) > .8 ) {
 					// console.log('x')
-					return 8
+					return 7
 				} else if( ( img.height / img.width ) > .7 ) {
 					// console.log('9')
-					return 7
+					return 6
 				} else if( ( img.height / img.width ) > .6 ) {
 					// console.log('7')
-					return 6
+					return 5
 				} else {
 					
-					return 5
+					return 4
 				}
 			} else if( $mdMedia('gt-lg') ) {
 				console.log( 'gt-lg' )
@@ -112,33 +112,33 @@ angular.module('portfolio').controller( 'staticController', [
 				console.log( 'gt-sm' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 33
+					return 31
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 31
+					return 29
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
-					return 29
-				} else if( ( img.height / img.width ) > 1.2 ) {
 					return 27
-				} else if( ( img.height / img.width ) > 1.1 ) {
+				} else if( ( img.height / img.width ) > 1.2 ) {
 					return 25
-				} else if( ( img.height / img.width ) > 1 ) {
+				} else if( ( img.height / img.width ) > 1.1 ) {
 					return 23
-				} else if( ( img.height / img.width ) > .9 ) {
+				} else if( ( img.height / img.width ) > 1 ) {
 					return 21
+				} else if( ( img.height / img.width ) > .9 ) {
+					return 19
 				} else if( ( img.height / img.width ) > .8 ) {
 					// console.log('x')
-					return 19
+					return 17
 				} else if( ( img.height / img.width ) > .7 ) {
 					// console.log('9')
-					return 17
+					return 15
 				} else if( ( img.height / img.width ) > .6 ) {
 					// console.log('7')
-					return 15
+					return 13
 				} else {
 					
-					return 13
+					return 11
 				}
 			} else if( $mdMedia( 'gt-xs' ) ){
 				console.log( 'gt-xs' )
