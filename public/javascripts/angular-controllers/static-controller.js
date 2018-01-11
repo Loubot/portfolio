@@ -16,65 +16,65 @@ angular.module('portfolio').controller( 'staticController', [
 				console.log( 'xs' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 15
+					return 13
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 13
+					return 11
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
-					return 12
-				} else if( ( img.height / img.width ) > 1.2 ) {
-					return 11
-				} else if( ( img.height / img.width ) > 1.1 ) {
 					return 10
-				} else if( ( img.height / img.width ) > 1 ) {
+				} else if( ( img.height / img.width ) > 1.2 ) {
 					return 9
-				} else if( ( img.height / img.width ) > .9 ) {
+				} else if( ( img.height / img.width ) > 1.1 ) {
+					return 8
+				} else if( ( img.height / img.width ) > 1 ) {
 					return 7
+				} else if( ( img.height / img.width ) > .9 ) {
+					return 6
 				} else if( ( img.height / img.width ) > .8 ) {
 					// console.log('x')
-					return 7
+					return 5
 				} else if( ( img.height / img.width ) > .7 ) {
 					// console.log('9')
-					return 6
+					return 4
 				} else if( ( img.height / img.width ) > .6 ) {
 					// console.log('7')
-					return 5
+					return 3
 				} else {
 					
-					return 4
+					return 2
 				}
 			} else if( $mdMedia('gt-lg') ) {
 				console.log( 'gt-lg' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 75
+					return 35
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 70
+					return 33
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
-					return 60
+					return 31
 				} else if( ( img.height / img.width ) > 1.2 ) {
-					return 55
+					return 29
 				} else if( ( img.height / img.width ) > 1.1 ) {
-					return 50
+					return 27
 				} else if( ( img.height / img.width ) > 1 ) {
-					return 45
+					return 25
 				} else if( ( img.height / img.width ) > .9 ) {
-					return 40
+					return 23
 				} else if( ( img.height / img.width ) > .8 ) {
 					// console.log('x')
-					return 35
+					return 21
 				} else if( ( img.height / img.width ) > .7 ) {
 					// console.log('9')
-					return 30
+					return 19
 				} else if( ( img.height / img.width ) > .6 ) {
 					// console.log('7')
-					return 32
+					return 17
 				} else {
 					
-					return 27
+					return 15
 				}
 			}else if( $mdMedia('gt-md') ) {
 				console.log( 'gt-md' )
@@ -141,7 +141,7 @@ angular.module('portfolio').controller( 'staticController', [
 					return 11
 				}
 			} else if( $mdMedia( 'gt-xs' ) ){
-				console.log( 'gt-xs' )
+				console.log( (img.height / img.width) )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
 					return 27
