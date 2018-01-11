@@ -5,13 +5,13 @@
 						
         				md-row-height="10px" 
         				md-gutter="8px" 
-        				md-gutter-gt-sm="4px">
+        				md-gutter-gt-md="12px">
         	<md-grid-tile 	ng-repeat="img in images" 
         					md-rowspan="{{ calculate_rows( img ) }}" 
         					md-colspan="3"
-        					md-colspan-gt-md="2"
+        					md-colspan-gt-sm="2"
         					>
-        		<img ng-src="{{ img.thumbUrl }}" class="height_100 max_width_100"  ng-class="img.class" >
+        		<img ng-src="{{ img.thumbUrl }}" class="height_100 max_width_100 crop"  ng-class="img.class" >
         	</md-grid-tile>	
 
 		</md-grid-list>

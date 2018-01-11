@@ -156,3 +156,7 @@ a {
 .transtlate_y_5{
   transform: translateY(5px);
 }
+
+.crop{
+  /*margin: -75px 0 0 -100px;*/
+}

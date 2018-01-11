@@ -16,10 +16,10 @@ angular.module('portfolio').controller( 'staticController', [
 				console.log( 'xs' )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 19
+					return 17
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 14
+					return 15
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
 					return 13
