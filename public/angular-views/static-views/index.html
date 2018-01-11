@@ -2,26 +2,19 @@
 
 	<div ng-if="images.length" >
 		<md-grid-list 	md-cols="6"
-						md-cols-gt-sm="10"
-						md-cols-gt-md="15"
+						
         				md-row-height="10px" 
         				md-gutter="8px" 
         				md-gutter-gt-sm="4px">
         	<md-grid-tile 	ng-repeat="img in images" 
         					md-rowspan="{{ calculate_rows( img ) }}" 
-        					md-colspan="{{ calculate_cols( img ) }}"
-        					 >
-        		<img ng-src="{{ img.thumbUrl }}" ng-class="img.class" layout-fill>
+        					md-colspan="3"
+        					md-colspan-gt-md="2"
+        					>
+        		<img ng-src="{{ img.thumbUrl }}" class="height_100 max_width_100"  ng-class="img.class" >
         	</md-grid-tile>	
 
 		</md-grid-list>
-
-		<!-- <div layout="row" layout-wrap layout-align="center center" class="width_100" >
-			<div ng-repeat="img in images"   class="margin_auto container">
-				<img  ng-src="{{ img.thumbUrl }}" layout-fill >
-				
-			</div>
-		</div> -->
 		
 	</div>
 	

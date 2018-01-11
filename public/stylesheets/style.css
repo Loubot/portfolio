@@ -54,9 +54,9 @@ a {
   margin-right: auto !important; 
 }
 
-.heigth_100{
+.height_100{
     height: 100% !important;
-    min-height: 100% !important;\
+    /*min-height: 100% !important;\*/
 }
 
 .no_margin{
@@ -69,6 +69,10 @@ a {
 
 .width_50 {
   width: 50% !important; 
+}
+
+.max_width_100{
+  max-width: 100% !important;
 }
 
 .width_100{
