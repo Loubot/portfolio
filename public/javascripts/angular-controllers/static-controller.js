@@ -13,33 +13,33 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.calculate_rows = function( img ) {
 			
 			if( $mdMedia('xs') ) {
-				console.log( 'xs' )
+				console.log( (img.height / img.width) )
 				if ( (img.height / img.width) > 1.5 ) {
 					// console.log( '1')
-					return 13
+					return 14
 				} else if ( (img.height / img.width) > 1.3) {
 					// console.log( '2')
-					return 11
+					return 12
 				} else if( (img.height / img.width) > 1.2 ) {
 					// console.log( '3')
-					return 10
+					return 11
 				} else if( ( img.height / img.width ) > 1.2 ) {
-					return 9
+					return 10
 				} else if( ( img.height / img.width ) > 1.1 ) {
-					return 8
+					return 9
 				} else if( ( img.height / img.width ) > 1 ) {
-					return 7
+					return 8
 				} else if( ( img.height / img.width ) > .9 ) {
-					return 6
+					return 7
 				} else if( ( img.height / img.width ) > .8 ) {
 					// console.log('x')
-					return 5
+					return 6
 				} else if( ( img.height / img.width ) > .7 ) {
 					// console.log('9')
-					return 4
+					return 5
 				} else if( ( img.height / img.width ) > .6 ) {
 					// console.log('7')
-					return 3
+					return 4
 				} else {
 					
 					return 2

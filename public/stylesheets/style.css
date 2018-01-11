@@ -31,6 +31,10 @@ a {
   padding: 10px; 
 }
 
+.landscape{
+    width: 100%;
+}
+
 .large_font{
   font-size: large !important;
 }
