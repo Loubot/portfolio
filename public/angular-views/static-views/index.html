@@ -1,6 +1,21 @@
 <div class="margin_t_15 big_gutter">
 
-	<div ng-if="images.length" >
+    <div masonry load-images="true" reload-on-show >
+        <div class="grid-sizer"></div>
+        <div class="masonry-brick" ng-repeat="img in images">
+            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick">
+        </div>
+    </div>
+
+    <!-- <div class="grid">
+      <div class="grid-sizer"></div>
+
+      <div class="grid-item" ng-repeat="img in images">
+          <img ng-src="{{ img.thumbUrl }}" class="image"> 
+      </div>
+    </div> -->
+
+	<!-- <div ng-if="images.length" >
 		<md-grid-list 	md-cols="6"
 						
         				md-row-height="10px" 
@@ -16,6 +31,6 @@
 
 		</md-grid-list>
 		
-	</div>
+	</div> -->
 	
 </div>

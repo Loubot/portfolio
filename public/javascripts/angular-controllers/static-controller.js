@@ -228,6 +228,13 @@ angular.module('portfolio').controller( 'staticController', [
 					$scope.images = tempImages 
 					console.log( $scope.images )
 					if ( $scope.images.length) $scope.$apply()
+					// $('#container').imagesLoaded( function() {
+					//   $('.grid').masonry({
+					//     itemSelector: '.grid-item',
+					//     columnWidth: '.grid-sizer',
+					//     percentPosition: true
+					//   });
+					// });
 					return
 					// $scope.images = tempImages
 				}
@@ -253,7 +260,14 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
-
+		$('#container').imagesLoaded( function() {
+		  var elem = document.querySelector('.grid');
+		  var msnry = new Masonry( elem, {
+		    // options
+		    itemSelector: '.grid-item',
+		    columnWidth: 200
+		  });
+		});
 		
 
 		$scope.login = function() {
