@@ -166,11 +166,41 @@ a {
     object-position: 50% 50%;
 }
 
-.masonry-brick { 
-    width: 25%; 
-    /*margin: 0.1em;*/
+
+
+
+@media( max-width: 600px ) {
+   .masonry-brick { 
+        width: 48%; 
+        /*margin: 0.1em;*/
+    }
+    .masonry-brick img { 
+         width:100%; 
+     } 
 }
 
-.masonry-brick img { 
-    width:100%; 
+
+@media( min-width: 600px ) {
+   .masonry-brick { 
+        width: 45%; 
+        /*margin: 0.1em;*/
+    }
+    .masonry-brick img { 
+         width:100%; 
+     } 
 }
+
+@media( min-width: 960px ) {
+   .masonry-brick { 
+        width: 32%; 
+        /*margin: 0.1em;*/
+    }
+    .masonry-brick img { 
+         width:100%; 
+     } 
+}
+
+.masonry-brick {
+  margin-bottom: 10px;
+}
+
