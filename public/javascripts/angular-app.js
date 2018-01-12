@@ -22,7 +22,6 @@ app.directive('imageonload', function() {
     };
 })
 
-
 app.factory( 'imageClass', [ '$rootScope', function( $rootScope ) {
     
     var calculate = function( height, width ) {
