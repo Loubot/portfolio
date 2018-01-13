@@ -22,6 +22,10 @@ a {
     background-color: #FFF !important;
 }
 
+.white_text{
+    color: #FFF;
+}
+
 .center_text {
   text-align: center !important; 
 }
@@ -48,6 +52,14 @@ a {
   max-width: 75% !important;
   margin-left: auto !important;
   margin-right: auto !important; 
+}
+
+@media( max-width: 600px ){
+    .big_gutter{
+        min-width: 100% !important;
+        max-width: 100% !important;
+        margin: 0px !important;
+    }
 }
 
 
@@ -218,16 +230,6 @@ a {
     right: 0;
     height: 10%;
     width: 100%;
-    opacity: 0;
     transition: .5s ease;
     background: rgba(0,0,0,0.18);
-}
-
-
-.bla:hover .overlay_button{
-    opacity: 1;
-}
-
-.white_text{
-    color: #FFF;
 }
