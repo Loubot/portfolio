@@ -56,9 +56,10 @@ a {
 
 @media( max-width: 600px ){
     .big_gutter{
-        min-width: 100% !important;
-        max-width: 100% !important;
-        margin: 0px !important;
+        min-width: 98% !important;
+        max-width: 98% !important;
+        margin-left: auto !important;
+        margin-right: auto !important; 
     }
 }
 
