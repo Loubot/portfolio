@@ -1,23 +1,12 @@
 <div class="margin_t_15 big_gutter">
 
 	<div ng-if="images.length" >
-		<md-grid-list md-cols="5" 
-        md-row-height-gt-md="1:1" md-row-height="4:3"
-        md-gutter="8px" md-gutter-gt-sm="4px">
-        	<md-grid-tile 	ng-repeat="img in images" 
-        					md-rowspan="{{ calculate_rows( img ) }}" 
-        					md-colspan="{{ calculate_cols( img ) }}">
-        		<img ng-src="{{ img.thumbUrl }}" layout-fill>
-        	</md-grid-tile>	
-
-		</md-grid-list>
-
-		<!-- <div layout="row" layout-wrap layout-align="center center" class="width_100" >
-			<div ng-repeat="img in images"   class="margin_auto container">
-				<img  ng-src="{{ img.thumbUrl }}" layout-fill >
-				
-			</div>
-		</div> -->
+		<div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
+	        <div class="grid-sizer"></div>
+	        <div class="masonry-brick" ng-repeat="img in images">
+	            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick">
+	        </div>
+	    </div>
 		
 	</div>
 	

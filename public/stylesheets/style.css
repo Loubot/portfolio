@@ -201,6 +201,33 @@ a {
 }
 
 .masonry-brick {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
+.pos_rel{
+    position: relative;
+}
+
+.pos_abs{
+    position: absolute;
+}
+
+.overlay_button{
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background: rgba(0,0,0,0.18);
+}
+
+
+.bla:hover .overlay_button{
+    opacity: 1;
+}
+
+.white_text{
+    color: #FFF;
+}
