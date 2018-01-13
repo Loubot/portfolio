@@ -11,6 +11,7 @@ angular.module('portfolio').controller( 'adminController', [
 
 		$scope.upload_in_progress = false
 		$scope.images = new Array()
+		$scope.cat = null
 
 		$scope.selected = new Array()
 

@@ -3,19 +3,19 @@
 	<div class="background_white big_gutter marging_b_15"  ng-if="categories.length" class="big_gutter center_text marging_b_15">
 		<form ng-submit="upload( file )"  layout="column" layout-align="space-around">
 			
-			<md-input-container class="width_50 center">
+			<md-input-container class="width_50_big center">
 				<input  name="file" type="file" file  aria-label="file" />
 				
 			</md-input-container>
 
 			<h3>Select which category to upload this photo to!</h3>
-			<md-input-container class="width_50 center">
+			<md-input-container class="width_50_big center_big">
 			  <md-select ng-model="file.category" placeholder="Select category" required>
 			    <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
 			  </md-select>
 			</md-input-container>
 
-			<md-input-container class="width_50 center">
+			<md-input-container class="width_50_big center">
 				<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload" ng-disabled="upload_in_progress">
 			</md-input-container>
 		</form>
@@ -29,19 +29,31 @@
 		        <div class="grid-sizer"></div>
 		        <div class="masonry-brick bla" ng-repeat="img in images" class="pos_rel">
 		            <img ng-src="{{ img.thumbUrl }}" class="" alt="A masonry brick">
+
 		            <md-menu class="pos_abs overlay_button" style="min-height: 35px" >
-		             <md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
-		               <md-icon ><i class="material-icons white_text">info_outline</i></md-icon>
-		             </md-button>
-		             <md-menu-content>
-		               <md-menu-item>
-		                 <md-button ng-click="doSomething()" aria-label="Do something">
-		                   
-		                   Do Something
-		                 </md-button>
+		             	<md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
+		               		<md-icon ><i class="material-icons white_text">info_outline</i></md-icon>
+		             	</md-button>
+		             	<md-menu-content>
+		               		<md-menu-item>
+		                 		<md-button ng-click="delete_pic( img.id )" aria-label="Do something">
+		                   			Delete?
+		                 		</md-button>
+		               		</md-menu-item>
+
+		               		<md-menu-item >
+		               			<md-input-container>
+		               			  	<md-select ng-model="someModel" md-container-class="move_down">
+		               			    	<md-select-header>
+		               			      		<span> Category - </span>
+		               			    	</md-select-header>
+		               			    	<md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
+		               			  	</md-select>
+		               			</md-input-container>
 		               </md-menu-item>
 		             </md-menu-content>
 		            </md-menu>
+
 		        </div>
 		    </div>
 			
@@ -53,11 +65,11 @@
 		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
 			<h3>Create a category</h3>
 			
-			<md-input-container class="width_50 center">
+			<md-input-container class="width_50_big_big center">
 				<label>Category</label>
 				<input ng-model="category.name" name="category.name" type="text" aria-label="category"/>
 			</md-input-container>
-			<md-input-container class="width_50 center">
+			<md-input-container class="width_50_big_big center">
 				<input 	class="md-button md-primary md-raised" 
 						type="submit" name="Create category" 
 						value="Create category" 

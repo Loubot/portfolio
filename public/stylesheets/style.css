@@ -36,6 +36,13 @@ a {
   padding: 10px; 
 }
 
+@media( min-width: 600px ) {
+    .center_big{
+        margin:auto;
+        padding: 10px;
+    }
+}
+
 .landscape{
     width: 100%;
 }
@@ -89,6 +96,16 @@ a {
   width: 50% !important; 
 }
 
+@media( min-width: 600px ){
+    .width_50_big{
+        width: 50% !important;
+    }
+}
+
+.md-open-menu-container{
+    min-width: 200px;
+}
+
 .max_width_100{
   max-width: 100% !important;
 }
@@ -104,6 +121,10 @@ a {
 
 .marging_b_15{
     margin-bottom: 15px !important;
+}
+
+.move_down{
+    margin-top: 88px;
 }
 
 
