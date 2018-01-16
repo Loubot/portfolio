@@ -47,7 +47,7 @@ angular.module('portfolio').controller( 'categoryController', [
 					// console.log( tempImages )
 					$scope.images = tempImages 
 					console.log( $scope.images )
-					$scope.$apply()
+					if ( $scope.images.length ) $scope.$apply() 
 					return
 					// $scope.images = tempImages
 				}

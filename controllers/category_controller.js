@@ -22,7 +22,7 @@ module.exports.controller = function( app, strategy ) {
 		models.Category.findOne({ 
 			where: { id: req.query.id },
 			include: [
-			    {model: models.Photo, as:'photos'}
+			    { model: models.Photo, as:'photos' }
 			]
 
 		}).then( function( category ) {
