@@ -35,6 +35,10 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
+	/* Create category
+	requires { name }
+	*/
+
 	app.post( '/api/category', strategy.authenticate(), function( req, res ) {
 		winston.debug( "/category categories_controller" )
 		winston.debug( req.query )
@@ -55,6 +59,9 @@ module.exports.controller = function( app, strategy ) {
 	})
 
 
+	/* Destroy category 
+	requires { id }
+	*/
 	app.delete( '/api/category', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/category categories_controller' )
 		winston.debug( req.query )

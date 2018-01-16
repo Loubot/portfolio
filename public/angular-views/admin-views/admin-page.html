@@ -43,11 +43,14 @@
 
 		               		<md-menu-item >
 		               			<md-input-container>
-		               			  	<md-select ng-model="someModel" md-container-class="move_down">
-		               			    	<md-select-header>
-		               			      		<span> Category - </span>
-		               			    	</md-select-header>
-		               			    	<md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
+		               			  	<md-select placeholder="Category" ng-model="someModel" md-container-class="move_down">
+		               			    	
+		               			    	<md-option 
+	               			    				ng-click="change_category( cat, img )" 
+	               			    				ng-value="cat" 
+	               			    				ng-repeat="cat in categories">
+	               			    				{{ cat.name }}
+		               			    	</md-option>
 		               			  	</md-select>
 		               			</md-input-container>
 		               </md-menu-item>

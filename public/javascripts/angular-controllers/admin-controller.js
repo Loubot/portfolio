@@ -34,6 +34,24 @@ angular.module('portfolio').controller( 'adminController', [
 			}
 			
 		}
+
+		$scope.change_category = function( cat, img ) {
+			console.log( cat, img )
+			$http({
+				method: 'PUT',
+				url: window.location.origin + '/api/photo/category',
+				headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				data: {
+					category: cat,
+					photo: img
+				}
+			}).then( function( res ) {
+				console.log( res )
+				// $scope.images = res.data.photos
+			})
+		}
 		
 		$http({
 			method: 'GET',
