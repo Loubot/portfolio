@@ -27,7 +27,7 @@
 		<div ng-if="images.length" >
 			<div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
 		        <div class="grid-sizer"></div>
-		        <div class="masonry-brick bla" ng-repeat="img in images" class="pos_rel">
+		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
 		            <img ng-src="{{ img.thumbUrl }}" class="" alt="A masonry brick">
 
 		            <md-menu class="pos_abs overlay_button" style="min-height: 35px" >
@@ -42,13 +42,14 @@
 		               		</md-menu-item>
 
 		               		<md-menu-item >
-		               			<md-input-container>
-		               			  	<md-select placeholder="Category" ng-model="someModel" md-container-class="move_down">
+		               			<md-input-container md-no-float>
+		               			  	<md-select  placeholder="Category" ng-model="someModel" md-container-class="move_down">
 		               			    	
 		               			    	<md-option 
-	               			    				ng-click="change_category( cat, img )" 
+	               			    				ng-click="change_category( cat, img ); $mdMenu.hide(); $mdSelect.hide();" 
 	               			    				ng-value="cat" 
-	               			    				ng-repeat="cat in categories">
+	               			    				ng-repeat="cat in categories"
+	               			    				ng-class="{ 'light_blue_background': cat.id === img.CategoryId }">
 	               			    				{{ cat.name }}
 		               			    	</md-option>
 		               			  	</md-select>

@@ -6,7 +6,8 @@ angular.module('portfolio').controller( 'adminController', [
 	"$http",
 	"Alertify",
 	'imageClass',
-	function( $scope, $rootScope,$http, Alertify, imageClass ) {
+	'$mdDialog',
+	function( $scope, $rootScope,$http, Alertify, imageClass, $mdDialog ) {
 		console.log('adminController')
 
 		$scope.upload_in_progress = false
@@ -35,7 +36,10 @@ angular.module('portfolio').controller( 'adminController', [
 			
 		}
 
+
+
 		$scope.change_category = function( cat, img ) {
+
 			console.log( cat, img )
 			$http({
 				method: 'PUT',
@@ -49,8 +53,12 @@ angular.module('portfolio').controller( 'adminController', [
 				}
 			}).then( function( res ) {
 				console.log( res )
-				// $scope.images = res.data.photos
-			})
+				$scope.images = res.data.photos
+				Alertify.success( 'Category changed' )
+			}), function error( err ) {
+				console.log( err )
+				Alertify.error( 'Failed to update category' )
+			}
 		}
 		
 		$http({
@@ -176,22 +184,35 @@ angular.module('portfolio').controller( 'adminController', [
 
 
 		$scope.delete_pic = function( id ) {
-			console.log( id )
-			$http({
-				method: 'DELETE',
-				url: window.location.origin + "/api/photo",
-				headers: {
-					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
-				},
-				params: {
-					id: id
-				}
-			}).then( function( res ) {
-				console.log( res )
-				$scope.images = res.data
-			}).catch( function( err ) {
-				console.log( err )
-			})
+			var confirm = $mdDialog.confirm()
+			          .title('Delete picture')
+			          .textContent('Are you sure you want to DELETE?')
+			          .ariaLabel('Delete picture')
+			          .ok('YES!')
+			          .cancel('Keep picture');
+
+		    $mdDialog.show(confirm).then(function() {
+		      	console.log( id )
+				$http({
+					method: 'DELETE',
+					url: window.location.origin + "/api/photo",
+					headers: {
+						"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+					},
+					params: {
+						id: id
+					}
+				}).then( function( res ) {
+					console.log( res )
+					Alertify.success( 'Picture deleted' )
+					$scope.images = res.data
+				}).catch( function( err ) {
+					console.log( err )
+				})
+		    }, function() {
+		      	Alertify.success( 'No action taken' )
+		    });
+			
 		}
 	}
 ])

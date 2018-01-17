@@ -42,7 +42,15 @@ module.exports.controller = function( app, strategy ) {
 				CategoryId: req.body.category.id
 			}).then( function( updated ) {
 				winston.debug( updated )
-				res.json( updated )
+				models.Photo.findAll({})
+				.then( function( photos ) {
+					res.json( { photos: photos })
+				}).catch( function ( errs ) {
+					winston.debug( 'Photo category updated, findAll error' )
+					winston.debug( err )
+					res.status( 500 ).json( errs )
+				})
+				// res.json( updated )
 			}).catch( function( err ) {
 				winston.debug( 'Update photo category error' )
 				winston.debug( err )

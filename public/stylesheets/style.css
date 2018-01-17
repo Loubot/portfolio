@@ -43,6 +43,11 @@ a {
     }
 }
 
+.light_blue_background{
+  background-color: #3b8ec2 !important;
+  color: #FFF;
+}
+
 .landscape{
     width: 100%;
 }
