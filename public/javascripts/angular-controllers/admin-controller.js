@@ -13,6 +13,7 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.upload_in_progress = false
 		$scope.images = new Array()
 		$scope.cat = null
+		$scope.cat_check = {}
 
 		$scope.selected = new Array()
 
@@ -102,21 +103,31 @@ angular.module('portfolio').controller( 'adminController', [
 			}
 		} /*end of create category*/
 
-		$scope.delete_category = function( id ) {
-			console.log( id )
-			$http({
-				method: 'DELETE',
-				url: window.location.origin + '/api/category',
-				headers: {
-					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
-				},
-				params: {
-					id: id
+		$scope.delete_category = function( cat_check ) {
+			var confirm = $mdDialog.confirm()
+			          .title('Delete category')
+			          .textContent('Deleting category will delete all pictures in that category')
+			          .ariaLabel('Delete Category')
+			          .ok('YES!')
+			          .cancel('Keep category');
+			$mdDialog.show(confirm).then(function() {
+				console.log( cat_check )
+				$http({
+					method: 'DELETE',
+					url: window.location.origin + '/api/category',
+					headers: {
+						"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+					},
+					params: {
+						cat_check
+					}
+				}).then( function( res ) {
+					console.log( res )
+				}), function error( err ) {
+					console.log( err )
 				}
-			}).then( function( res ) {
-				console.log( res )
-			}), function error( err ) {
-				console.log( err )
+			}), function() {
+				Alertify.success( 'No action taken' )
 			}
 		}
 
@@ -168,17 +179,20 @@ angular.module('portfolio').controller( 'adminController', [
 						console.log( res.data )
 						$scope.images.push( res.data )
 						
-
+						$scope.upload_in_progress = false
 
 						
 					}), function postImageError( err ) {
 						console.log( err )
+						$scope.upload_in_progress = false
 					}
 				}), function s3Error( dooo ) {
 					console.log( dooo )
+					$scope.upload_in_progress = false
 				}
 			}), function errors( doo ) {
 				console.log( doo )
+				$scope.upload_in_progress = false
 			}
 		} /* End of upload()*/
 

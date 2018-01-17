@@ -63,15 +63,33 @@ module.exports.controller = function( app, strategy ) {
 	requires { id }
 	*/
 	app.delete( '/api/category', strategy.authenticate(), function( req, res ) {
-		winston.debug( '/api/category categories_controller' )
-		winston.debug( req.query )
+		winston.debug( '/api/category categories_controller delete' )
+		winston.debug( JSON.parse( req.query.cat_check ).id )
+
+		models.Category.findOne({
+			where: { id: req.query.id }
+		}).then( function( category ) {
+			winston.debug( 'found category' )
+			winston.debug( category )
+			category.destroy().then( function( deleted ) {
+				winston.debug( 'Deleted category' )
+				winston.debug( deleted )
+				res.status( 204 ).json( deleted )
+			}).catch( function( err ) {
+				winston.debug( 'Category delete error' )
+				winston.debug( err )
+				res.status( 500 ).json( err )
+			})
+		})
 
 		models.Category.destroy({
 			where: { id: req.query.id }
 		}).then( function( resp ) {
+			winston.debug( 'got here')
 			winston.debug( resp )
 			res.json( resp )
 		}).catch( function( err ) {
+			winston.debug( 'Category delete error')
 			winston.debug( err )
 			res.status( 500 ).json( err )
 		})

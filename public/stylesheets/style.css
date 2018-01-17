@@ -123,6 +123,12 @@ a {
   margin-top: 15px;
 }
 
+.red_border{
+  border: 2px solid red !important; 
+  padding: 10px !important; 
+  border-radius: 25px !important;
+}
+
 
 .marging_b_15{
     margin-bottom: 15px !important;

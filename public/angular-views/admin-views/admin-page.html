@@ -84,12 +84,22 @@
 
 	</div>
 
-	<div class="background_white big_gutter" layout="row" layout-align="space-around">
-		<div ng-repeat="cat in categories">
-			<md-checkbox  aria-label="Finished?" ng-click="delete_category( cat.id )">
-  				{{ cat.name }}
-			</md-checkbox>
+	<div class="red_border">
+		<form >
+		<div  class="background_white big_gutter" layout="row" layout-align="space-around">
+			<div ng-repeat="cat in categories">
+				<md-checkbox  aria-label="Finished?" ng-model="cat_check.id" ng-true-value="{{cat.id}}" ng-false-value="null">
+	  				{{ cat.name }}
+				</md-checkbox>
+			</div>
 		</div>
+
+		<div layout="row" layout-align="center center" >
+			<md-input-container>
+				<input class="md-button md-raised md-warn" ng-click="delete_category( cat_check )" type="submit" name="submit" aria-label="delete category">
+			</md-input-container>
+		</div>
+		</form>
 	</div>
-	{{ c }}
+	
 </div>
