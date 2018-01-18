@@ -14,9 +14,8 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.images = new Array()
 		$scope.cat = null
 		$scope.cat_check = {}
-		var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
-
-		root.setAttribute( 'class', 'no_colour' );
+		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
 
 		$scope.selected = new Array()
 
