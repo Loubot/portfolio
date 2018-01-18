@@ -114,6 +114,9 @@ angular.module('portfolio').controller( 'adminController', [
 					}
 				}).then( function( res ) {
 					console.log( res )
+					$rootScope.categories = res.data
+					$scope.cat_id = -1
+					$scope.select_category( -1 )
 				}), function error( err ) {
 					console.log( err )
 				}

@@ -24,18 +24,18 @@
 
 	<div class="background_white big_gutter marging_b_15">
 
-		<div ng-if="images.length" >
+		<div >
 			<div class="width_100 center_text">
-				<md-input-container class="width_50_big center_big">
+				<md-input-container md-no-float class="width_50_big center_big">
 				  	
-				  	<md-select placeholder="Category" ng-model="bla" ng-change="select_category( bla )">
+				  	<md-select placeholder="Category" ng-model="cat_id" ng-change="select_category( cat_id )">
 				  		<md-option ng-value="-1">All</md-option>
 				    	<md-option ng-value="cat.id" ng-repeat="cat in categories" >{{ cat.name }}</md-option>
 				  	</md-select>
 				</md-input-container>
 			</div>
 			
-			<div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
+			<div ng-if="images.length"  masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
 		        <div class="grid-sizer"></div>
 		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
 		            <img ng-src="{{ img.thumbUrl }}" class="" alt="A masonry brick">

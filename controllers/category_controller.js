@@ -71,31 +71,30 @@ module.exports.controller = function( app, strategy ) {
 		winston.debug( JSON.parse( req.query.cat_check ).id )
 
 		models.Category.findOne({
-			where: { id: req.query.id }
+			where: { id: JSON.parse( req.query.cat_check ).id },
+			include: [
+			    { model: models.Photo, as:'photos' }
+			]
 		}).then( function( category ) {
 			winston.debug( 'found category' )
-			winston.debug( category )
+			// winston.debug( category.photos )
 			category.destroy().then( function( deleted ) {
 				winston.debug( 'Deleted category' )
 				winston.debug( deleted )
-				res.status( 204 ).json( deleted )
+				models.Category.findAll().then( function( categories ) {
+					res.json( categories )
+				})
 			}).catch( function( err ) {
 				winston.debug( 'Category delete error' )
 				winston.debug( err )
 				res.status( 500 ).json( err )
 			})
+			// res.json('ok')
+		}).catch( function( err ) {
+			winston.debug( 'Category delete findOne error')
+			winston.debug( err )
 		})
 
-		models.Category.destroy({
-			where: { id: req.query.id }
-		}).then( function( resp ) {
-			winston.debug( 'got here')
-			winston.debug( resp )
-			res.json( resp )
-		}).catch( function( err ) {
-			winston.debug( 'Category delete error')
-			winston.debug( err )
-			res.status( 500 ).json( err )
-		})
+		
 	})
 }

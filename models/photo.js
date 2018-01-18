@@ -1,7 +1,7 @@
 'use strict';
 
 var winston = require( 'winston' )
-
+var models = require( '../models' )
 var mkdirp =  require('mkdirp-promise')
 var Promise = require('bluebird')
 var fs = Promise.promisifyAll( require( 'fs') )
