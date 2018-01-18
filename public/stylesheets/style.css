@@ -1,12 +1,12 @@
 html{
-  background-color: #FFF; 
+  /*background-color: #FFF; */
 }
 
 body {
   padding: 50px;
   /*font-family: 'Roboto', sans-serif;*/
   font-family: 'PT Sans', sans-serif;
-  background-color: #FFF; 
+  /*background-color: #FFF; */
 }
 
 *, *:after, *:before {
@@ -20,7 +20,11 @@ a {
 }
 
 .background_white{
-    background-color: #FFF !important;
+    background-color: #FFF;
+}
+
+.no_colour{
+  background-color: inherit;
 }
 
 .white_text{

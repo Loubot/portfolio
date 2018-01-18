@@ -18,6 +18,7 @@ angular.module('portfolio').controller( 'navController', [
 		}).then( function success( res ) {
 			console.log( res )
 			$rootScope.categories = res.data
+			$rootScope.$emit( 'categories_done', 'loaded ok' )
 		}), function error( err ) {
 			console.log( err )
 		}

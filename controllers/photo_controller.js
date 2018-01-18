@@ -6,14 +6,14 @@ var winston = require('winston')
 module.exports.controller = function( app, strategy ) {
 	/*Get all photos */
 
-	app.get( '/api/photos', function( req, res ) {
+	app.get( '/api/photos/', function( req, res ) {
 		winston.debug( "/photos photo_controller" )
 		winston.debug( req.query )
 
 		models.Photo.findAll().then( function( photos ) {
 			winston.debug( 'Find all photos' )
 			// winston.debug( photos )
-			res.json( photos )
+			res.json( { photos: photos } )
 		}).catch( function( err ) {
 			winston.debug( 'Find all photos err' )
 			winston.debug( err )

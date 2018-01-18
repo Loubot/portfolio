@@ -22,9 +22,19 @@
 
 	</div >
 
-	<div class="background_white big_gutter">
+	<div class="background_white big_gutter marging_b_15">
 
 		<div ng-if="images.length" >
+			<div class="width_100 center_text">
+				<md-input-container class="width_50_big center_big">
+				  	
+				  	<md-select placeholder="Category" ng-model="bla" ng-change="select_category( bla )">
+				  		<md-option ng-value="-1">All</md-option>
+				    	<md-option ng-value="cat.id" ng-repeat="cat in categories" >{{ cat.name }}</md-option>
+				  	</md-select>
+				</md-input-container>
+			</div>
+			
 			<div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
 		        <div class="grid-sizer"></div>
 		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
@@ -84,7 +94,7 @@
 
 	</div>
 
-	<div class="red_border">
+	<div class="red_border background_white" ng-if="categories.length">
 		<form >
 		<div  class="background_white big_gutter" layout="row" layout-align="space-around">
 			<div ng-repeat="cat in categories">
@@ -96,7 +106,11 @@
 
 		<div layout="row" layout-align="center center" >
 			<md-input-container>
-				<input class="md-button md-raised md-warn" ng-click="delete_category( cat_check )" type="submit" name="submit" aria-label="delete category">
+				<input 	class="md-button md-raised md-warn" 
+						ng-click="delete_category( cat_check )" 
+						type="submit" name="Delete Category" 
+						value="Delete Category" 
+						aria-label="delete category">
 			</md-input-container>
 		</div>
 		</form>

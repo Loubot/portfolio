@@ -16,6 +16,10 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
+	/* Get category 
+	requires { id }
+	returns category and photos
+	*/
 	app.get( '/api/category/', function( req, res ) {
 		winston.debug( '/category/ { id }')
 		winston.debug( req.query )

@@ -57,7 +57,7 @@ app.get('/[^\.]+$', function(req, res){
 
 var models = require('./models')
 
-models.sequelize.sync().then(function() {
+models.sequelize.sync( { force: false } ).then(function() {
     console.log('sequelize done')
 });
 

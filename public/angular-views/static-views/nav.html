@@ -1,4 +1,4 @@
-<md-sidenav md-component-id="left" class="md-sidenav-left">
+<md-sidenav md-component-id="left" class="md-sidenav-left background_white">
 	<div  layout="column" layout-align="space-around">
 		<div class="font_1_75" style="margin-top: 6px;line-height: 36px;">Alan Rowell</div>
 		<md-button ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
@@ -7,7 +7,7 @@
 
 <md-button ng-if="$mdMedia('xs')" ng-click="openLeftMenu()"><i class="material-icons">menu</i></md-button>
 
-<div ng-if="$mdMedia('gt-xs')" class="marging_b_15" layout="row" layout-align="space-around end">
+<div ng-if="$mdMedia('gt-xs')" class="marging_b_15 background_white" layout="row" layout-align="space-around end">
 	<div style="margin-top: 6px;line-height: 36px;">
 		<md-button class="large_font transtlate_y_5" ui-sref="home">
 			Alan Rowell

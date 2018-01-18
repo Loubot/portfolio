@@ -14,6 +14,9 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.images = new Array()
 		$scope.cat = null
 		$scope.cat_check = {}
+		var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
+
+		root.setAttribute( 'class', 'no_colour' );
 
 		$scope.selected = new Array()
 
@@ -67,23 +70,12 @@ angular.module('portfolio').controller( 'adminController', [
 			url: window.location.origin + '/api/photos'
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images = res.data
+			$scope.images = res.data.photos
 			
 		}), function error( err ) {
 			console.log( err )
 		}
 
-		$http({
-			method: "GET",
-			url: window.location.origin + '/api/category/index'
-		}).then( function success( res ) {
-			console.log( res )
-			$rootScope.categories = res.data
-		}), function error( err ) {
-			console.log( err )
-		}
-
-		// $scope.category = {}
 
 		$scope.create_category = function() {
 			console.log( $scope.category )
@@ -126,8 +118,34 @@ angular.module('portfolio').controller( 'adminController', [
 				}), function error( err ) {
 					console.log( err )
 				}
-			}), function() {
+			}).catch( function( err ) {
+				// console.log( err )
 				Alertify.success( 'No action taken' )
+			}), function( e ) {
+				Alertify.success( 'No action taken' )
+			}
+		}
+
+		$scope.select_category = function( id ) {
+			console.log( id )
+			var url;
+			if ( id === -1 ) {
+				url = '/api/photos'
+			} else {
+				url = '/api/category'
+			}
+			console.log( id )
+			$http({
+				method: 'GET',
+				url: window.location.origin + url,
+				params: {
+					id: id
+				}
+			}).then( function( res ) {
+				console.log( res )
+				$scope.images = res.data.photos
+			}), function error( err ) {
+				console.log( err )
 			}
 		}
 
