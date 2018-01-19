@@ -78,9 +78,14 @@ module.exports.controller = function( app, strategy ) {
 					res.json( 'no good ')
 					console.log( err)
 				} else {
-					res.json({
+					var param = {
 						url: url,
 						photo: photo_instance
+					}
+					winston.debug( "s3 url return param ")
+					winston.debug( param )
+					res.json({
+						param
 					})
 				}
 				

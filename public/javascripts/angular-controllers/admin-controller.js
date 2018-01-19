@@ -178,7 +178,7 @@ angular.module('portfolio').controller( 'adminController', [
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
-					url: res.data.url,
+					url: res.data,
 					headers: {
 						"Content-type": file.type
 					},
