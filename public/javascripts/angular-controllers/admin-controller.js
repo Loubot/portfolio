@@ -175,7 +175,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function successCallBack( res ) {
 				console.log(  res ) 
 				log( { message: '1' })
-				if ( angular.isDefined( res.data ) ) {
+				if !( angular.isDefined( res.data ) ) {
 					res.data = res
 				}
 				log( res.data.url  )
