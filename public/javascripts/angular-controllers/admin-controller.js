@@ -176,7 +176,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function( res ) {
 				console.log( res )
 				log( {message: 'photo create response' })
-				log( res.data )
+				log( res )
 				photo = res.data
 				return $http({
 						method: 'GET',
