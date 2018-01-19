@@ -176,7 +176,7 @@ angular.module('portfolio').controller( 'adminController', [
 				console.log(  res.data ) 
 				log( { message: '1' })
 				
-				log( res.data.url  )
+				log( res.data  )
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
