@@ -81,10 +81,17 @@ module.exports.controller = function( app, strategy ) {
 				} else {
 					var param = {
 						url: url,
-						photo: photo_instance
+						photo: {
+							thumbUrl: photo_instance.thumbUrl, 
+							fullSizeUrl: photo_instance.fullSizeUrl, 
+							UserId: photo_instance.UserId, 
+							CategoryId: photo_instance.CategoryId,
+							fileName: photo_instance.fileName,
+							id: photo_instance.id
+						}
 					}
 					winston.debug( "s3 url return param ")
-					winston.debug( param.url )
+					winston.debug( param )
 					res.json(
 						param
 					)
