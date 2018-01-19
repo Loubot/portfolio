@@ -92,9 +92,7 @@ module.exports.controller = function( app, strategy ) {
 					}
 					winston.debug( "s3 url return param ")
 					winston.debug( param )
-					winston.debug( JSON.stringify( param ) )
-					res.writeHead(200, {'Content-Type': 'application/json'});
-					res.end( JSON.stringify( param ) )
+					res.json( param )
 					// res.json(
 						
 					// )
