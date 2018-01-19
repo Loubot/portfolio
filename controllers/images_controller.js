@@ -59,11 +59,12 @@ module.exports.controller = function( app, strategy ) {
 			CategoryId: cat_json.id,
 			fileName: req.query.Key
 		}).then( function( photo ) {
+			winston.debug( 'Photo created' )
 			photo_instance = photo
 			var params = {
 			    Bucket: config.Bucket,
 			    Key: photo.id + "/" + req.query.Key,
-			    ContentType:'image/jpg',
+			    ContentType: req.query.type,
 			    Expires: 60
 			}
 
@@ -83,10 +84,10 @@ module.exports.controller = function( app, strategy ) {
 						photo: photo_instance
 					}
 					winston.debug( "s3 url return param ")
-					winston.debug( param )
-					res.json({
+					winston.debug( param.url )
+					res.json(
 						param
-					})
+					)
 				}
 				
 			})
