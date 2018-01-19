@@ -173,13 +173,9 @@ angular.module('portfolio').controller( 'adminController', [
 					request_type: 'putObject' 
 				}
 			}).then( function successCallBack( res ) {
-				console.log(  res ) 
+				console.log(  res.data.url ) 
 				log( { message: '1' })
-				log( res.data.url )
-				if ( typeof res.data === 'undefined' || res.data === null) {
-					alert('whoop')
-					res.data = res
-				}
+				
 				log( res.data.url  )
 				photo = res.data.photo
 				$http({

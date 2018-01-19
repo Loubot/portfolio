@@ -79,20 +79,20 @@ module.exports.controller = function( app, strategy ) {
 					res.json( 'no good ')
 					console.log( err)
 				} else {
-					var param = {
-						url: encodeUri( url ),
-						photo: {
-							thumbUrl: photo_instance.thumbUrl, 
-							fullSizeUrl: photo_instance.fullSizeUrl, 
-							UserId: photo_instance.UserId, 
-							CategoryId: photo_instance.CategoryId,
-							fileName: photo_instance.fileName,
-							id: photo_instance.id
-						}
-					}
+					// var param = {
+					// 	url: url ,
+					// 	photo: {
+					// 		thumbUrl: photo_instance.thumbUrl, 
+					// 		fullSizeUrl: photo_instance.fullSizeUrl, 
+					// 		UserId: photo_instance.UserId, 
+					// 		CategoryId: photo_instance.CategoryId,
+					// 		fileName: photo_instance.fileName,
+					// 		id: photo_instance.id
+					// 	}
+					// }
 					winston.debug( "s3 url return param ")
-					winston.debug( param )
-					res.json( {param} )
+					// winston.debug( param )
+					res.json( {url: url} )
 					// res.json(
 						
 					// )
