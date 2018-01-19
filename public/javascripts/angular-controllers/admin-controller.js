@@ -173,7 +173,7 @@ angular.module('portfolio').controller( 'adminController', [
 				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
-				log( '1' )
+				log( { message: '1' })
 				log( res )
 				photo = res.data.photo
 				$http({
@@ -185,7 +185,7 @@ angular.module('portfolio').controller( 'adminController', [
 					data: file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
-					log( '2' )
+					log( { message: '2' })
 					log( resp )
 					// $scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio-dev/" + photo.id + "/" + resp.config.data.name )
 					$http({
@@ -202,7 +202,7 @@ angular.module('portfolio').controller( 'adminController', [
 					}).then( function postImageCallBack( res ) {
 						$scope.file = {}
 						console.log( res.data )
-						log( '3' )
+						log( { message: '3' })
 						log( res )
 						$scope.images.push( res.data )
 						
@@ -211,19 +211,19 @@ angular.module('portfolio').controller( 'adminController', [
 						
 					}), function postImageError( err ) {
 						console.log( err )
-						log( '4' )
+						log( { message: '4' })
 						log( err )
 						$scope.upload_in_progress = false
 					}
 				}), function s3Error( dooo ) {
 					console.log( dooo )
-					log( '5' )
+					log( { message: '5' })
 					log( dooo )
 					$scope.upload_in_progress = false
 				}
 			}), function errors( doo ) {
 				console.log( doo )
-				log( '6' )
+				log( { message: '6' })
 				log( doo )
 				$scope.upload_in_progress = false
 			}

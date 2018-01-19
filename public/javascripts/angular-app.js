@@ -43,7 +43,7 @@ app.factory( 'imageClass', [
 app.factory( 'log', [ 
     '$http', 
     function( $http ) {
-    
+    // console.log( 'log called ')
     var upload = function( data ) {
         $http({
             method: 'POST',
