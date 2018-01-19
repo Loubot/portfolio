@@ -67,7 +67,7 @@ module.exports.controller = function( app, strategy ) {
 				//
 				winston.debug( "s3 url return param ")
 				// winston.debug( param )
-				res.json( url )
+				res.json( {url: url } )
 				// res.json(
 					
 				// )
