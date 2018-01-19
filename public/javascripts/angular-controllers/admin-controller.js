@@ -176,7 +176,7 @@ angular.module('portfolio').controller( 'adminController', [
 				console.log(  res ) 
 				log( { message: '1' })
 				if ( angular.isDefined( res.data ) ) {
-					res.data = res.data
+					res.data = res
 				}
 				log( res.data.url  )
 				photo = res.data.photo
