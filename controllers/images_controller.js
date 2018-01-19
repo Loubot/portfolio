@@ -92,8 +92,9 @@ module.exports.controller = function( app, strategy ) {
 					}
 					winston.debug( "s3 url return param ")
 					winston.debug( param )
+					winston.debug( JSON.parse( param ) )
 					res.json(
-						param
+						JSON.parse( param )
 					)
 				}
 				
