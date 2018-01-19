@@ -80,7 +80,7 @@ module.exports.controller = function( app, strategy ) {
 					console.log( err)
 				} else {
 					var param = {
-						url: url,
+						url: encodeUri( url ),
 						photo: {
 							thumbUrl: photo_instance.thumbUrl, 
 							fullSizeUrl: photo_instance.fullSizeUrl, 
@@ -92,7 +92,7 @@ module.exports.controller = function( app, strategy ) {
 					}
 					winston.debug( "s3 url return param ")
 					winston.debug( param )
-					res.json( param )
+					res.json( {param} )
 					// res.json(
 						
 					// )
