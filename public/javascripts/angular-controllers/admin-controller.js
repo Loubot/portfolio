@@ -181,7 +181,7 @@ angular.module('portfolio').controller( 'adminController', [
 						method: 'GET',
 						url: window.location.origin + '/api/s3-url',
 						headers: {
-							"Accept": "application/json",
+							
 							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 						},
 						params: { 
