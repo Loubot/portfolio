@@ -175,7 +175,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function successCallBack( res ) {
 				console.log(  res ) 
 				log( { message: '1' })
-				if ( typeof variable == 'undefined') {
+				if ( typeof variable === 'undefined' || variable === null) {
 					alert('whoop')
 					res.data = res
 				}
