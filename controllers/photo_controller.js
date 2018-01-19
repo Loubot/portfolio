@@ -34,7 +34,10 @@ module.exports.controller = function( app, strategy ) {
 		}).then( function( photo ) {
 			winston.debug( 'Photo created' )
 			// winston.debug( photo )
-			res.json( photo )
+			var send_photo = {
+				id: photo.id
+			}
+			res.json( send_photo )
 		}).catch( function( err ) {
 			winston.debug( 'Photo create error ' )
 			winston.debug( err )
