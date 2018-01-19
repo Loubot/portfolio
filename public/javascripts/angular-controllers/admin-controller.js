@@ -173,7 +173,7 @@ angular.module('portfolio').controller( 'adminController', [
 					request_type: 'putObject' 
 				}
 			}).then( function successCallBack( res ) {
-				console.log(  res.data.url ) 
+				console.log(  res.data ) 
 				log( { message: '1' })
 				
 				log( res.data.url  )
