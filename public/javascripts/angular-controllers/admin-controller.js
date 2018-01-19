@@ -173,9 +173,12 @@ angular.module('portfolio').controller( 'adminController', [
 					request_type: 'putObject' 
 				}
 			}).then( function successCallBack( res ) {
-				console.log( JSON.parse( res ) )
+				console.log(  res ) 
 				log( { message: '1' })
-				log( JSON.parse( res.data )  )
+				if ( angular.isDefined( res.data ) ) {
+					res.data = res.data
+				}
+				log( res.data  )
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
