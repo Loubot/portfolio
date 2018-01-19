@@ -80,7 +80,7 @@ module.exports.controller = function( app, strategy ) {
 					console.log( err)
 				} else {
 					var param = {
-						// url: url,
+						url: url,
 						photo: {
 							thumbUrl: photo_instance.thumbUrl, 
 							fullSizeUrl: photo_instance.fullSizeUrl, 
