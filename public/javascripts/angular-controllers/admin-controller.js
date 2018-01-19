@@ -163,6 +163,7 @@ angular.module('portfolio').controller( 'adminController', [
 				method: 'GET',
 				url: window.location.origin + '/api/s3-url',
 				headers: {
+					"Accept": "application/json",
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
 				params: { 
@@ -174,7 +175,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function successCallBack( res ) {
 				console.log( res )
 				log( { message: '1' })
-				log( JSON.parse( res.data ) )
+				log( res.data  )
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
