@@ -22,7 +22,12 @@ app.directive('imageonload', function() {
     };
 })
 
-app.factory( 'imageClass', [ '$rootScope', function( $rootScope ) {
+
+
+
+app.factory( 'imageClass', [ 
+    '$rootScope', 
+    function( $rootScope ) {
     
     var calculate = function( height, width ) {
         if ( ( height / width ) > 1 ) {
@@ -33,6 +38,28 @@ app.factory( 'imageClass', [ '$rootScope', function( $rootScope ) {
     }
 
     return calculate
+}])
+
+app.factory( 'log', [ 
+    '$http', 
+    function( $http ) {
+    
+    var upload = function( data ) {
+        $http({
+            method: 'POST',
+            url: window.location.origin + '/api/log',
+            headers: {
+                "Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+            },
+            data: data
+        }).then( function( res ) {
+            console.log( res )
+        }), function error( err ) {
+            console.log( err )
+        }
+    }
+
+    return upload
 }])
 
 app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider", 

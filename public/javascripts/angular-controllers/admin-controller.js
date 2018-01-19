@@ -7,7 +7,8 @@ angular.module('portfolio').controller( 'adminController', [
 	"Alertify",
 	'imageClass',
 	'$mdDialog',
-	function( $scope, $rootScope,$http, Alertify, imageClass, $mdDialog ) {
+	'log',
+	function( $scope, $rootScope,$http, Alertify, imageClass, $mdDialog, log ) {
 		console.log('adminController')
 
 		$scope.upload_in_progress = false
@@ -172,6 +173,7 @@ angular.module('portfolio').controller( 'adminController', [
 				}
 			}).then( function successCallBack( res ) {
 				console.log( res )
+				log( res )
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
@@ -182,6 +184,7 @@ angular.module('portfolio').controller( 'adminController', [
 					data: file
 				}).then( function s3CallBack( resp ) {
 					console.log( resp.config )
+					log( resp )
 					// $scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio-dev/" + photo.id + "/" + resp.config.data.name )
 					$http({
 						method: "POST",
@@ -197,6 +200,7 @@ angular.module('portfolio').controller( 'adminController', [
 					}).then( function postImageCallBack( res ) {
 						$scope.file = {}
 						console.log( res.data )
+						log( res )
 						$scope.images.push( res.data )
 						
 						$scope.upload_in_progress = false
@@ -204,14 +208,17 @@ angular.module('portfolio').controller( 'adminController', [
 						
 					}), function postImageError( err ) {
 						console.log( err )
+						log( err )
 						$scope.upload_in_progress = false
 					}
 				}), function s3Error( dooo ) {
 					console.log( dooo )
+					log( dooo )
 					$scope.upload_in_progress = false
 				}
 			}), function errors( doo ) {
 				console.log( doo )
+				log( doo )
 				$scope.upload_in_progress = false
 			}
 		} /* End of upload()*/
