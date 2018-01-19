@@ -63,7 +63,7 @@ module.exports.controller = function( app, strategy ) {
 			var params = {
 			    Bucket: config.Bucket,
 			    Key: photo.id + "/" + req.query.Key,
-			    ContentType:req.query.type,
+			    ContentType:'image/jpg',
 			    Expires: 60
 			}
 
