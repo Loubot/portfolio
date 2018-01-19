@@ -175,7 +175,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function successCallBack( res ) {
 				console.log( res )
 				log( { message: '1' })
-				log( res.data  )
+				log( res.data.url  )
 				photo = res.data.photo
 				$http({
 					method: 'PUT',
