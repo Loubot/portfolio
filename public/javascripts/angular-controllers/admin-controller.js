@@ -164,7 +164,6 @@ angular.module('portfolio').controller( 'adminController', [
 				method: 'POST',
 				url: window.location.origin + '/api/photo',
 				headers: {
-					"Accept": "application/json",
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
 				data: { 
