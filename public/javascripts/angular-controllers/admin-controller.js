@@ -175,7 +175,7 @@ angular.module('portfolio').controller( 'adminController', [
 			}).then( function successCallBack( res ) {
 				console.log(  res ) 
 				log( { message: '1' })
-				log( res )
+				log( res.url )
 				if ( typeof res.data === 'undefined' || res.data === null) {
 					alert('whoop')
 					res.data = res
@@ -269,3 +269,10 @@ angular.module('portfolio').controller( 'adminController', [
 		}
 	}
 ])
+
+
+
+"url=https://als-portfolio.s3.eu-west-1.amazonaws.com/52/20180115_192127.jpg?AWSAccessKeyId=AKIAJPBUQBMORGTUCBSQ&Content-Type=image%2Fjpeg&Expires=1516379852&Signature=e5EdDebl9KNqAfMMoBLptG7v65s%3D&x-amz-acl=public-read, thumbUrl=undefined, fullSizeUrl=undefined, UserId=1, CategoryId=1, fileName=20180115_192127.jpg, id=52 "
+
+
+"url=https://als-portfolio.s3.eu-west-1.amazonaws.com/51/IMG_7311-01-01.jpeg?AWSAccessKeyId=AKIAJPBUQBMORGTUCBSQ&Content-Type=image%2Fjpeg&Expires=1516379789&Signature=6j%2Fog1xJsuQBsX3P6368ZrK0JCI%3D&x-amz-acl=public-read, UserId=1, CategoryId=1, fileName=IMG_7311-01-01.jpeg, id=51, status=200, method=GET, transformRequest=[null], transformResponse=[null], jsonpCallbackParam=callback, url=https://als-portfolio.herokuapp.com/api/s3-url, Accept=application/json, Authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.1Tb7ZLKflKv4HOx02hy7AhWra3YMEwjaeJFQB-z9ccQ, Key=IMG_7311-01-01.jpeg, type=image/jpeg, id=1, name=Street, createdAt=2017-12-20T11:22:20.000Z, updatedAt=2017-12-20T11:22:20.000Z, request_type=putObject, cached=false, statusText=OK, xhrStatus=complete "
