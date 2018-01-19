@@ -7,7 +7,7 @@ module.exports.controller = function( app, strategy ) {
 	/*Get all photos */
 
 	app.get( '/api/photos/', function( req, res ) {
-		winston.debug( "/photos photo_controller" )
+		winston.debug( "/api/photos photo_controller" )
 		winston.debug( req.query )
 
 		models.Photo.findAll().then( function( photos ) {
@@ -16,6 +16,27 @@ module.exports.controller = function( app, strategy ) {
 			res.json( { photos: photos } )
 		}).catch( function( err ) {
 			winston.debug( 'Find all photos err' )
+			winston.debug( err )
+			res.status( 500 ).json( err )
+		})
+	})
+
+
+	app.post( '/api/photo', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/api/photo photo_controller create' )
+		winston.debug( req.body.category.id )
+
+
+		models.Photo.create({
+			UserId: req.user.id,
+			CategoryId: req.body.category.id,
+			fileName: req.body.Key
+		}).then( function( photo ) {
+			winston.debug( 'Photo created' )
+			// winston.debug( photo )
+			res.json( photo )
+		}).catch( function( err ) {
+			winston.debug( 'Photo create error ' )
 			winston.debug( err )
 			res.status( 500 ).json( err )
 		})
@@ -73,4 +94,33 @@ module.exports.controller = function( app, strategy ) {
 			})
 		})
 	})
+
+
+	/* /photo params: { file_name, category } */
+	/* Expects filename of recently uploaded photo, category. Creates thumbsize version of file and pushes this thumb
+		to s3 bucket. 
+	*/
+
+	app.post('/api/photo-thumb', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/api/photo images_controller' )
+		winston.debug( req.body )
+		// res.json( 'ok' )
+
+		models.Photo.findOne({
+			where: { id: req.body.photo.id }
+		}).then( function( photo ) {
+			winston.debug( "Found photo" )
+			photo.processImage( function( a, b ) {
+				if ( a ) {
+					winston.debug( 'a' )
+					res.json( a )
+				} else {
+					winston.debug( 'b' )
+					res.json( b )
+				}
+			})
+		})
+
+		
+	}) /*End app.post( 'photo' ) */
 }

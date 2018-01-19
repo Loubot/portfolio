@@ -48,94 +48,65 @@ module.exports.controller = function( app, strategy ) {
 	app.get('/api/s3-url', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/s3-url, images_controller')
 		winston.debug( req.query )
-		var cat_string = req.query.category
-		var cat_json = JSON.parse( cat_string )
-		var photo_instance = {}
+		
+		var params = {
+					    Bucket: config.Bucket,
+					    Key: req.query.id + "/" + req.query.Key,
+					    ContentType: req.query.type,
+					    Expires: 60
+					}
+
+
+		s3.getSignedUrl( req.query.request_type, params, function (err, url) {
+			if ( err ) {
+				res.json( 'no good ')
+				console.log( err)
+			} else {
+				// var param = {
+				// 	url: url ,
+				//
+				winston.debug( "s3 url return param ")
+				// winston.debug( param )
+				res.json( url )
+				// res.json(
+					
+				// )
+			}
+			
+		})
 
 		// req.query.Key = req.query.Key.replace(/\s/g,'')
 		
-		models.Photo.create({ 
-			UserId: req.user.id,
-			CategoryId: cat_json.id,
-			fileName: req.query.Key
-		}).then( function( photo ) {
-			winston.debug( 'Photo created' )
-			photo_instance = photo
-			var params = {
-			    Bucket: config.Bucket,
-			    Key: photo.id + "/" + req.query.Key,
-			    ContentType: req.query.type,
-			    Expires: 60
-			}
+		// models.Photo.create({ 
+		// 	UserId: req.user.id,
+		// 	CategoryId: cat_json.id,
+		// 	fileName: req.query.Key
+		// }).then( function( photo ) {
+		// 	winston.debug( 'Photo created' )
+		// 	photo_instance = photo
+		// 	var params = {
+		// 	    Bucket: config.Bucket,
+		// 	    Key: photo.id + "/" + req.query.Key,
+		// 	    ContentType: req.query.type,
+		// 	    Expires: 60
+		// 	}
 
-			if ( req.query.request_type === 'putObject' ){
-				// console.log('hup')
-				params.ACL = 'public-read'
-				// console.log( params)
-			}
-			console.log( params)
-			s3.getSignedUrl( req.query.request_type, params, function (err, url) {
-				if ( err ) {
-					res.json( 'no good ')
-					console.log( err)
-				} else {
-					// var param = {
-					// 	url: url ,
-					// 	photo: {
-					// 		thumbUrl: photo_instance.thumbUrl, 
-					// 		fullSizeUrl: photo_instance.fullSizeUrl, 
-					// 		UserId: photo_instance.UserId, 
-					// 		CategoryId: photo_instance.CategoryId,
-					// 		fileName: photo_instance.fileName,
-					// 		id: photo_instance.id
-					// 	}
-					// }
-					winston.debug( "s3 url return param ")
-					// winston.debug( param )
-					res.json( {url: url, photo: { id: photo_instance.id } } )
-					// res.json(
-						
-					// )
-				}
-				
-			})
-		}).catch( function( err ) {
-			winston.debug( "Failed to create photo ")
-			winston.debug( err )
-		})
+		// 	if ( req.query.request_type === 'putObject' ){
+		// 		// console.log('hup')
+		// 		params.ACL = 'public-read'
+		// 		// console.log( params)
+		// 	}
+		// 	console.log( params)
+			
+		// }).catch( function( err ) {
+		// 	winston.debug( "Failed to create photo ")
+		// 	winston.debug( err )
+		// })
 		
 		
 		
 
 		
 	})
-
-	/* /photo params: { file_name, category } */
-	/* Expects filename of recently uploaded photo, category. Creates thumbsize version of file and pushes this thumb
-		to s3 bucket. 
-	*/
-
-	app.post('/api/photo', strategy.authenticate(), function( req, res ) {
-		winston.debug( '/api/photo images_controller' )
-		winston.debug( req.body )
-		// res.json( 'ok' )
-
-		models.Photo.findOne({
-			where: { id: req.body.photo.id }
-		}).then( function( photo ) {
-			winston.debug( "Found photo" )
-			photo.processImage( function( a, b ) {
-				if ( a ) {
-					winston.debug( 'a' )
-					res.json( a )
-				} else {
-					winston.debug( 'b' )
-					res.json( b )
-				}
-			})
-		})
-
-		
-	}) /*End app.post( 'photo' ) */
 
 }

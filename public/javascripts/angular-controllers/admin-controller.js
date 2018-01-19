@@ -159,6 +159,56 @@ angular.module('portfolio').controller( 'adminController', [
 			$scope.upload_in_progress = true
 			console.log( file )
 			var photo = {}
+
+			$http({
+				method: 'POST',
+				url: window.location.origin + '/api/photo',
+				headers: {
+					"Accept": "application/json",
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				data: { 
+					Key: file.name, 
+					type: file.type, 
+					category: file.category, 
+					request_type: 'putObject' 
+				}
+			}).then( function( res ) {
+				photo = res.data
+				return $http({
+						method: 'GET',
+						url: window.location.origin + '/api/s3-url',
+						headers: {
+							"Accept": "application/json",
+							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+						},
+						params: { 
+							Key: file.name, 
+							type: file.type, 
+							category: file.category, 
+							request_type: 'putObject',
+							id: res.data.id
+						}
+					})
+			}).then( function( s3_url ) {
+				console.log( s3_url )
+				return $http({
+					method: 'PUT',
+					url: s3_url.data,
+					headers: {
+						"Content-type": file.type
+					},
+					data: file
+				})
+			}).then( function( s3_upload ) {
+				console.log( s3_upload )
+				$scope.upload_in_progress = true
+			}), function photoErr( err ) {
+				console.log( photoErr )
+			}
+
+			return false
+
 			$http({
 				method: 'GET',
 				url: window.location.origin + '/api/s3-url',
