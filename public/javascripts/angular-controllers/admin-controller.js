@@ -145,6 +145,7 @@ angular.module('portfolio').controller( 'adminController', [
 				url: window.location.origin + '/api/photo',
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 					"accept-encoding":"gzip, deflate, br",
 					"accept-language":"en-US,en;q=0.9",
 					"x-forwarded-proto": "https"
@@ -165,6 +166,7 @@ angular.module('portfolio').controller( 'adminController', [
 						url: window.location.origin + '/api/s3-url',
 						headers: {
 							
+							"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 							"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 							"accept-encoding":"gzip, deflate, br",
 							"accept-language":"en-US,en;q=0.9",
@@ -194,21 +196,23 @@ angular.module('portfolio').controller( 'adminController', [
 				log( { message: 's3 upload response' } )
 				log( s3_upload )
 				console.log( s3_upload )
-
 				return $http({
 							method: "POST",
 							url: window.location.origin + "/api/photo-thumb",
 							headers: {
+								"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 								"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 								"accept-encoding":"gzip, deflate, br",
 								"accept-language":"en-US,en;q=0.9",
 								"x-forwarded-proto": "https"
 							},
 							data: {
-								file_name: resp.config.data.name,
+								file_name: s3_upload.config.data.name,
 								category: file.category,
 								photo: photo
-						}
+							}
+						})
+				
 				
 			}).then( function( thumb_response ) {
 				console.log( thumb_response )
