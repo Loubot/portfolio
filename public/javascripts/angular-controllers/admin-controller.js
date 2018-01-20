@@ -146,7 +146,7 @@ angular.module('portfolio').controller( 'adminController', [
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
-					"accept-encoding":"gzip, deflate, br",
+					
 					"accept-language":"en-US,en;q=0.9",
 					"x-forwarded-proto": "https"
 				},
@@ -168,7 +168,7 @@ angular.module('portfolio').controller( 'adminController', [
 							
 							"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 							"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
-							"accept-encoding":"gzip, deflate, br",
+							
 							"accept-language":"en-US,en;q=0.9",
 							"x-forwarded-proto": "https"
 						},
@@ -202,7 +202,7 @@ angular.module('portfolio').controller( 'adminController', [
 							headers: {
 								"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 								"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
-								"accept-encoding":"gzip, deflate, br",
+								
 								"accept-language":"en-US,en;q=0.9",
 								"x-forwarded-proto": "https"
 							},
