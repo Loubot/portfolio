@@ -20,26 +20,6 @@ angular.module('portfolio').controller( 'adminController', [
 
 		$scope.selected = new Array()
 
-		$scope.calculate_rows = function( img ) {
-			// console.log( img.height / img.width )
-			if ( (img.height / img.width) > 1 ) {
-				return 4
-			} else {
-				return 2
-			}
-			
-		}
-
-		$scope.calculate_cols = function( img ) {
-			// console.log( img.height / img.width )
-			if ( (img.height / img.width) > 1 ) {
-				return 2
-			} else {
-				return 3
-			}
-			
-		}
-
 
 
 		$scope.change_category = function( cat, img ) {
