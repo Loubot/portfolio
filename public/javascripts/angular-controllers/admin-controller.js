@@ -144,7 +144,10 @@ angular.module('portfolio').controller( 'adminController', [
 				method: 'POST',
 				url: window.location.origin + '/api/photo',
 				headers: {
-					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
+					"accept-encoding":"gzip, deflate, br",
+					"accept-language":"en-US,en;q=0.9",
+					"x-forwarded-proto": "https"
 				},
 				data: { 
 					Key: file.name, 
@@ -162,7 +165,10 @@ angular.module('portfolio').controller( 'adminController', [
 						url: window.location.origin + '/api/s3-url',
 						headers: {
 							
-							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+							"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
+							"accept-encoding":"gzip, deflate, br",
+							"accept-language":"en-US,en;q=0.9",
+							"x-forwarded-proto": "https"
 						},
 						params: { 
 							Key: file.name, 
