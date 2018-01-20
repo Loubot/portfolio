@@ -131,7 +131,15 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                     controller: "adminController",
                     templateUrl: "../angular-views/admin-views/admin-page.html"
                 }
-            }
+            },
+            onEnter: [ '$rootScope', function( $rootScope ) {
+                document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+                document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+            }],
+            onExit: [ '$rootScope', function( $rootScope ) {
+                document.getElementsByTagName("html")[0].style = "background-color: #FFF;"
+                document.getElementsByTagName("body")[0].style = "background-color: #FFF;"
+            }]
             
         })
 

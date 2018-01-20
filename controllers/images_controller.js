@@ -74,38 +74,6 @@ module.exports.controller = function( app, strategy ) {
 			}
 			
 		})
-
-		// req.query.Key = req.query.Key.replace(/\s/g,'')
-		
-		// models.Photo.create({ 
-		// 	UserId: req.user.id,
-		// 	CategoryId: cat_json.id,
-		// 	fileName: req.query.Key
-		// }).then( function( photo ) {
-		// 	winston.debug( 'Photo created' )
-		// 	photo_instance = photo
-		// 	var params = {
-		// 	    Bucket: config.Bucket,
-		// 	    Key: photo.id + "/" + req.query.Key,
-		// 	    ContentType: req.query.type,
-		// 	    Expires: 60
-		// 	}
-
-		// 	if ( req.query.request_type === 'putObject' ){
-		// 		// console.log('hup')
-		// 		params.ACL = 'public-read'
-		// 		// console.log( params)
-		// 	}
-		// 	console.log( params)
-			
-		// }).catch( function( err ) {
-		// 	winston.debug( "Failed to create photo ")
-		// 	winston.debug( err )
-		// })
-		
-		
-		
-
 		
 	})
 
