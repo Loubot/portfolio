@@ -194,83 +194,103 @@ angular.module('portfolio').controller( 'adminController', [
 				log( { message: 's3 upload response' } )
 				log( s3_upload )
 				console.log( s3_upload )
-				$scope.upload_in_progress = true
+
+				return $http({
+							method: "POST",
+							url: window.location.origin + "/api/photo-thumb",
+							headers: {
+								"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
+								"accept-encoding":"gzip, deflate, br",
+								"accept-language":"en-US,en;q=0.9",
+								"x-forwarded-proto": "https"
+							},
+							data: {
+								file_name: resp.config.data.name,
+								category: file.category,
+								photo: photo
+						}
+				
+			}).then( function( thumb_response ) {
+				console.log( thumb_response )
+				$scope.images.push( thumb_response.data )
+				$scope.upload_in_progress = false
+
 			}), function photoErr( err ) {
 				console.log( photoErr )
 			}
 
 			return false
 
-			// $http({
-			// 	method: 'GET',
-			// 	url: window.location.origin + '/api/s3-url',
-			// 	headers: {
-			// 		"Accept": "application/json",
-			// 		"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
-			// 	},
-			// 	params: { 
-			// 		Key: file.name, 
-			// 		type: file.type, 
-			// 		category: file.category, 
-			// 		request_type: 'putObject' 
-			// 	}
-			// }).then( function successCallBack( res ) {
-			// 	console.log(  res.data ) 
-			// 	log( { message: '1' })
+			$http({
+				method: 'GET',
+				url: window.location.origin + '/api/s3-url',
+				headers: {
+					"Accept": "application/json",
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				params: { 
+					Key: file.name, 
+					type: file.type, 
+					category: file.category, 
+					request_type: 'putObject' 
+				}
+			}).then( function successCallBack( res ) {
+				console.log(  res.data ) 
+				log( { message: '1' })
 				
-			// 	log( res  )
-			// 	photo = res.data.photo
-			// 	$http({
-			// 		method: 'PUT',
-			// 		url: res.data.url,
-			// 		headers: {
-			// 			"Content-type": file.type
-			// 		},
-			// 		data: file
-			// 	}).then( function s3CallBack( resp ) {
-			// 		console.log( resp.config )
-			// 		log( { message: '2' })
-			// 		log( resp )
-			// 		// $scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio-dev/" + photo.id + "/" + resp.config.data.name )
-			// 		$http({
-			// 			method: "POST",
-			// 			url: window.location.origin + "/api/photo",
-			// 			headers: {
-			// 				"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
-			// 			},
-			// 			data: {
-			// 				file_name: resp.config.data.name,
-			// 				category: file.category,
-			// 				photo: photo
-			// 			}
-			// 		}).then( function postImageCallBack( res ) {
-			// 			$scope.file = {}
-			// 			console.log( res.data )
-			// 			log( { message: '3' })
-			// 			log( res )
-			// 			$scope.images.push( res.data )
+				log( res  )
+				photo = res.data.photo
+				$http({
+					method: 'PUT',
+					url: res.data.url,
+					headers: {
+						"Content-type": file.type
+					},
+					data: file
+				}).then( function s3CallBack( resp ) {
+					console.log( resp.config )
+					log( { message: '2' })
+					log( resp )
+					// $scope.images.push( "https://s3-eu-west-1.amazonaws.com/als-portfolio-dev/" + photo.id + "/" + resp.config.data.name )
+					$http({
+						method: "POST",
+						url: window.location.origin + "/api/photo",
+						headers: {
+							"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+						},
+						data: {
+							file_name: resp.config.data.name,
+							category: file.category,
+							photo: photo
+						}
+					}).then( function postImageCallBack( res ) {
+						$scope.file = {}
+						console.log( res.data )
+						log( { message: '3' })
+						log( res )
+						$scope.images.push( res.data )
 						
-			// 			$scope.upload_in_progress = false
+						$scope.upload_in_progress = false
 
 						
-			// 		}), function postImageError( err ) {
-			// 			console.log( err )
-			// 			log( { message: '4' })
-			// 			log( err )
-			// 			$scope.upload_in_progress = false
-			// 		}
-			// 	}), function s3Error( dooo ) {
-			// 		console.log( dooo )
-			// 		log( { message: '5' })
-			// 		log( dooo )
-			// 		$scope.upload_in_progress = false
-			// 	}
-			// }), function errors( doo ) {
-			// 	console.log( doo )
-			// 	log( { message: '6' })
-			// 	log( doo )
-			// 	$scope.upload_in_progress = false
-			// }
+					}), function postImageError( err ) {
+						console.log( err )
+						log( { message: '4' })
+						log( err )
+						$scope.upload_in_progress = false
+					}
+				}), function s3Error( dooo ) {
+					console.log( dooo )
+					log( { message: '5' })
+					log( dooo )
+					$scope.upload_in_progress = false
+				}
+			}), function errors( doo ) {
+				console.log( doo )
+				log( { message: '6' })
+				log( doo )
+				$scope.upload_in_progress = false
+			}
 		} /* End of upload()*/
 
 
