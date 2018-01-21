@@ -165,9 +165,9 @@ angular.module('portfolio').controller( 'adminController', [
 			  reader.readAsArrayBuffer(file);
 			}
 
-			getOrientation(file, function(orientation) {
-			    alert('orientation: ' + orientation);
-			 });
+			// getOrientation(file, function(orientation) {
+			//     alert('orientation: ' + orientation);
+			//  });
 
 
 			// return false 
