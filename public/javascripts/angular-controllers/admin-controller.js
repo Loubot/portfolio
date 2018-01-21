@@ -170,7 +170,7 @@ angular.module('portfolio').controller( 'adminController', [
 			 });
 
 
-			return false 
+			// return false 
 			$scope.upload_in_progress = true
 			console.log( file )
 			var photo = {}
