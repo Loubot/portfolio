@@ -22,7 +22,7 @@
 
 	</div >
 
-	<div class="background_white big_gutter marging_b_15">
+	<div  ng-if="images.length" class="background_white big_gutter marging_b_15">
 
 		<div >
 			<div class="width_100 center_text">
@@ -35,7 +35,7 @@
 				</md-input-container>
 			</div>
 			
-			<div ng-if="images.length"  masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
+			<div  masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
 		        <div class="grid-sizer"></div>
 		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
 		            <img ng-src="{{ img.thumbUrl }}" class="" alt="A masonry brick">
@@ -79,9 +79,9 @@
 		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
 			<h3>Create a category</h3>
 			
-			<md-input-container class="width_50_big_big center">
-				<label>Category</label>
-				<input ng-model="category.name" name="category.name" type="text" aria-label="category"/>
+			<md-input-container md-no-float class="width_50_big_big center">
+				
+				<input ng-model="category.name" name="category.name" type="text" aria-label="category" placeholder="Category" />
 			</md-input-container>
 			<md-input-container class="width_50_big_big center">
 				<input 	class="md-button md-primary md-raised" 
@@ -94,7 +94,7 @@
 
 	</div>
 
-	<div class="red_border background_white" ng-if="categories.length">
+	<div class="red_border big_gutter background_white" ng-if="categories.length">
 		<form >
 		<div  class="background_white big_gutter" layout="row" layout-align="space-around">
 			<div ng-repeat="cat in categories">
