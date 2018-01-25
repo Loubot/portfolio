@@ -16,10 +16,15 @@
         <div class="masonry-brick pos_rel " ng-repeat="img in images">
         	<img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}">
         	
-        	<!-- <div ng-if="images.length" ng-cloak class="pos_abs overlay_button">
+        	<div ng-if="images.length" ng-cloak class="pos_abs overlay_button">
+        		<a ng-href="http://www.pinterest.com/pin/create/button/" 
+        			data-pin-do="buttonPin" 
+        			data-pin-url="{{ img.fullSizeUrl }}" 
+        			data-pin-media="{{ img.fullSizeUrl }}"
+        			>       			
+        		</a>
         		
-        		
-        	</div> -->
+        	</div>
         	
 
 				
