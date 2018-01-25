@@ -271,3 +271,17 @@ a {
     transition: .5s ease;
     background: rgba(0,0,0,0.18);
 }
+
+
+/*Try out parallax*/
+.parallax{
+    background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio-dev/static/test.jpeg');
+    height: 465px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+
+
+/*End of parallax*/
