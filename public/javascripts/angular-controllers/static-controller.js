@@ -9,7 +9,7 @@ angular.module('portfolio').controller( 'staticController', [
 	'$mdMedia',
 	function( $scope, $http, $state, Alertify, imageClass, $mdMedia ) {
 		console.log('staticController')
-
+		$scope.$mdMedia = $mdMedia
 		
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */

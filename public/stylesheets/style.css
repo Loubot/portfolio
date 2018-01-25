@@ -280,11 +280,17 @@ a {
 
 /*Try out parallax*/
 .parallax{
-    background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio-dev/static/test2.jpeg');
-    height: 465px;
+    background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio/38/IMG_5207-01.jpeg');
+    width: 100vw !important;
+    height: 430px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
     margin-bottom: 20px;
 }
 
