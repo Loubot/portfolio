@@ -54,6 +54,7 @@ a {
 
 .large_font{
   font-size: large !important;
+  font-weight: bold !important;
 }
 
 .font_1_75 {
@@ -267,15 +268,19 @@ a {
     left: 0;
     right: 0;
     height: 10%;
-    width: 100%;
+    min-height: 40px;
     transition: .5s ease;
+    
+}
+
+.semi_trans{
     background: rgba(0,0,0,0.18);
 }
 
 
 /*Try out parallax*/
 .parallax{
-    background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio-dev/static/test.jpeg');
+    background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio-dev/static/test2.jpeg');
     height: 465px;
     background-attachment: fixed;
     background-position: center;
