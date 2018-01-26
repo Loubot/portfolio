@@ -53,7 +53,8 @@ module.exports.controller = function( app, strategy ) {
 					    Bucket: config.Bucket,
 					    Key: req.query.id + "/" + req.query.Key,
 					    ContentType: req.query.type,
-					    Expires: 60
+					    Expires: 60,
+					    ACL: 'public-read'
 					}
 
 

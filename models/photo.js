@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
                             fs.readFileAsync( ( "./tmp/images/thumb_" + photo.dataValues.fileName ) ).then( function( file ) {
                                 winston.debug( "Should happen after write finished")
                                 var params = {
-                                    ACL: 'public-read',
+                                    ACL: 'public-read-write',
                                     Body: file, 
                                     Bucket: config.Bucket, 
                                     Key: photo.dataValues.id + "/thumb_" + photo.dataValues.fileName,
