@@ -253,6 +253,7 @@ angular.module('portfolio').controller( 'adminController', [
 				console.log( thumb_response )
 				$scope.images.push( thumb_response.data )
 				$scope.upload_in_progress = false
+				Alertify.success( 'Image uploaded ok')
 
 			}), function photoErr( err ) {
 				console.log( photoErr )
