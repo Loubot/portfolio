@@ -12,6 +12,11 @@ angular.module('portfolio').controller( 'navController', [
 		$scope.openLeftMenu = function() {
 			$mdSidenav( 'left' ).toggle()
 		}
+
+		window.fbReady = function( FB ) {
+			$rootScope.FB = FB
+		}
+		
 		$http({
 			method: "GET",
 			url: window.location.origin + "/api/category/index"

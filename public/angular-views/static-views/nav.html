@@ -1,3 +1,23 @@
+<script>
+    window.isLoaded = false;
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1771176279582399',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.11'
+    });
+    window.fbReady( FB )
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <md-sidenav md-component-id="left" class="md-sidenav-left background_white">
 	<div  layout="column" layout-align="space-around">
 		<div class="font_1_75" style="margin-top: 6px;line-height: 36px;">Alan Rowell</div>
@@ -9,7 +29,7 @@
 
 <div ng-if="$mdMedia('gt-xs')" class="marging_b_15 background_white" layout="row" layout-align="space-around end">
 	<div >
-		<md-button class="large_font " ui-sref="home">
+		<md-button class="large_font transtlate_y_11" ui-sref="home">
 			Alan Rowell
 		</md-button>
 	</div>
