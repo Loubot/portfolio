@@ -15,11 +15,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <!-- Dependencies -->
-    <script
-        type="text/javascript"
-        
-        src="//assets.pinterest.com/js/pinit.js"
-    ></script>
+    <script>
+        window.pAsyncInit = function() {
+            PDK.init({
+                appId: "4947158995956672812", // Change this
+                cookie: true
+            });
+        };
+
+        (function(d, s, id){
+            var js, pjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//assets.pinterest.com/sdk/sdk.js";
+            pjs.parentNode.insertBefore(js, pjs);
+        }(document, 'script', 'pinterest-jssdk'));
+    </script>
+
+    
     <script
           src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
           integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
@@ -51,5 +64,7 @@
   <body>
     <div ui-view="nav" class="background_white"></div>
     <div ui-view="body"></div>
+
+
   </body>
 </html>
