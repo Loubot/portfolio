@@ -8,7 +8,7 @@
 			>       			
 		</a>
 	</div> -->
-    <div masonry load-images="true" reload-on-show masonry-options="{'gutter': 15,'horizontalOrder': 'true' }">
+    <div masonry load-images="true" reload-on-show masonry-options="{'gutter': 20,'horizontalOrder': 'true', 'columnWidth': 30 }">
         <div class="grid-sizer"></div>
         <div class="masonry-brick pos_rel " ng-repeat="img in images">
         	<img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}">
