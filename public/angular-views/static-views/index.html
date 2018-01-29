@@ -1,13 +1,6 @@
 <div class="parallax"></div>
 <div class="margin_t_15 big_gutter" id="page1">
 	
-		<a ng-href="http://www.pinterest.com/pin/create/button/" 
-			data-pin-do="buttonPin" 
-			data-pin-tall="true"
-			data-pin-media="{{ img.fullSizeUrl }}"
-			>       			
-		</a>
-	
     <div masonry load-images="true" reload-on-show masonry-options="{'gutter': 15,'horizontalOrder': 'true' }">
         <div class="grid-sizer"></div>
         <div class="masonry-brick pos_rel " ng-repeat="img in images">
@@ -25,6 +18,18 @@
         	
         </div>
     </div>
+</div>
+
+<div class="big_gutter center_text">
+    <a ng-href="http://www.pinterest.com/pin/create/button/" 
+        data-pin-do="buttonBookmark" 
+        data-pin-tall="true"
+        data-pin-custom="true"
+        >
+        <md-icon><i class="material-icons big_icon">fiber_pin</i></md-icon> 
+            
+    </a>
+
 </div>
 
 <script type="text/javascript">

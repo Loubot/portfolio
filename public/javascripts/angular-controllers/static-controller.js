@@ -10,6 +10,9 @@ angular.module('portfolio').controller( 'staticController', [
 	function( $scope, $http, $state, Alertify, imageClass, $mdMedia ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
+
+		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
 		
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
