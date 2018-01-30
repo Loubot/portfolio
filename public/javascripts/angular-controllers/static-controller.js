@@ -28,15 +28,19 @@ angular.module('portfolio').controller( 'staticController', [
 
 				    	var x = $(document).height() / this.height 
 				    	console.log( x )
-				    	console.log( $(document).height() )
+				    	console.log( $(document).height() + 'px' )
 				    	console.log( this.height  )
 				    	console.log( this.width  )
-				        $('#big_pic').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
-				        $('#big_pic').css( 'height', $(document).height()/2 )
-				        $('#big_pic').css( 'width', ( this.width * x ) /2 )
-				        $('#big_pic').css( 'background-size', 'contain')
-				        $('#big_pic').css( 'background-repeat', 'no-repeat')
-				        $('#big_pic').css( 'overflow', 'none')
+				        // $('#big_pic').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
+				       
+				        $('#big_pic').css( 'height', $(document).height() /2 + 'px' )
+				        $('#big_pic').css( 'max-height', $(document).height()  )
+				        $('#big_pic').css( 'width', 'auto'  )
+				         $('#big_pic').attr('src', img.fullSizeUrl )
+				        // $('#big_pic').css( 'width', ( this.width * x ) /2 )
+				        // $('#big_pic').css( 'background-size', 'contain')
+				        // $('#big_pic').css( 'background-repeat', 'no-repeat')
+				        // $('#big_pic').css( 'overflow', 'none')
 				    }
 				    newImg.src = img.fullSizeUrl
 				    $scope.close_image = function() {
