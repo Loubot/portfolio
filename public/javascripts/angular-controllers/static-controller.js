@@ -32,9 +32,11 @@ angular.module('portfolio').controller( 'staticController', [
 				    	console.log( this.height  )
 				    	console.log( this.width  )
 				        $('#big_pic').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
-				        $('#big_pic').css( 'height', $(document).height() )
+				        $('#big_pic').css( 'height', $(document).height()/2 )
 				        $('#big_pic').css( 'width', ( this.width * x ) /2 )
 				        $('#big_pic').css( 'background-size', 'contain')
+				        $('#big_pic').css( 'background-repeat', 'no-repeat')
+				        $('#big_pic').css( 'overflow', 'none')
 				    }
 				    newImg.src = img.fullSizeUrl
 				    $scope.close_image = function() {
