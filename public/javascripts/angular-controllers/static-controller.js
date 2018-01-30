@@ -20,7 +20,6 @@ angular.module('portfolio').controller( 'staticController', [
 			$mdDialog.show({
 				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
 				locals: { img: img },
-				fullscreen: true,
 				controller: ['$scope', 'img', function($scope, img,) { 
 				    $scope.image = img
 				    var newImg = new Image;
@@ -33,9 +32,9 @@ angular.module('portfolio').controller( 'staticController', [
 				    	console.log( this.width  )
 				        // $('#big_pic').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
 				       
-				        $('#big_pic').css( 'height', $(document).height() / 2 + 'px' )
-				        $('#big_pic').css( 'max-height', $(document).height() +'px'  )
-				        $('#big_pic').css( 'width', 'auto'  )
+				        $('#big_pic').css( 'height', $(document).height() * .5 + 'px' )
+				        // $('#big_pic').css( 'max-height', $(document).height() +'px'  )
+				        // $('#big_pic').css( 'width', 'auto'  )
 				         $('#big_pic').attr('src', img.fullSizeUrl )
 				        // $('#big_pic').css( 'width', ( this.width * x ) /2 )
 				        // $('#big_pic').css( 'background-size', 'contain')
