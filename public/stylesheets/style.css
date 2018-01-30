@@ -124,12 +124,16 @@ a {
   max-width: 100% !important;
 }
 
+.max_width_90{
+    max-width: 90% !important;
+}
+
 .height_100vh{
     height: h
 }
 
-.max_height_100vh{
-    max-height: 100vh;
+.max_height_90vh{
+    max-height: 90vh;
 }
 
 .width_100_vw{

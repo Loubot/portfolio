@@ -23,7 +23,20 @@ angular.module('portfolio').controller( 'staticController', [
 				fullscreen: true,
 				controller: ['$scope', 'img', function($scope, img,) { 
 				    $scope.image = img
+				    var newImg = new Image;
+				    newImg.onload = function() {
 
+				    	var x = $(document).height() / this.height 
+				    	console.log( x )
+				    	console.log( $(document).height() )
+				    	console.log( this.height  )
+				    	console.log( this.width  )
+				        $('#big_pic').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
+				        $('#big_pic').css( 'height', $(document).height() )
+				        $('#big_pic').css( 'width', ( this.width * x ) /2 )
+				        $('#big_pic').css( 'background-size', 'contain')
+				    }
+				    newImg.src = img.fullSizeUrl
 				    $scope.close_image = function() {
 		    			$mdDialog.hide()
 		    		}
