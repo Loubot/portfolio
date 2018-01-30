@@ -136,6 +136,17 @@ a {
     max-height: 90vh;
 }
 
+.md-dialog{
+    overflow: hidden !important;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.no_scroll{
+    overflow: hidden !important;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 .width_100_vw{
     width: 100vw;
     max-width: 100vw;
