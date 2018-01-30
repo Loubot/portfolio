@@ -48,6 +48,10 @@ a {
   color: #FFF;
 }
 
+.dark_grey{
+    background-color: #d5d6d8;
+}
+
 .landscape{
     width: 100%;
 }
@@ -90,6 +94,10 @@ a {
     /*min-height: 100% !important;\*/
 }
 
+.height_50{
+    height: 50px;
+}
+
 .no_margin{
   margin: 0px !important;
 }
@@ -116,12 +124,20 @@ a {
   max-width: 100% !important;
 }
 
+.width_100_vw{
+    width: 100vw;
+}
+
 .width_100{
     width: 100% !important;
 }
 
 .margin_t_15{
   margin-top: 15px;
+}
+
+.margin_t_10{
+  margin-top: 10px;
 }
 
 .margin_t_120{
