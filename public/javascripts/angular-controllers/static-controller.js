@@ -7,12 +7,33 @@ angular.module('portfolio').controller( 'staticController', [
 	"Alertify",
 	'imageClass',
 	'$mdMedia',
-	function( $scope, $http, $state, Alertify, imageClass, $mdMedia ) {
+	'$mdDialog',
+	function( $scope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
 
 		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
 		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+
+		$scope.open_image = function( img ) {
+			console.log( img )
+			$mdDialog.show({
+				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
+				locals: { img: img },
+				fullscreen: true,
+				controller: ['$scope', 'img', function($scope, img,) { 
+				    $scope.image = img
+
+				    $scope.close_image = function() {
+		    			$mdDialog.hide()
+		    		}
+				  }],
+
+				clickOutsideToClose: true
+			})
+		}
+
+		
 		
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
