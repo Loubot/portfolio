@@ -23,10 +23,12 @@ angular.module('portfolio').controller( 'staticController', [
 				    $scope.image = img
 				    var newImg = new Image;
 				    newImg.onload = function() {
-				    	console.log( $( window).height() )
-				    	console.log( $( window).width() )
-				    	var x = $(window).height() / this.height 
-				    	console.log( x )
+				    	if ( this.height / this.width > 1 ){ 
+				    		$('.display_image').css( 'max-height', '100%')
+				    	} else {
+				    		console.log( '2' )
+				    		$('.display_image').css( 'max-width', '100%')
+				    	}
 				    	// console.log( $(document).width() + 'px' )
 				    	// console.log( this.height  )
 				    	// console.log( this.width  )
