@@ -38,7 +38,7 @@ angular.module('portfolio').controller( 'staticController', [
 				    	// $('md-dialog').css( 'width', this.width * x )
 				    	// $('#image').css( 'height', '682px' )
 				    	// $('#image').css( 'width', '1079px' )
-				        $('#image').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
+				        // $('#image').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
 				     //    $('#image').css( 'background-size', (this.width * x + 'px')  + ',' +  $(window).height() + 'px')
 				     //   console.log((this.width * x + 'px')  + ',' +  $(window).height() + 'px') 
 				        // $('#big_pic').css( 'height', $(document).height() * .5 + 'px' )

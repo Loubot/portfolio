@@ -383,7 +383,7 @@ a {
 
 
 .wrap {
-    /*height: 100%;*/
+    height: 100%;
     display: inline-block;
     position: relative;
 }
@@ -395,5 +395,5 @@ a {
 }
 
 .display_image{ 
-    /*max-width: 100%;*/
+    max-width: 100%;
  }
