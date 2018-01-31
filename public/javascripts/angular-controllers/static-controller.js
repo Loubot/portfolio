@@ -2,17 +2,27 @@
 
 angular.module('portfolio').controller( 'staticController', [
 	"$scope",
+	'$rootScope',
 	"$http",
 	"$state",
 	"Alertify",
 	'imageClass',
 	'$mdMedia',
 	'$mdDialog',
-	function( $scope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog ) {
+	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
 		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
 		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+
+		$rootScope.$on( 'phone_rotated', function( a,b ) {
+			if ( $('.display_image').height() / $('.display_image').width() > 1 ){ 
+	    		$('.display_image').css( 'max-height', '100%')
+	    	} else {
+	    		console.log( '2' )
+	    		$('.display_image').css( 'max-width', '100%')
+	    	}
+		})
 
 		$scope.open_image = function( img ) {
 			console.log( img )
@@ -24,6 +34,7 @@ angular.module('portfolio').controller( 'staticController', [
 				    var newImg = new Image;
 				    newImg.onload = function() {
 				    	if ( this.height / this.width > 1 ){ 
+				    		console.log( '1' )
 				    		$('.display_image').css( 'max-height', '100%')
 				    	} else {
 				    		console.log( '2' )

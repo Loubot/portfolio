@@ -394,6 +394,18 @@ a {
     left: 0;
 }
 
-.display_image{ 
-    max-width: 100%;
- }
+
+
+
+ @media screen and (orientation: portrait) {
+    .display_image{ 
+        width: 100%;
+    }
+}
+
+
+@media screen and (orientation: landscape) {
+    .display_image{ 
+       height: 100%;
+    }
+}

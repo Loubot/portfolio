@@ -23,7 +23,16 @@ app.directive('imageonload', function() {
 })
 
 
+app.run( function( $rootScope ) {
+    var supportsOrientationChange = "onorientationchange" in window,
+        orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+    window.addEventListener(orientationEvent, function() {
+        console.log('HOLY ROTATING SCREENS BATMAN:' + window.orientation + " " + screen.width);
+        $rootScope.$emit( 'phone_rotated', true )
+    }, false);
 
+    
+})
 
 app.factory( 'imageClass', [ 
     '$rootScope', 
