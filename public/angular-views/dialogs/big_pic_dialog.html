@@ -1,8 +1,13 @@
-<md-dialog aria-label="List dialog" >
-  <md-dialog-content>
+<md-dialog class="height_100"  aria-label="List dialog" >
+  <md-dialog-content class="height_100" >
     
-    
-    <div id="image"  ></div>	
+
+    <div class="wrap">
+	    <img class="display_image" ng-src="{{ image.fullSizeUrl }}" />
+	    <div class="content">
+	        <!-- Your content here -->
+	    </div>
+	</div>
     
   </md-dialog-content>
   

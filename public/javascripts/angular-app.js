@@ -6,8 +6,7 @@ var app = angular.module( 'portfolio', [
     'ui.router',
     'Alertify',
     'angular-loading-bar',
-    'wu.masonry',
-    'mdLightbox'
+    'wu.masonry'
 ] )
 
 
