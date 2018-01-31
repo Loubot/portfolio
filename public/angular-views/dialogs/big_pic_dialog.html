@@ -4,29 +4,19 @@
 
     <div class="wrap">
 	    <img class="display_image" ng-src="{{ image.fullSizeUrl }}"  ng-click="show_menu( this, $event )" />
-        <md-menu class="pos_abs overlay_button semi_trans start_invis"  >
-         	<md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
-           		<md-icon ><i class="material-icons white_text">info_outline</i></md-icon>
+        <div class="pos_abs overlay_button full_trans">
+        	 <a ng-href="http://www.pinterest.com/pin/create/button/" 
+		        data-pin-do="buttonPin" 
+		        data-pin-tall="true"
+		        data-pin-custom="true"
+		        data-pin-media="{{ image.fullSizeUrl }}"
+		        data-pin-url="{{ image.fullSizeUrl }}"
+		        >
+		        <img style="width:35px;" class="margin_t_10" src="https://s3.eu-west-1.amazonaws.com/als-portfolio/static/pinterest-icon-black-and-white.png">
+		            
+		    </a>
+        </div>
 
-         	</md-button>
-         	<md-menu-content>
-           		<md-menu-item>
-             		<md-button ng-click="delete_pic( img.id )" aria-label="Do something">
-               			<a ng-href="http://www.pinterest.com/pin/create/button/" 
-			                data-pin-do="buttonBookmark" 
-			                data-pin-tall="true"
-			                data-pin-custom="true"
-
-			                >
-			                <img style="width:35px;" class="margin_t_10" src="https://s3.eu-west-1.amazonaws.com/als-portfolio/static/pinterest-icon-black-and-white.png">
-			                    
-			            </a>
-             		</md-button>
-           		</md-menu-item>
-
-           		
-         	</md-menu-content>
-        </md-menu>
 	    <div class="pos_abs overlay_button_bottom full_trans">
 	    	<md-button ng-click="close_dialog()">
 	    		<md-icon><i class="material-icons white_text">close</i></md-icon>
