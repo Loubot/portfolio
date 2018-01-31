@@ -6,7 +6,8 @@ var app = angular.module( 'portfolio', [
     'ui.router',
     'Alertify',
     'angular-loading-bar',
-    'wu.masonry'
+    'wu.masonry',
+    'mdLightbox'
 ] )
 
 
@@ -22,37 +23,7 @@ app.directive('imageonload', function() {
     };
 })
 
-app.directive('fancybox', function ($compile, $http) {
-    return {
-        restrict: 'A',
 
-        controller: function($scope) {
-             $scope.openFancybox = function (url) {
-                console.log( url )
-
-                $http({
-                    method: 'GET',
-                    url: url,
-                }).then( function( res ) {
-                    console.log( res )
-                }), function whoops( err ){
-                    console.log( err )
-                }
-
-                $http.get(url).then(function(response) {
-                    if (response.status == 200) {
-
-                        var template = angular.element(response.data);
-                        var compiledTemplate = $compile(template);
-                        compiledTemplate($scope);
-
-                        $.fancybox.open({ content: template, type: 'html' });
-                    }
-                });
-            };
-        }
-    };
-});
 
 
 app.factory( 'imageClass', [ 

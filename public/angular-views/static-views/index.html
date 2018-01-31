@@ -4,24 +4,12 @@
     <div masonry load-images="true" reload-on-show masonry-options="{'gutter': 15,'horizontalOrder': 'true' }">
         <div class="grid-sizer"></div>
         <div class="masonry-brick pos_rel " ng-repeat="img in images">
-
-            <div fancybox ng-click="openFancybox(img.fullSizeUrl)"> 
-                <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" >
-            </div>
+           
+            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" >
+            
+            
         	
-        	<!-- <a id="fbplus_01" href="{{ img.fullSizeUrl }}" fancyboxable>
-             <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" >
-
-            </a> -->
-        	<!-- <div ng-if="images.length" ng-cloak class="pos_abs overlay_button">
-        		<a ng-href="http://www.pinterest.com/pin/create/button/" 
-        			data-pin-do="buttonBookmark" 
-        			data-pin-url="{{ img.fullSizeUrl }}" 
-        			data-pin-media="{{ img.fullSizeUrl }}"
-        			>       			
-        		</a>
-        		
-        	</div> -->
+        	
         	
         </div>
     </div>
