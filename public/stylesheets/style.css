@@ -400,6 +400,10 @@ a {
  @media screen and (orientation: portrait) {
     .display_image{ 
         width: 100%;
+        min-width: 0px  !important;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
     }
 }
 
@@ -407,5 +411,9 @@ a {
 @media screen and (orientation: landscape) {
     .display_image{ 
        height: 100%;
+       min-width: 0px !important;
+       max-width: 100%;
+       max-height: 100%;
+       overflow: hidden;
     }
 }
