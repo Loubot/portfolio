@@ -329,9 +329,26 @@ a {
     
 }
 
+.overlay_button_bottom{
+    bottom: 0;
+    right: 0;
+    right: 0;
+    height: 10%;
+    min-height: 40px;
+    transition: .5s ease;
+    
+}
+
+
 .semi_trans{
     background: rgba(0,0,0,0.18);
 }
+
+
+.full_trans{
+    background: rgba(0,0,0,0);
+}
+
 
 
 /*Try out parallax*/
@@ -418,4 +435,9 @@ a {
        max-height: 100%;
        overflow: hidden;
     }
+}
+
+
+.start_invis{
+  visibility: hidden;
 }

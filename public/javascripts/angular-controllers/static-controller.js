@@ -24,12 +24,26 @@ angular.module('portfolio').controller( 'staticController', [
 	 //    	}
 		// })
 
+		
+
 		$scope.open_image = function( img ) {
 			console.log( img )
 			$mdDialog.show({
 				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
 				locals: { img: img },
 				controller: ['$scope', 'img', function($scope, img,) { 
+					$scope.show_menu = function( a, b ) {
+						if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
+							$('.start_invis').css( 'visibility', 'visible' )
+						} else {
+							$('.start_invis').css( 'visibility', 'hidden' )
+						}
+						
+					}
+
+					$scope.close_dialog = function() {
+						$mdDialog.hide()
+					}
 				    $scope.image = img
 				    // var newImg = new Image;
 				    // newImg.onload = function() {
