@@ -358,3 +358,18 @@ a {
 .big_icon{
     font-size: 4em !important;
 }
+
+
+
+#image {
+    /*background-image: url(http://www.ucl.ac.uk/news/news-articles/1213/muscle-fibres-heart.jpg);*/
+    /*background-size: auto auto;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+     margin-left: -10px;*/
+     background: red;
+     /*background-size: contain;*/
+    background-repeat: no-repeat;
+}
