@@ -1,5 +1,6 @@
 html{
   /*background-color: #FFF; */
+  max-width: 100vw;
 }
 
 body {
@@ -354,7 +355,7 @@ a {
 /*Try out parallax*/
 .parallax{
     background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio/38/IMG_5207-01.jpeg');
-    width: 100vw !important;
+    /*width: 100vw !important;*/
     height: 430px;
     background-attachment: fixed;
     background-position: center;
