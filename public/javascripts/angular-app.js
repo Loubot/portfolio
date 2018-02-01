@@ -31,6 +31,7 @@ app.run( function( $rootScope ) {
         $rootScope.$emit( 'phone_rotated', true )
     }, false);
 
+   
     
 })
 

@@ -24,13 +24,10 @@ angular.module('portfolio').controller( 'staticController', [
 	 //    	}
 		// })
 
-		$scope.fb_share = function( url ) {
-			console.log( url )
+		$scope.fb_share = function(  ) {
 			FB.ui({
 			  method: 'feed',
 			  link: "https://als-portfolio.herokuapp.com",
-			  source: url,
-			  picture: url,
 			  caption: 'An example caption'
 			}, function( res ) {
 				console.log( res )

@@ -9,6 +9,14 @@ angular.module('portfolio').controller( 'navController', [
 	"$mdMedia",
 	function( $scope, $rootScope, $state, $http, $mdSidenav, $mdMedia ) {
 		$scope.$mdMedia = $mdMedia
+
+		if( window.location.origin === 'http://localhost:5000') {
+	        var fb_id = '150299182299074'
+	        window.init_fb(fb_id)
+	    } else {
+	        var fb_id = '1771176279582399'
+	        window.init_fb( fb_id)
+	    }
 		$scope.openLeftMenu = function() {
 			$mdSidenav( 'left' ).toggle()
 		}
