@@ -421,11 +421,13 @@ a {
 }
 
 
- @media screen and (orientation: portrait) {
+
+@media (orientation: portrait) {
     .display_image{ 
-        width: 100%;
+        /*width: 100%;*/
         min-width: 0px  !important;
-        max-width: 100%;
+        max-width: 95%;
+        height: 100%;
         max-height: 100%;
         overflow: hidden;
     }
@@ -435,9 +437,10 @@ a {
 @media screen and (orientation: landscape) {
     .display_image{ 
        height: 100%;
+       max-height: 100%;
        min-width: 0px !important;
        max-width: 100%;
-       max-height: 100%;
+       
        overflow: hidden;
     }
 }
