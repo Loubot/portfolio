@@ -356,8 +356,12 @@ a {
 .parallax{
     background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio/38/IMG_5207-01.jpeg');
     /*width: 100vw !important;*/
-    height: 430px;
-    background-attachment: fixed;
+    /*background: url('http://placekitten.com/g/600/350');*/
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    height: 350px;
     background-position: center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;

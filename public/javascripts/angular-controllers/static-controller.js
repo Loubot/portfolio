@@ -24,6 +24,12 @@ angular.module('portfolio').controller( 'staticController', [
 	 //    	}
 		// })
 
+		
+	    $(window).on('scroll', function() {
+	        $('.parallax').css('margin-top', $(window).scrollTop() * -.3);
+	    });
+		
+
 		$scope.fb_share = function(  ) {
 			FB.ui({
 			  method: 'feed',
