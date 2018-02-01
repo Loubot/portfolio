@@ -181,6 +181,10 @@ a {
   margin-top: 120px !important;
 }
 
+.padding_t_15{
+    padding-top: 15px;
+}
+
 .red_border{
   border: 2px solid red !important; 
   padding: 10px !important; 
