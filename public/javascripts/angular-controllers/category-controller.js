@@ -5,7 +5,8 @@ angular.module('portfolio').controller( 'categoryController', [
 	"$stateParams",
 	"$http",
 	'imageClass',
-	function( $scope, $stateParams, $http, imageClass ) {
+	'$mdDialog',
+	function( $scope, $stateParams, $http, imageClass, $mdDialog ) {
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
 
@@ -19,6 +20,35 @@ angular.module('portfolio').controller( 'categoryController', [
 				return 2
 			}
 			
+		}
+
+		$scope.open_image = function( img ) {
+			console.log( img )
+			$mdDialog.show({
+				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
+				locals: { img: img },
+				controller: ['$scope', 'img', function($scope, img,) { 
+					// $scope.show_menu = function( a, b ) {
+					// 	if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
+					// 		$('.start_invis').css( 'visibility', 'visible' )
+					// 	} else {
+					// 		$('.start_invis').css( 'visibility', 'hidden' )
+					// 	}
+						
+					// }
+
+					$scope.close_dialog = function() {
+						$mdDialog.hide()
+					}
+				    $scope.image = img
+				    
+				    $scope.close_image = function() {
+		    			$mdDialog.hide()
+		    		}
+				  }],
+
+				clickOutsideToClose: true
+			})
 		}
 
 		$scope.calculate_cols = function( img ) {

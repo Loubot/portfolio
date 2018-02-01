@@ -453,3 +453,8 @@ a {
 .start_invis{
   visibility: hidden;
 }
+
+
+.pointer{
+    cursor: pointer;
+}
