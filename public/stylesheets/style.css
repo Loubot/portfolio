@@ -334,9 +334,8 @@ a {
     
 }
 
-.overlay_button_bottom{
-    bottom: 0;
-    right: 0;
+.overlay_button_right{
+    top: 0;
     right: 0;
     height: 10%;
     min-height: 40px;
