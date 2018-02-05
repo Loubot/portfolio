@@ -115,6 +115,7 @@ angular.module('portfolio').controller( 'staticController', [
 		}
 
 		$('#container').imagesLoaded( function() {
+			alert('hu[')
 		  var elem = document.querySelector('.grid');
 		  var msnry = new Masonry( elem, {
 		    // options
