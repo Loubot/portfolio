@@ -114,15 +114,9 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
-		$('#container').imagesLoaded( function() {
-			alert('hu[')
-		  var elem = document.querySelector('.grid');
-		  var msnry = new Masonry( elem, {
-		    // options
-		    itemSelector: '.grid-item',
-		    columnWidth: 150
-		  });
-		});
+		$('#container').imagesLoaded().done( function( lap ) {
+			alert('hup')
+		})
 		
 
 		$scope.login = function() {
