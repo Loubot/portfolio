@@ -117,10 +117,7 @@ angular.module('portfolio').controller( 'staticController', [
 		var imageCounter = 0
 		$scope.complete = function() {
 			$('.pointer').on( 'load', function() {
-				console.log( $scope.images.length )
-				console.log( 'hup')
 				imageCounter ++
-				console.log( imageCounter)
 				if ( imageCounter === $scope.images.length ){ $scope.finis = true }
 			})
 		}
