@@ -122,7 +122,7 @@ angular.module('portfolio').controller( 'staticController', [
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
 				console.log( $scope.imageCounter )
-				if ( $scope.imageCounter == $scope.images.length ) { $scope.finis = true }
+				if ( $scope.imageCounter == $scope.images.length -2 ) { $scope.finis = true }
 			})
 		}
 		
