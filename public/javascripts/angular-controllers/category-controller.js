@@ -81,7 +81,6 @@ angular.module('portfolio').controller( 'categoryController', [
 			console.log('hup')
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
-				console.log( $scope.imageCounter )
 				if ( $scope.imageCounter == $scope.images.length -3 ) { $scope.finis = true }
 			})
 		}
