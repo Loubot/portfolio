@@ -115,6 +115,7 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
+		$scope.finis = false
 		$scope.imageCounter = 0
 		$scope.complete = function() {
 			alert( 'complete')
