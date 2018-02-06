@@ -114,10 +114,12 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 
-		$('#container').imagesLoaded().done( function( lap ) {
-			alert('hup')
-		})
 		
+		$scope.complete = function() {
+			$('.pointer').on( 'load', function() {
+				$scope.finis = true
+			})
+		}
 
 		$scope.login = function() {
 			console.log( $scope.user )
