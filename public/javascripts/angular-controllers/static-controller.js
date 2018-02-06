@@ -46,7 +46,7 @@ angular.module('portfolio').controller( 'staticController', [
 			$mdDialog.show({
 				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
 				locals: { img: img },
-				controller: ['$scope', 'img', function($scope, img,) { 
+				controller: ['$scope', 'img', function($scope, img,) {
 					$scope.show_menu = function( a, b ) {
 						if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
 							$('.start_invis').css( 'visibility', 'visible' )
