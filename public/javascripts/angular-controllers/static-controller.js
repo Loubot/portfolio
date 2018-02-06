@@ -117,6 +117,7 @@ angular.module('portfolio').controller( 'staticController', [
 
 		var imageCounter = 0
 		$scope.complete = function() {
+			alert( 'complete')
 			$('.pointer').on( 'load', function() {
 				imageCounter ++
 				console.log( imageCounter )
