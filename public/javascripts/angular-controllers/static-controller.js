@@ -9,7 +9,8 @@ angular.module('portfolio').controller( 'staticController', [
 	'imageClass',
 	'$mdMedia',
 	'$mdDialog',
-	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog ) {
+	'$interval',
+	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog, $interval ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
 		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
@@ -118,9 +119,11 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.complete = function() {
 			$('.pointer').on( 'load', function() {
 				imageCounter ++
-				if ( imageCounter === ($scope.images.length -1 ) ){ $scope.finis = true }
+				console.log( imageCounter )
+				if ( imageCounter == $scope.images.length ) { $scope.finis = true }
 			})
 		}
+		
 
 		$scope.login = function() {
 			console.log( $scope.user )
