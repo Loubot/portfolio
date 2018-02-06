@@ -1,12 +1,7 @@
 <div class="margin_t_15 big_gutter">
 
 	<div ng-if="images.length" >
-		<div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
-	        <div class="grid-sizer"></div>
-	        <div class="masonry-brick" ng-repeat="img in images">
-	            <img ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )">
-	        </div>
-	    </div>
+		<div pin></div>
 		
 	</div>
 	

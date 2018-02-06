@@ -180,6 +180,16 @@ app.directive('file', function() {
 });
 
 
+app.directive('pin', function() {
+    return {
+        restrict: 'AE',
+        
+        templateUrl: '../angular-views/dialogs/pin.html'
+        
+    }
+})
+
+
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('docs-dark')
 });

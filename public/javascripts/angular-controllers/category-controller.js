@@ -69,40 +69,21 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
-			var tempImages = []
-			var imageSize = function( i, total ) {
-				
-				if( i === total ) {
-					
-					// console.log( tempImages )
-					$scope.images = tempImages 
-					console.log( $scope.images )
-					if ( $scope.images.length ) $scope.$apply() 
-					return
-					// $scope.images = tempImages
-				}
-				var image = new Image()
-				var img = res.data.photos[ i ]
-				image.src = img.thumbUrl
-				image.onload = function() {
-					img.width = this.width
-					img.height = this.height
-
-					img.class = imageClass( this.height, this.width )
-					
-					tempImages.push( img )
-					// console.log( tempImages )
-					i++
-					imageSize( i, total )
-				}
-				
-			}
-
-			imageSize( 0, res.data.photos.length )
-			
+			$scope.images = res.data.photos
 			
 		}), function error( err ) {
 			console.log( err )
+		}
+
+		$scope.finis = false
+		$scope.imageCounter = 0
+		$scope.complete = function() {
+			console.log('hup')
+			$('.pointer').on( 'load', function() {
+				$scope.imageCounter ++
+				console.log( $scope.imageCounter )
+				if ( $scope.imageCounter == $scope.images.length -3 ) { $scope.finis = true }
+			})
 		}
 	}
 
