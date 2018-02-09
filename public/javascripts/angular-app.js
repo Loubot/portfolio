@@ -92,6 +92,21 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             
         })
 
+        $stateProvider.state("contact", {
+            url: "/contact",
+            views: {
+                'nav': {
+                    templateUrl: "../angular-views/static-views/nav.html",
+                    controller: "navController"
+                },
+                'body':{
+                    controller: "contactController",
+                    templateUrl: "../angular-views/static-views/contact.html"
+                }
+            }
+            
+        })
+
         $stateProvider.state( 'category', {
             url: "/category/{id}",
             views: {
@@ -186,6 +201,13 @@ app.directive('pin', function() {
         
         templateUrl: '../angular-views/dialogs/pin.html'
         
+    }
+})
+
+app.directive( 'social', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: '../angular-views/dialogs/social.html'
     }
 })
 
