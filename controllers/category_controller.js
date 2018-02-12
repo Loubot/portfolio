@@ -5,6 +5,35 @@ var models = require( '../models' )
 
 module.exports.controller = function( app, strategy ) {
 
+	app.post( '/api/mail', strategy.authenticate(), function( req, res ) {
+		winston.debug( 'mailer ')
+		var nodemailer = require('nodemailer')
+		var transporter = nodemailer.createTransport({
+		  service: 'gmail',
+		  auth: {
+		    user: 'louisangelini@gmail.com',
+		    pass: process.env.gpass
+		  }
+		});
+
+		var mailOptions = {
+		  from: 'youremail@gmail.com',
+		  to: 'lllouis@yahoo.com',
+		  subject: 'Sending Email using Node.js',
+		  text: 'That was easy!'
+		};
+
+		transporter.sendMail(mailOptions, function(error, info){
+		  if (error) {
+		    console.log(error);
+		    res.json( error )
+		  } else {
+		    console.log('Email sent: ' + info.response);
+		    res.json( info )
+		  }
+		});
+	})
+
 	app.get( '/api/category/index', function( req, res )  {
 		winston.debug( "/category/index categories_controller" )
 		models.Category.findAll()
