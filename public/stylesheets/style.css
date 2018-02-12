@@ -141,6 +141,10 @@ a {
     min-width: 200px;
 }
 
+.min_width_500{
+    min-width: 500px;
+}
+
 .max_width_100{
   max-width: 100% !important;
 }
