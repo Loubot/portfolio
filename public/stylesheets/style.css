@@ -469,3 +469,7 @@ a {
 .pointer{
     cursor: pointer;
 }
+
+.footer {
+   .margin-bottom: -85px;
+}
