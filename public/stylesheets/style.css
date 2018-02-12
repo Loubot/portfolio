@@ -10,6 +10,10 @@ body {
   /*background-color: #FFF; */
 }
 
+.open_sans_condensed{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
