@@ -3,23 +3,11 @@ html{
   max-width: 100vw;
 }
 
-html,body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-}
-
 body {
   padding: 50px;
   /*font-family: 'Roboto', sans-serif;*/
   font-family: 'PT Sans', sans-serif;
   /*background-color: #FFF; */
-}
-
-.open_sans_condensed{
-    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 *, *:after, *:before {
@@ -111,10 +99,6 @@ a {
     height: 50px;
 }
 
-.height_85{
-    height: 85px;
-}
-
 .no_margin{
   margin: 0px !important;
 }
@@ -139,10 +123,6 @@ a {
 
 .md-open-menu-container{
     min-width: 200px;
-}
-
-.min_width_500{
-    min-width: 500px;
 }
 
 .max_width_100{
@@ -199,10 +179,6 @@ a {
 
 .margin_t_120{
   margin-top: 120px !important;
-}
-
-.padding_t_10{
-    padding-top: 10px;
 }
 
 .padding_t_15{
@@ -382,7 +358,7 @@ a {
 /*Try out parallax*/
 .parallax{
     background-image: url('https://s3.eu-west-1.amazonaws.com/als-portfolio/38/IMG_5207-01.jpeg');
-    width: 100vw !important;
+    /*width: 100vw !important;*/
     /*background: url('http://placekitten.com/g/600/350');*/
     position: fixed;
     left: 0;
@@ -480,8 +456,4 @@ a {
 
 .pointer{
     cursor: pointer;
-}
-
-.footer {
-   margin-bottom: -85px;
 }
