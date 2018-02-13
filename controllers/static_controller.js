@@ -23,7 +23,7 @@ module.exports.controller = function ( app, strategy ) {
 		  from: req.body.email,
 		  to: 'lllouis@yahoo.com',
 		  subject: 'Inquiry',
-		  text: req.body.message
+		  text: req.body.email + "has this to say: " + req.body.message
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
