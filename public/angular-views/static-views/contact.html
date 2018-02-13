@@ -10,7 +10,7 @@
 		</md-input-container>
 
 		<md-input-container md-no-float>
-			<textarea class="min_width_500" aria-label="message" placeholder="Your message"></textarea>
+			<textarea class="min_width_500" aria-label="message" ng-model="form.message" placeholder="Your message"></textarea>
 
 			<div ng-messages="contact_form.email.$error">
 				<div ng-message="required">Required</div>

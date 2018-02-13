@@ -22,14 +22,14 @@ module.exports.controller = function ( app, strategy ) {
 		var mailOptions = {
 		  from: req.body.email,
 		  to: 'lllouis@yahoo.com',
-		  subject: 'Sending Email using Node.js',
+		  subject: 'Inquiry',
 		  text: req.body.message
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
 		  if (error) {
 		    winston.debug(error);
-		    res.json( error )
+		    res.status( 503 ).json( error )
 		  } else {
 		    winston.debug('Email sent: ' + info.response);
 		    res.json( info )

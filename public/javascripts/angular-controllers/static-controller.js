@@ -139,6 +139,7 @@ angular.module('portfolio').controller( 'staticController', [
 				$state.go('admin')
 			}, function errorCallback(err) {
 			    console.log( err )
+			    Alertify.error( 'Something is incorrect ' )
 			});
 		}
 
