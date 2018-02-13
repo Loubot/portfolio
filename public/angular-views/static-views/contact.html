@@ -1,5 +1,5 @@
 <div class="big_gutter center_text">
-	<form name="contact_form" layout="column" layout-align="center center" novalidate>
+	<form ng-submit="send_message()" name="contact_form" layout="column" layout-align="center center" novalidate>
 
 		<md-input-container md-no-float>
 			<input type="email" name="email" placeholder="Your email" ng-model="form.email" class="min_width_500" required>
