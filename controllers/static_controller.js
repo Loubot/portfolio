@@ -21,9 +21,9 @@ module.exports.controller = function ( app, strategy ) {
 
 		var mailOptions = {
 		  from: req.body.email,
-		  to: 'lllouis@yahoo.com',
+		  to: 'alan.rowell28@googlemail.com',
 		  subject: 'Inquiry',
-		  text: req.body.email + "has this to say: " + req.body.message
+		  text: req.body.email + " has this to say: " + req.body.message
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
