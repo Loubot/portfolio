@@ -23,6 +23,9 @@ app.directive('imageonload', function() {
     };
 })
 
+$(document).ready( function(){
+    alert($(window).width())
+})
 
 app.run( function( $rootScope ) {
     var supportsOrientationChange = "onorientationchange" in window,
