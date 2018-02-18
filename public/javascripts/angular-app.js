@@ -25,6 +25,7 @@ app.directive('imageonload', function() {
 
 $(document).ready( function(){
     alert($(window).width())
+    alert($(window).height())
 })
 
 app.run( function( $rootScope ) {
