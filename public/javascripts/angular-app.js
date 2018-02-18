@@ -23,11 +23,6 @@ app.directive('imageonload', function() {
     };
 })
 
-$(document).ready( function(){
-    alert($(window).width())
-    alert($(window).height())
-})
-
 app.run( function( $rootScope ) {
     var supportsOrientationChange = "onorientationchange" in window,
         orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";

@@ -376,6 +376,13 @@ a {
 }
 
 
+@media( max-height: 380px ) {
+  .parallax{
+    top: 19% !important;
+  }
+}
+
+
 /*End of parallax*/
 
 
