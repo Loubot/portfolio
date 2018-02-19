@@ -23,7 +23,7 @@ app.directive('imageonload', function() {
     };
 })
 
-app.run( function( $rootScope ) {
+app.run( function( $rootScope, $state ) {
     var supportsOrientationChange = "onorientationchange" in window,
         orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
     window.addEventListener(orientationEvent, function() {
@@ -31,7 +31,15 @@ app.run( function( $rootScope ) {
         $rootScope.$emit( 'phone_rotated', true )
     }, false);
 
-   
+    $rootScope.$on( 'not_admin', function( a, b ) {
+        console.log( 'lkd')
+        $state.go( 'contact' )
+    })
+
+    $state.defaultErrorHandler(function(error) {
+        console.log( 'asd')
+       $state.go('home'); // careful not to create an infinite loop here
+    });
     
 })
 
@@ -76,6 +84,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
     function( $stateProvider, $urlRouterProvider, $locationProvider ) {
 
         $locationProvider.html5Mode({ enabled: true, requireBase: false });
+        $urlRouterProvider.otherwise( "/")
         
         $stateProvider.state("home", {
             url: "/",
@@ -158,9 +167,26 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                 }
             },
             resolve: {
-                authenticate: [
-                    "$http", function( $http ){
-                        console.log( 'hel')
+                authenticated: [
+                    "$http", "$q", "$rootScope", function( $http, $q, $rootScope ){
+                        var defer = $q.defer()
+                        $http({
+                            method: 'GET',
+                            url: window.location.origin + '/user',
+                            headers: {
+                                "Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+                            }
+                        }).then( function( res ) {
+                            console.log( res )
+                            if( res.data.admin ) {
+                                defer.resolve()
+                            } else {
+                                defer.reject( 'not admin' )
+                            }
+                            $rootScope.$emit( 'bla' )
+                        })
+
+                        return defer.promise
                     }
                 ]
             },
@@ -182,6 +208,8 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
         // })
     }
 ])
+
+
 
 app.directive('file', function() {
   return {
