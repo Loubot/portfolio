@@ -6,7 +6,11 @@ module.exports = {
         'Photos',
         'main',
       
-        Sequelize.BOOLEAN
+        {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        }
+        
       )
   },
 

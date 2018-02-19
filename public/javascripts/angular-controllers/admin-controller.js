@@ -131,6 +131,18 @@ angular.module('portfolio').controller( 'adminController', [
 			}
 		}
 
+		$scope.add_to_main_screen = function( id ) {
+			console.log( id )
+			$http({
+				method: 'PUT',
+				url: window.location.origin + '/api/photos',
+					headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+				},
+				data: { id: id }
+			})
+		}
+
 
 		$scope.file = {}
 

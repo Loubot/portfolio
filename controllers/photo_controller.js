@@ -44,6 +44,31 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
+	/* Update photo */
+
+	app.put( '/api/photo', strategy.authenticate(), function( req, res ) {
+		winston.debug( '/api/photo update photo' )
+
+		models.Photo.findOne({
+			where: { id: req.body.id }
+		}).then( function( photo ) {
+			winston.debug( photo.id )
+			var do_it
+			do_it = photo.main === true ? false : true
+			photo.update({
+				main: do_it
+			}).then( function( updated ) {
+				winston.debug( 'photo updated' )
+				winston.debug( updated.main )
+				res.json( updated )
+			}).catch( function( err ) {
+				winston.debug( 'photo update error' )
+				winston.debug( err )
+				res.status( 400 ).json( err )
+			})
+		})
+	})
+
 	/* Destroy photo 
 	requires { id }
 	*/
@@ -60,7 +85,7 @@ module.exports.controller = function( app, strategy ) {
 			where: { id: req.body.photo.id }
 		}).then( function( photo ) {
 			winston.debug( 'Found photo' )
-			winston.debug( photo )
+			winston.debug( photo.id )
 			photo.update({
 				CategoryId: req.body.category.id
 			}).then( function( updated ) {
