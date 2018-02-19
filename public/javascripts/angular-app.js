@@ -31,11 +31,6 @@ app.run( function( $rootScope, $state ) {
         $rootScope.$emit( 'phone_rotated', true )
     }, false);
 
-    $rootScope.$on( 'not_admin', function( a, b ) {
-        console.log( 'lkd')
-        $state.go( 'contact' )
-    })
-
     $state.defaultErrorHandler(function(error) {
         console.log( 'asd')
        $state.go('home'); // careful not to create an infinite loop here
@@ -183,7 +178,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                             } else {
                                 defer.reject( 'not admin' )
                             }
-                            $rootScope.$emit( 'bla' )
+                            
                         })
 
                         return defer.promise
