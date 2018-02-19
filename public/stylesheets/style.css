@@ -2,6 +2,9 @@ html{
   /*background-color: #FFF; */
   max-width: 100vw;
 }
+html,body{
+  background-color: #e9ebee;
+}
 
 body {
   padding: 50px;

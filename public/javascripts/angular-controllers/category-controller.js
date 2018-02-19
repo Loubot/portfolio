@@ -10,8 +10,8 @@ angular.module('portfolio').controller( 'categoryController', [
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
 
-		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
-		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+		// document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+		// document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
 
 		$scope.images = []
 

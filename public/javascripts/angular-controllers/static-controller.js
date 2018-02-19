@@ -13,8 +13,8 @@ angular.module('portfolio').controller( 'staticController', [
 	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog, $interval ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
-		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
-		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+		// document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+		// document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
 
 		// $rootScope.$on( 'phone_rotated', function( a,b ) {
 		// 	if ( $('.display_image').height() / $('.display_image').width() > 1 ){ 
