@@ -135,11 +135,16 @@ angular.module('portfolio').controller( 'adminController', [
 			console.log( id )
 			$http({
 				method: 'PUT',
-				url: window.location.origin + '/api/photos',
+				url: window.location.origin + '/api/photo',
 					headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
 				data: { id: id }
+			}).then( function( res ) {
+				console.log( res )
+				$scope.images = res.data
+			}).catch( function( err ) {
+				console.log( err )
 			})
 		}
 

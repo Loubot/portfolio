@@ -21,6 +21,23 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
+	app.get( '/api/photos/main', function( req, res ) {
+		winston.debug( "/api/photos photo_controller" )
+		winston.debug( req.query )
+
+		models.Photo.findAll({
+			where: { main: true }
+		}).then( function( photos ) {
+			winston.debug( 'Find all photos' )
+			// winston.debug( photos )
+			res.json( { photos: photos } )
+		}).catch( function( err ) {
+			winston.debug( 'Find all photos err' )
+			winston.debug( err )
+			res.status( 500 ).json( err )
+		})
+	})
+
 
 	app.post( '/api/photo', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/photo photo_controller create' )
@@ -60,7 +77,12 @@ module.exports.controller = function( app, strategy ) {
 			}).then( function( updated ) {
 				winston.debug( 'photo updated' )
 				winston.debug( updated.main )
-				res.json( updated )
+				models.Photo.findAll({})
+				.then( function( photos ) {
+					res.json( photos)
+				}).catch( function( errs) {
+					res.status( 500 ).json( errs )
+				})
 			}).catch( function( err ) {
 				winston.debug( 'photo update error' )
 				winston.debug( err )
