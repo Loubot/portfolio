@@ -10,6 +10,9 @@ angular.module('portfolio').controller( 'categoryController', [
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
 
+		document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
+		document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
+
 		$scope.images = []
 
 		$scope.calculate_rows = function( img ) {
@@ -81,7 +84,7 @@ angular.module('portfolio').controller( 'categoryController', [
 			console.log('hup')
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
-				if ( $scope.imageCounter == $scope.images.length -3 ) { $scope.finis = true }
+				if ( $scope.imageCounter == $scope.images.length ) { $scope.finis = true }
 			})
 		}
 	}
