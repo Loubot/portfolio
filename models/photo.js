@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         thumbUrl: DataTypes.STRING,
         UserId: DataTypes.INTEGER,
         CategoryId: DataTypes.INTEGER,
-        fileName: DataTypes.STRING
+        fileName: DataTypes.STRING,
+        main: DataTypes.BOOLEAN
     }, {
         classMethods: {
             associate: function(models) {
