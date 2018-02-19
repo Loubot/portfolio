@@ -157,6 +157,13 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                     templateUrl: "../angular-views/admin-views/admin-page.html"
                 }
             },
+            resolve: {
+                authenticate: [
+                    "$http", function( $http ){
+                        console.log( 'hel')
+                    }
+                ]
+            },
             onEnter: [ '$rootScope', function( $rootScope ) {
                 document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
                 document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
