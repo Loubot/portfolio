@@ -23,6 +23,11 @@ app.directive('imageonload', function() {
     };
 })
 
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = true; // Show the spinner.
+    cfpLoadingBarProvider.includeBar = true; // Show the bar.
+}])
+
 app.run( function( $rootScope, $state ) {
     var supportsOrientationChange = "onorientationchange" in window,
         orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";

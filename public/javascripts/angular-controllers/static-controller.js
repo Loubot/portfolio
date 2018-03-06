@@ -10,7 +10,8 @@ angular.module('portfolio').controller( 'staticController', [
 	'$mdMedia',
 	'$mdDialog',
 	'$interval',
-	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog, $interval ) {
+	'cfpLoadingBar',
+	function( $scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog, $interval, cfpLoadingBar ) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
 		// document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
@@ -104,6 +105,7 @@ angular.module('portfolio').controller( 'staticController', [
 		
 		$scope.img_urls = new Array()
 		/* Get all objects in port-practise bucket */
+		cfpLoadingBar.start()
 		$http({
 			method: 'GET',
 			url: window.location.origin + '/api/photos/main'
@@ -120,7 +122,10 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.complete = function() {
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
-				if ( $scope.imageCounter == $scope.images.length -2  ) { $scope.finis = true }
+				if ( $scope.imageCounter == $scope.images.length -2  ) { 
+					$scope.finis = true 
+					cfpLoadingBar.complete()
+				}
 			})
 		}
 		
