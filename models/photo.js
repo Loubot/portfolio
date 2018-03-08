@@ -215,13 +215,13 @@ var flipOriginal = function( photo,orientation ) {
         winston.debug( 'read photo' ) 
         if ( orientation ===  6 ) {
             img.rotate( 90 )
-            flipOriginal( photo, orientation )
+            // flipOriginal( photo, orientation )
         } else if ( orientation === 8 ) {
             img.rotate( -90 )
-            flipOriginal( photo, orientation )
+            // flipOriginal( photo, orientation )
         } else if ( orientation === 3 ) {
             img.rotate( 180 )
-            flipOriginal( photo, orientation )
+            // flipOriginal( photo, orientation )
         }
 
 
@@ -250,7 +250,7 @@ var flipOriginal = function( photo,orientation ) {
                         })
             }).then( function( updated ) {
                 winston.debug( "Photo updated")
-                fn( null, photo )
+                // fn( null, photo )
             })
             
             
