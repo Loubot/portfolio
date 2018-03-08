@@ -67,10 +67,13 @@ module.exports = (sequelize, DataTypes) => {
 
                             if ( orientation ===  6 ) {
                                 img.rotate( 90 )
+                                flipOriginal( photo, orientation )
                             } else if ( orientation === 8 ) {
                                 img.rotate( -90 )
+                                flipOriginal( photo, orientation )
                             } else if ( orientation === 3 ) {
                                 img.rotate( 180 )
+                                flipOriginal( photo, orientation )
                             }
 
                             img.write( ("./tmp/images/thumb_" + photo.dataValues.fileName), function( err, bla ) {
@@ -201,4 +204,58 @@ var check_EXIF = function ( img, photo ) {
     } catch (error) {
         console.log('Error: ' + error.message);
     }
+}
+
+
+var flipOriginal = function( photo,orientation ) {
+    winston.debug( 'Flip original' )
+    winston.debug( photo.dataValues )
+
+    Jimp.readAsync( ( photo.dataValues.fullSizeUrl ) ).then( function( img ) {
+        winston.debug( 'read photo' ) 
+        if ( orientation ===  6 ) {
+            img.rotate( 90 )
+            flipOriginal( photo, orientation )
+        } else if ( orientation === 8 ) {
+            img.rotate( -90 )
+            flipOriginal( photo, orientation )
+        } else if ( orientation === 3 ) {
+            img.rotate( 180 )
+            flipOriginal( photo, orientation )
+        }
+
+
+        img.write( ("./tmp/images/" + photo.dataValues.fileName ), function( err, bla ) { 
+            fs.readFileAsync( ( "./tmp/images/" + photo.dataValues.fileName ) ).then( function( file ) {
+                winston.debug( "Should happen after write finished")
+                var params = {
+                    ACL: 'public-read-write',
+                    Body: file, 
+                    Bucket: config.Bucket, 
+                    Key: photo.dataValues.id + "/" + photo.dataValues.fileName,
+                    ContentType: 'image/jpg'
+                   
+                } /*End of params*/
+
+                s3.putObject( params, function( err, data ) {
+                    if ( err ) {
+                        winston.debug( 'Failed to upload flipped photo' )
+                    } else {
+                        winston.debug( 'Uploaded flipped photo' )
+                    }
+                })
+            }).then( function( data ) {
+                return photo.update({ 
+                            thumbUrl: origin_url + "/" + photo.dataValues.id + "/thumb_" + photo.dataValues.fileName 
+                        })
+            }).then( function( updated ) {
+                winston.debug( "Photo updated")
+                fn( null, photo )
+            })
+            
+            
+        })
+
+        
+    })
 }
