@@ -71,27 +71,27 @@ module.exports = (sequelize, DataTypes) => {
                                 flipOriginal( photo, orientation )
                             } else if ( orientation === 3 ) {
                                 winston.debug('3333333333333333333333333333333')
-                                img.rotate( -90 )
+                                img.rotate( 180 )
                                 flipOriginal( photo, orientation )
                             } else if ( orientation === 4 ) {
                                 winston.debug('444444444444444444444444444444444444')
-                                img.rotate( 180 )
+                                img.rotate( 180 ).mirror( true , false )
                                 flipOriginal( photo, orientation )
                             } else if  ( orientation === 5 ) {
                                 winston.debug('55555555555555555555555555555555555')
-                                img.rotate( 90 )
+                                img.rotate( 90 ).mirror( true , false )
                                 flipOriginal( photo, orientation )
                             } else if ( orientation === 6 ) {
                                 winston.debug('666666666666666666666666666')
-                                img.rotate( -90 )
+                                img.rotate( 90 )
                                 flipOriginal( photo, orientation )
                             } else if ( orientation === 7 ) {
                                 winston.debug('7777777777777777777777777777777777777777')
-                                img.rotate( 180 )
+                                img.rotate( -90 ).mirror( true, false )
                                 flipOriginal( photo, orientation )
                             } else if ( orientation === 8 ) {
                                 winston.debug('888888888888888888888888888888888')
-                                img.rotate( 180 )
+                                img.rotate( -90 )
                                 flipOriginal( photo, orientation )
                             }
 
@@ -238,27 +238,27 @@ var flipOriginal = function( photo,orientation ) {
             
         } else if ( orientation === 3 ) {
             winston.debug( '333333333333333333333333333333')
-            img.rotate( -90 )
+            img.rotate( 180 )
             
         } else if ( orientation === 4 ) {
             winston.debug( '444444444444444444444444444444')
-            img.rotate( 180 )
+            img.rotate( 180 ).mirror( true , false )
             
         } else if  ( orientation === 5 ) {
             winston.debug( '5555555555555555555555555555555')
-            img.rotate( 90 )
+            img.rotate( 90 ).mirror( true , false )
             
         } else if ( orientation === 6 ) {
             winston.debug( '66666666666666666666666666666666666')
-            img.rotate( -90 )
+            img.rotate( 90 )
            
         } else if ( orientation === 7 ) {
             winston.debug( '7777777777777777777777777777777777')
-            img.rotate( 180 )
+            img.rotate( -90 ).mirror( true, false )
             
         } else if ( orientation === 8 ) {
             winston.debug( '88888888888888888888888888888888888')
-            img.rotate( 180 )
+            img.rotate( -90 )
             
         }
 
