@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         UserId: DataTypes.INTEGER,
         CategoryId: DataTypes.INTEGER,
         fileName: DataTypes.STRING,
-        main: DataTypes.BOOLEAN
+        main: DataTypes.BOOLEAN,
+        tag: DataTypes.TEXT
     }, {
         classMethods: {
             associate: function(models) {
