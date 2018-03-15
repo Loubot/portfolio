@@ -26,6 +26,10 @@
 	<div  layout="column" layout-align="space-around">
 		<div class="font_1_75" style="margin-top: 6px;line-height: 36px;" ui-sref="home">Alan Rowell</div>
 		<md-button ng-click="view_category( cat.id )" ng-repeat="cat in categories">{{ cat.name }}</md-button>
+        <md-divider ></md-divider>
+        <md-button ui-sref="contact">
+            Contact
+        </md-button>
 	</div>
 </md-sidenav>
 
