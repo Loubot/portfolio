@@ -61,37 +61,7 @@ angular.module('portfolio').controller( 'staticController', [
 						$mdDialog.hide()
 					}
 				    $scope.image = img
-				    // var newImg = new Image;
-				    // newImg.onload = function() {
-				    // 	// if ( this.height / this.width > 1 ){ 
-				    // 	// 	console.log( '1' )
-				    // 	// 	$('.display_image').css( 'max-height', '100%')
-				    // 	// } else {
-				    // 	// 	console.log( '2' )
-				    // 	// 	$('.display_image').css( 'max-width', '100%')
-				    // 	// }
-				    // 	// console.log( $(document).width() + 'px' )
-				    // 	// console.log( this.height  )
-				    // 	// console.log( this.width  )
-				    // 	// $('md-dialog-content').css( 'height', $(window).height() + 'px' )
-				    // 	// $('md-dialog-content').css( 'width', this.width * x )
-				    // 	// $('md-dialog').css( 'height', $(window).height() + 'px' )
-				    // 	// $('md-dialog').css( 'width', this.width * x )
-				    // 	// $('#image').css( 'height', '682px' )
-				    // 	// $('#image').css( 'width', '1079px' )
-				    //     // $('#image').css( 'background-image', 'url(' + img.fullSizeUrl + ')')
-				    //  //    $('#image').css( 'background-size', (this.width * x + 'px')  + ',' +  $(window).height() + 'px')
-				    //  //   console.log((this.width * x + 'px')  + ',' +  $(window).height() + 'px') 
-				    //     // $('#big_pic').css( 'height', $(document).height() * .5 + 'px' )
-				    //     // $('#big_pic').css( 'max-height', $(document).height() +'px'  )
-				    //     // $('#big_pic').css( 'width', 'auto'  )
-				    //      // $('#big_pic').attr('src', img.fullSizeUrl )
-				    //     // $('#big_pic').css( 'width', ( this.width * x ) /2 )
-				    //     // $('#big_pic').css( 'background-size', 'contain')
-				    //     // $('#big_pic').css( 'background-repeat', 'no-repeat')
-				    //     // $('#big_pic').css( 'overflow', 'none')
-				    // }
-				    // newImg.src = img.fullSizeUrl
+				    
 				    $scope.close_image = function() {
 		    			$mdDialog.hide()
 		    		}
@@ -112,7 +82,19 @@ angular.module('portfolio').controller( 'staticController', [
 		}).then( function success( res ) {
 			console.log( res )
 			$scope.images = res.data.photos
-			
+			function chunkArray(arr,n){
+			     var chunkLength = Math.max(arr.length/n ,1);
+			     var chunks = [];
+			     for (var i = 0; i < n; i++) {
+			         if(chunkLength*(i+1)<=arr.length)chunks.push(arr.slice(chunkLength*i, chunkLength*(i+1)));
+			     }
+			     $scope.images1 = chunks[0]
+			     $scope.images2 = chunks[1]
+			     console.log( $scope.images )
+			     console.log( $scope.images1 )
+			     console.log( $scope.images2 )
+			 }
+			 chunkArray( $scope.images, 2 )
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -120,9 +102,13 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.finis = false
 		$scope.imageCounter = 0
 		$scope.complete = function() {
+			console.log( 'hup')
+
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
-				if ( $scope.imageCounter == $scope.images.length -2  ) { 
+				console.log( $scope.imageCounter )
+				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
+					console.log( 'sea')
 					$scope.finis = true 
 					cfpLoadingBar.complete()
 				}

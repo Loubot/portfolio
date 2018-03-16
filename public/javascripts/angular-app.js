@@ -239,6 +239,15 @@ app.directive('pin', function() {
     }
 })
 
+app.directive('pin2', function() {
+    return {
+        restrict: 'AE',
+        
+        templateUrl: '../angular-views/dialogs/pin2.html'
+        
+    }
+})
+
 app.directive( 'social', function() {
     return {
         restrict: 'AE',
