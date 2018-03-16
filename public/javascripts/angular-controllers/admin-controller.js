@@ -386,8 +386,17 @@ angular.module('portfolio').controller( 'adminController', [
 			$mdDialog.show({
 				templateUrl: "../../angular-views/dialogs/tag.html",
 				preserveScope: true, 
-				escapeToClose: true
+				escapeToClose: true,
+				controller: [ '$scope', function( $scope ){
+					$scope.save_tag = function() {
+						console.log( $scope.photo.tag )
+					}
+				}]
 			})
+		}
+
+		$scope.save_tag = function() {
+			console.log( $scope.photo.tag )
 		}
 	}
 ])
