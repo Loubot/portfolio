@@ -7,9 +7,7 @@ module.exports = {
         'tag',
       
         {
-            type: Sequelize.TEXT,
-            allowNull: false,
-            defaultValue: " "
+            type: Sequelize.TEXT
         }
         
       )
