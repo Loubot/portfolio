@@ -1,4 +1,4 @@
-'use strict'
+	'use strict'
 
 angular.module('portfolio').controller( 'categoryController', [
 	"$scope",
@@ -72,8 +72,8 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images = res.data.photos
-			
+			$scope.images1 = res.data.photos
+			$scope.finis = true
 		}), function error( err ) {
 			console.log( err )
 		}
