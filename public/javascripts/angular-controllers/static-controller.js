@@ -90,9 +90,9 @@ angular.module('portfolio').controller( 'staticController', [
 			     }
 			     $scope.images1 = chunks[0]
 			     $scope.images2 = chunks[1]
-			     console.log( $scope.images )
-			     console.log( $scope.images1 )
-			     console.log( $scope.images2 )
+			     // console.log( $scope.images )
+			     // console.log( $scope.images1 )
+			     // console.log( $scope.images2 )
 			 }
 			 chunkArray( $scope.images, 2 )
 		}), function error( err ) {
@@ -102,13 +102,13 @@ angular.module('portfolio').controller( 'staticController', [
 		$scope.finis = false
 		$scope.imageCounter = 0
 		$scope.complete = function() {
-			console.log( 'hup')
+			// console.log( 'hup')
 
 			$('.pointer').on( 'load', function() {
 				$scope.imageCounter ++
-				console.log( $scope.imageCounter )
+				// console.log( $scope.imageCounter )
 				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
-					console.log( 'sea')
+					// console.log( 'sea')
 					$scope.finis = true 
 					cfpLoadingBar.complete()
 				}
