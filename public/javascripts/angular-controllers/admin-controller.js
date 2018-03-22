@@ -131,15 +131,17 @@ angular.module('portfolio').controller( 'adminController', [
 			}
 		}
 
-		$scope.add_to_main_screen = function( id ) {
-			console.log( id )
+		$scope.add_to_main_screen = function( photo ) {
+			// console.log( photo )
+			photo.main = photo.main === true ? false : true
+			// console.log( photo )
 			$http({
 				method: 'PUT',
 				url: window.location.origin + '/api/photo',
 					headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
-				data: { id: id }
+				data: { photo: photo }
 			}).then( function( res ) {
 				console.log( res )
 				$scope.images = res.data
@@ -147,6 +149,7 @@ angular.module('portfolio').controller( 'adminController', [
 				console.log( err )
 			})
 		}
+
 
 
 		$scope.file = {}
@@ -382,14 +385,30 @@ angular.module('portfolio').controller( 'adminController', [
 			
 		}
 
-		$scope.add_tag = function( id ) {
+		$scope.add_tag = function( img ) {
 			$mdDialog.show({
 				templateUrl: "../../angular-views/dialogs/tag.html",
 				preserveScope: true, 
 				escapeToClose: true,
+				locals: { img: img },
 				controller: [ '$scope', function( $scope ){
-					$scope.save_tag = function() {
+					$scope.save_tag = function( photo ) {
 						console.log( $scope.photo.tag )
+						console.log( img )
+						img.tag = $scope.photo.tag
+						$http({
+							method: 'PUT',
+							url: window.location.origin + '/api/photo',
+								headers: {
+								"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+							},
+							data: { photo: img }
+						}).then( function( res ) {
+							console.log( res )
+							$scope.images = res.data
+						}).catch( function( err ) {
+							console.log( err )
+						})
 					}
 				}]
 			})

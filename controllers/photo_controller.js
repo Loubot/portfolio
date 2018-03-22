@@ -38,7 +38,7 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
-
+	/*Requires { user.id, category.id, key }*/
 	app.post( '/api/photo', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/photo photo_controller create' )
 		// winston.debug( req.body )
@@ -62,19 +62,19 @@ module.exports.controller = function( app, strategy ) {
 	})
 
 	/* Update photo */
-
+	/* Requires { id }*/
 	app.put( '/api/photo', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/photo update photo' )
-
+		winston.debug( req.body.photo )
+		var updated_photo = req.body.photo
 		models.Photo.findOne({
-			where: { id: req.body.id }
+			where: { id: req.body.photo.id }
 		}).then( function( photo ) {
 			winston.debug( photo.id )
-			var do_it
-			do_it = photo.main === true ? false : true
-			photo.update({
-				main: do_it
-			}).then( function( updated ) {
+			
+			photo.update(
+				updated_photo
+			).then( function( updated ) {
 				winston.debug( 'photo updated' )
 				winston.debug( updated.main )
 				models.Photo.findAll({})
@@ -95,7 +95,7 @@ module.exports.controller = function( app, strategy ) {
 	requires { id }
 	*/
 
-	/* Update phtos category 
+	/* Update photos category 
 	requires { photo.id, category.id }
 	*/
 

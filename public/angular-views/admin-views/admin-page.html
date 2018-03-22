@@ -38,7 +38,7 @@
 			<div  masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
 		        <div class="grid-sizer"></div>
 		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
-		            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" ng-class="{ 'fancy': img.main }" ng-click="add_to_main_screen( img.id )">
+		            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" ng-class="{ 'fancy': img.main }" ng-click="add_to_main_screen( img )">
 
 		            <md-menu class="pos_abs overlay_button semi_trans">
 		             	<md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
@@ -51,7 +51,7 @@
 		                 		</md-button>
 		               		</md-menu-item>
 							<md-menu-item>
-		                 		<md-button ng-click="add_tag( img.id )" aria-label="Do something">
+		                 		<md-button ng-click="add_tag( img )" aria-label="Do something">
 		                   			Add tag
 		                 		</md-button>
 		               		</md-menu-item>
