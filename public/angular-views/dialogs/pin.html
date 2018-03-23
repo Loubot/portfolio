@@ -2,7 +2,11 @@
    	<div class="grid-sizer"></div>
    	<div class="masonry-brick pos_rel " ng-repeat="img in images1" ng-init="$last && complete()">
 
-       <img  ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )">
+       <img ondrag="return false"
+			ondragstart="return false"
+			oncontextmenu="return false"
+			galleryimg="no"
+			onmousedown="return false"  ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )">
        
        
    	</div>

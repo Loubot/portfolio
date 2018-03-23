@@ -2,17 +2,17 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    // return queryInterface.addColumn(
-    //     'Users',
-    //     'admin',
-    //     {
-    //       type: Sequelize.BOOLEAN,
-    //       defaultValue: false
-    //     }
-    //   )
+    return queryInterface.addColumn(
+        'Users',
+        'admin',
+        {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        }
+      )
   },
 
   down: (queryInterface, Sequelize) => {
-     // return queryInterface.removeColumn('Users', 'admin')
+     return queryInterface.removeColumn('Users', 'admin')
   }
 };
