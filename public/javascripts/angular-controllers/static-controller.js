@@ -98,7 +98,6 @@ angular.module('portfolio').controller( 'staticController', [
 		}), function error( err ) {
 			console.log( err )
 		}
-
 		$scope.finis = false
 		$scope.imageCounter = 0
 		$scope.complete = function() {
@@ -114,7 +113,23 @@ angular.module('portfolio').controller( 'staticController', [
 					cfpLoadingBar.complete()
 				}
 			})
-		}
+
+
+		
+		
+		// $scope.complete = function() {
+		// 	// console.log( 'hup')
+
+		// 	$('.pointer').on( 'load', function() {
+		// 		$scope.imageCounter ++
+		// 		// console.log( $scope.imageCounter )
+		// 		if ( $scope.imageCounter == $scope.images1.length -1  ) { 
+		// 			// console.log( 'sea')
+		// 			// $scope.finis = true 
+		// 			cfpLoadingBar.complete()
+		// 		}
+		// 	})
+		// }
 		
 
 		$scope.login = function() {
