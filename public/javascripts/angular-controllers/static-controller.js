@@ -99,25 +99,32 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( err )
 		}
 		$scope.finis = false
+		$scope.imageCounter = 0
 		$scope.doThis = function() {
-			$scope.finis = true 
+			$scope.imageCounter ++
+			if ( $scope.imageCounter == ( $scope.images1.length * 2 ) - 2  ) { 
+				// console.log( 'sea')
+				$scope.finis = true 
+				cfpLoadingBar.complete()
+			}
+			console.log( $scope.imageCounter )
 		}
 
 		
-		$scope.imageCounter = 0
-		$scope.complete = function() {
-			// console.log( 'hup')
+		
+		// $scope.complete = function() {
+		// 	// console.log( 'hup')
 
-			$('.pointer').on( 'load', function() {
-				$scope.imageCounter ++
-				// console.log( $scope.imageCounter )
-				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
-					// console.log( 'sea')
-					// $scope.finis = true 
-					cfpLoadingBar.complete()
-				}
-			})
-		}
+		// 	$('.pointer').on( 'load', function() {
+		// 		$scope.imageCounter ++
+		// 		// console.log( $scope.imageCounter )
+		// 		if ( $scope.imageCounter == $scope.images1.length -1  ) { 
+		// 			// console.log( 'sea')
+		// 			// $scope.finis = true 
+		// 			cfpLoadingBar.complete()
+		// 		}
+		// 	})
+		// }
 		
 
 		$scope.login = function() {
