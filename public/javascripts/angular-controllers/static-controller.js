@@ -100,6 +100,7 @@ angular.module('portfolio').controller( 'staticController', [
 		}
 		$scope.finis = false
 		$scope.imageCounter = 0
+
 		$scope.complete = function() {
 			// console.log( 'hup')
 
@@ -114,6 +115,7 @@ angular.module('portfolio').controller( 'staticController', [
 				}
 			})
 
+		}
 
 		
 		
