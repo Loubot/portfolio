@@ -98,8 +98,12 @@ angular.module('portfolio').controller( 'staticController', [
 		}), function error( err ) {
 			console.log( err )
 		}
-
 		$scope.finis = false
+		$scope.doThis = function() {
+			$scope.finis = true 
+		}
+
+		
 		$scope.imageCounter = 0
 		$scope.complete = function() {
 			// console.log( 'hup')
@@ -109,7 +113,7 @@ angular.module('portfolio').controller( 'staticController', [
 				// console.log( $scope.imageCounter )
 				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
 					// console.log( 'sea')
-					$scope.finis = true 
+					// $scope.finis = true 
 					cfpLoadingBar.complete()
 				}
 			})

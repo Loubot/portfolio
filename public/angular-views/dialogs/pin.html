@@ -6,7 +6,7 @@
 			ondragstart="return false"
 			oncontextmenu="return false"
 			galleryimg="no"
-			onmousedown="return false"  ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )">
+			onmousedown="return false" ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick" data-pin-url="https://als-portfolio.herokuapp.com"  data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )" imageonload="doThis()">
        
        
    	</div>
