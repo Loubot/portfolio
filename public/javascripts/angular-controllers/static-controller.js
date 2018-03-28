@@ -109,6 +109,7 @@ angular.module('portfolio').controller( 'staticController', [
 				// console.log( $scope.imageCounter )
 				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
 					// console.log( 'sea')
+					Alertify.success( 'All done')
 					$scope.finis = true 
 					cfpLoadingBar.complete()
 				}
