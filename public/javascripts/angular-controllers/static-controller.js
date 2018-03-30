@@ -110,7 +110,7 @@ angular.module('portfolio').controller( 'staticController', [
 				// console.log( $scope.imageCounter )
 				if ( $scope.imageCounter == $scope.images1.length -1  ) { 
 					// console.log( 'sea')
-					Alertify.success( 'All done')
+					// Alertify.success( 'All done')
 					$scope.finis = true 
 					cfpLoadingBar.complete()
 				}
@@ -118,39 +118,6 @@ angular.module('portfolio').controller( 'staticController', [
 		}
 		
 
-		$scope.login = function() {
-			console.log( $scope.user )
-			$http({
-				method: 'POST',
-				url: window.location.origin + "/login",
-				data: {
-					email: $scope.user.email,
-					password: $scope.user.password
-				}
-			}).then(function successCallback( res ) {
-				window.localStorage.setItem( 'token', res.data )
-				$state.go('admin')
-			}, function errorCallback(err) {
-			    console.log( err )
-			    Alertify.error( 'Something is incorrect ' )
-			});
-		}
-
-		$scope.register = function() {
-			$http({
-				method: "POST",
-				url: window.location.origin + "/register",
-				data: {
-					email: $scope.user.email,
-					password: $scope.user.password
-				}
-			}).then(function successCallback( res ) {
-				window.localStorage.setItem( 'token', res.data )
-				$state.go('admin')
-			}, function errorCallback(err) {
-			    console.log( err )
-			    Alertify.error( err.data.errors[0].message )
-			});
-		}
+		
 	}
 ])

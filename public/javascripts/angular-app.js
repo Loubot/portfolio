@@ -148,7 +148,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             views: {
                 
                 'body':{
-                    controller: "staticController",
+                    controller: "authController",
                     templateUrl: "../angular-views/static-views/login.html"
                 }
             }
@@ -160,7 +160,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             views: {
                 
                 'body':{
-                    controller: "staticController",
+                    controller: "authController",
                     templateUrl: "../angular-views/static-views/register.html"
                 }
             }
