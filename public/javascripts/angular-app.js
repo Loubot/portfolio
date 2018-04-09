@@ -181,7 +181,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             },
             resolve: {
                 authenticated: [
-                    "$http", "$q", "$rootScope", function( $http, $q, $rootScope ){
+                    "$http", "$q", "$rootScope", '$state', 'Alertify', function( $http, $q, $rootScope, $state, Alertify ){
                         var defer = $q.defer()
                         $http({
                             method: 'GET',
@@ -194,9 +194,14 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                             if( res.data.admin ) {
                                 defer.resolve()
                             } else {
+                                $state.go( 'home' )
                                 defer.reject( 'not admin' )
                             }
                             
+                        }).catch( function( err ) {
+                            Alertify.error( 'Not logged in' )
+                            $state.go( 'home' )
+                            defer.reject( 'not admin' )
                         })
 
                         return defer.promise
