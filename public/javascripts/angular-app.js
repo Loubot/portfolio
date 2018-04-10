@@ -143,7 +143,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
             }
         })
 
-        $stateProvider.state("/login", {
+        $stateProvider.state("login", {
             url: "/login",
             views: {
                 
@@ -194,13 +194,13 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                             if( res.data.admin ) {
                                 defer.resolve()
                             } else {
-                                $state.go( 'home' )
+                                $state.go( 'login' )
                                 defer.reject( 'not admin' )
                             }
                             
                         }).catch( function( err ) {
                             Alertify.error( 'Not logged in' )
-                            $state.go( 'home' )
+                            $state.go( 'login' )
                             defer.reject( 'not admin' )
                         })
 
