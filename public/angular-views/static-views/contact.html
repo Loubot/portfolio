@@ -2,7 +2,7 @@
 	<form ng-submit="send_message()" name="contact_form" layout="column" layout-align="center center" novalidate>
 
 		<md-input-container md-no-float>
-			<input type="email" name="email" placeholder="Your email" ng-model="form.email" class="min_width_500 white_placeholder" required>
+			<input type="email" name="email" placeholder="Your email" ng-model="form.email" class="min_width_500" required>
 
 			<div ng-messages="contact_form.email.$error">
 				<div ng-message="required">Required</div>
