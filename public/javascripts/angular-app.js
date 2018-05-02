@@ -37,7 +37,7 @@ app.run( function( $rootScope, $state ) {
     }, false);
 
     $state.defaultErrorHandler(function(error) {
-        console.log( 'asd')
+        console.log( error )
        $state.go('home'); // careful not to create an infinite loop here
     });
     
@@ -110,7 +110,47 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                     controller: "staticController",
                     templateUrl: "../angular-views/static-views/index.html"
                 }
-            }
+            },
+            onEnter: [ '$rootScope', '$mdDialog', function( $rootScope, $mdDialog ) {
+                $mdDialog.hide()
+            }] 
+            
+        })
+
+        $stateProvider.state( 'home.show', {
+            url: 'show/:url',
+            onEnter: [ '$rootScope', '$mdDialog', '$state', function( $rootScope,  $mdDialog, $state ) {
+                $mdDialog.show({
+                    templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
+                    controller: ['$scope', function($scope) {
+                        console.log( $state.params )
+                        $scope.url = $state.params.url
+                        $scope.show_menu = function( a, b ) {
+                            if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
+                                $('.start_invis').css( 'visibility', 'visible' )
+                            } else {
+                                $('.start_invis').css( 'visibility', 'hidden' )
+                            }
+                            
+                        }
+
+                        $scope.close_dialog = function() {
+                            // $mdDialog.hide()
+                            $state.go( 'home' )
+                        }
+                        
+                        $scope.close_image = function() {
+                            // $mdDialog.hide()
+                            $state.go( 'home' )
+                        }
+                      }],
+
+                    clickOutsideToClose: true
+                })
+            }],
+            onExit: [ '$rootScope', '$mdDialog', function( $rootScope, $mdDialog ) {
+                $mdDialog.hide()
+            }] 
             
         })
 
