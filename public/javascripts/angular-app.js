@@ -152,7 +152,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                             }
                           }],
 
-                        clickOutsideToClose: true
+                        clickOutsideToClose: false
                     })
                 }), function error( err ) {
                     console.log( err )
