@@ -118,35 +118,46 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
         })
 
         $stateProvider.state( 'home.show', {
-            url: 'show/:url',
-            onEnter: [ '$rootScope', '$mdDialog', '$state', function( $rootScope,  $mdDialog, $state ) {
-                $mdDialog.show({
-                    templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
-                    controller: ['$scope', function($scope) {
-                        console.log( $state.params )
-                        $scope.url = $state.params.url
-                        $scope.show_menu = function( a, b ) {
-                            if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
-                                $('.start_invis').css( 'visibility', 'visible' )
-                            } else {
-                                $('.start_invis').css( 'visibility', 'hidden' )
+            url: 'show/:id',
+            onEnter: [ '$rootScope', '$mdDialog', '$state', '$stateParams', '$http', function( $rootScope,  $mdDialog, $state, $stateParams, $http ) {
+                console.log( $stateParams.id )
+                $http({
+                    method: "GET",
+                    url: window.location.origin + "/api/photos/single",
+                    params: { id: $stateParams.id }
+                }).then( function success( res ) {
+                    console.log( res )
+                    $mdDialog.show({
+                        templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
+                        locals: { img: res.data },
+                        controller: ['$scope', 'img', function($scope, img) {
+                            $scope.url = res.data.fullSizeUrl
+                            $scope.show_menu = function( a, b ) {
+                                if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
+                                    $('.start_invis').css( 'visibility', 'visible' )
+                                } else {
+                                    $('.start_invis').css( 'visibility', 'hidden' )
+                                }
+                                
+                            }
+
+                            $scope.close_dialog = function() {
+                                // $mdDialog.hide()
+                                $state.go( 'home' )
                             }
                             
-                        }
+                            $scope.close_image = function() {
+                                // $mdDialog.hide()
+                                $state.go( 'home' )
+                            }
+                          }],
 
-                        $scope.close_dialog = function() {
-                            // $mdDialog.hide()
-                            $state.go( 'home' )
-                        }
-                        
-                        $scope.close_image = function() {
-                            // $mdDialog.hide()
-                            $state.go( 'home' )
-                        }
-                      }],
-
-                    clickOutsideToClose: true
-                })
+                        clickOutsideToClose: true
+                    })
+                }), function error( err ) {
+                    console.log( err )
+                }
+                
             }],
             onExit: [ '$rootScope', '$mdDialog', function( $rootScope, $mdDialog ) {
                 $mdDialog.hide()

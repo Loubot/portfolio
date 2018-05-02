@@ -43,8 +43,8 @@ angular.module('portfolio').controller( 'staticController', [
 		}
 
 		$scope.open_image = function( img ) {
-			console.log( img.fullSizeUrl )
-			$state.transitionTo( 'home.show', { url: img.fullSizeUrl } )
+			console.log( img )
+			$state.transitionTo( 'home.show', { id: img.id } )
 			
 		}
 

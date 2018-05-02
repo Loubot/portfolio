@@ -21,6 +21,22 @@ module.exports.controller = function( app, strategy ) {
 		})
 	})
 
+	app.get( '/api/photos/single', function( req, res ) {
+		winston.debug( '/api/photos/single photo_controller' )
+		winston.debug( req.query )
+
+		models.Photo.findOne({
+			where: { id: req.query.id }
+		}).then( function( photo ) {
+			winston.debug( 'found photo')
+			winston.debug( photo )
+			res.json( photo )
+		}).catch( function( err ) {
+			winston.debug( err )
+			res.status( 500 ).json( err )
+		})
+	})
+
 	app.get( '/api/photos/main', function( req, res ) {
 		winston.debug( "/api/photos photo_controller" )
 		winston.debug( req.query )
