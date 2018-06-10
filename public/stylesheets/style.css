@@ -195,8 +195,12 @@ a {
 }
 
 
-.marging_b_15{
+.margin_b_15{
     margin-bottom: 15px !important;
+}
+
+.margin_b_10{
+    margin-bottom: 10px !important;
 }
 
 .move_down{
