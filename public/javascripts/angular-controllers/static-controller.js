@@ -37,12 +37,19 @@ angular.module('portfolio').controller( 'staticController', [
 			if ( url == null ) {
 				url = "https://www.alanrowell.com"
 			}
-			console.log( window.location.href )
+			console.log( url )
 			FB.ui({
-				app_id: $rootScope.fb_id,
-			  	method: 'feed',
-			  	mobile_iframe: true,
-			  	link: window.location.href
+				method: 'share_open_graph',
+				action_type: 'og.shares',
+				action_properties: JSON.stringify({
+		            object: {
+		                'og:url': window.location.href ,
+		                'og:title': 'alanrowell.com',
+		                'og:description': 'great photo',
+		                'og:image': url,
+
+		            }
+		        })
 			}, function( res ) {
 				console.log( res )
 			}), function( err ) {
