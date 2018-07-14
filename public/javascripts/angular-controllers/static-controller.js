@@ -40,8 +40,9 @@ angular.module('portfolio').controller( 'staticController', [
 			console.log( window.location.href )
 			FB.ui({
 				app_id: $rootScope.fb_id,
-			  	method: 'share',
-			  	href: window.location.href
+			  	method: 'feed',
+			  	mobile_iframe: true,
+			  	link: window.location.href
 			}, function( res ) {
 				console.log( res )
 			}), function( err ) {
