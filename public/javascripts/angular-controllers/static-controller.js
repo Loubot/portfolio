@@ -32,12 +32,16 @@ angular.module('portfolio').controller( 'staticController', [
 	    });
 		
 
-		$rootScope.fb_share = function(  ) {
-			console.log( 'sdfd ')
+		$rootScope.fb_share = function( url ) {
+			var link;
+			if ( url == null ) {
+				url = "https://www.alanrowell.com"
+			}
+			console.log( url )
 			FB.ui({
-			  method: 'feed',
-			  link: "https://als-portfolio.herokuapp.com",
-			  caption: 'An example caption'
+				app_id: $rootScope.fb_id,
+			  	method: 'share',
+			  	href: url
 			}, function( res ) {
 				console.log( res )
 			}), function( err ) {
@@ -50,7 +54,9 @@ angular.module('portfolio').controller( 'staticController', [
 			$mdDialog.show({
 				templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
 				locals: { img: img },
-				controller: ['$scope', 'img', function($scope, img,) {
+				scope: $scope,
+				preserveScope: true,
+				controller: [ '$rootScope', '$scope', 'img', function( $rootScope, $scope, img ) {
 					$scope.show_menu = function( a, b ) {
 						if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
 							$('.start_invis').css( 'visibility', 'visible' )
