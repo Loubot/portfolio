@@ -195,8 +195,20 @@ a {
 }
 
 
-.marging_b_15{
+.margin_b_15{
     margin-bottom: 15px !important;
+}
+
+.margin_b_10{
+    margin-bottom: 10px !important;
+}
+
+.no_decoration{
+    text-decoration-line: none !important;
+}
+
+.stand_font_color{
+    color: rgba(0,0,0,0.87);
 }
 
 .move_down{

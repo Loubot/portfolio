@@ -32,20 +32,29 @@ angular.module('portfolio').controller( 'staticController', [
 	    });
 		
 
-		$scope.fb_share = function(  ) {
+		$rootScope.fb_share = function( url ) {
+			var link;
+			if ( url == null ) {
+				url = "https://www.alanrowell.com"
+			}
+			console.log( url )
 			FB.ui({
-			  method: 'feed',
-			  link: "https://als-portfolio.herokuapp.com",
-			  caption: 'An example caption'
+				app_id: $rootScope.fb_id,
+			  	method: 'share',
+			  	href: url
 			}, function( res ) {
 				console.log( res )
-			})
+			}), function( err ) {
+				console.log( err )
+			}
 		}
 
 		$scope.open_image = function( img ) {
 			console.log( img )
+
 			$state.transitionTo( 'home.show', { id: img.id } )
 			
+
 		}
 
 		

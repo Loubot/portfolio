@@ -12,9 +12,11 @@ angular.module('portfolio').controller( 'navController', [
 
 		if( window.location.origin === 'http://localhost:5000') {
 	        var fb_id = '150299182299074'
+	        $rootScope.fb_id = fb_id
 	        window.init_fb(fb_id)
 	    } else {
 	        var fb_id = '1771176279582399'
+	        $rootScope.fb_id = fb_id
 	        window.init_fb( fb_id)
 	    }
 		$scope.openLeftMenu = function() {
