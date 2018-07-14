@@ -134,6 +134,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                         preserveScope: true,
                         controller: ['$scope', 'img', function($scope, img) {
                             $scope.url = res.data.fullSizeUrl
+                            $scope.thumbUrl = res.data.thumbUrl
                             $scope.show_menu = function( a, b ) {
                                 if( ( $('.start_invis').css( 'visibility' ) ) === 'hidden' ){
                                     $('.start_invis').css( 'visibility', 'visible' )

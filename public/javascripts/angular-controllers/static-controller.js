@@ -45,7 +45,7 @@ angular.module('portfolio').controller( 'staticController', [
 		            object: {
 		                'og:url': window.location.href ,
 		                'og:title': 'alanrowell.com',
-		                'og:description': 'great photo',
+		                'og:description': 'Photograph by Alan Rowell',
 		                'og:image': url,
 
 		            }
