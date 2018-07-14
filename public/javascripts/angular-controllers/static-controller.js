@@ -37,11 +37,11 @@ angular.module('portfolio').controller( 'staticController', [
 			if ( url == null ) {
 				url = "https://www.alanrowell.com"
 			}
-			console.log( url )
+			console.log( window.location.href )
 			FB.ui({
 				app_id: $rootScope.fb_id,
 			  	method: 'share',
-			  	href: url
+			  	href: window.location.href
 			}, function( res ) {
 				console.log( res )
 			}), function( err ) {

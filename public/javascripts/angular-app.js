@@ -130,6 +130,8 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                     $mdDialog.show({
                         templateUrl: '../angular-views/dialogs/big_pic_dialog.html',
                         locals: { img: res.data },
+                        scope: $rootScope,
+                        preserveScope: true,
                         controller: ['$scope', 'img', function($scope, img) {
                             $scope.url = res.data.fullSizeUrl
                             $scope.show_menu = function( a, b ) {
