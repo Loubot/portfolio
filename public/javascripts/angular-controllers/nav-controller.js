@@ -14,7 +14,7 @@ angular.module('portfolio').controller( 'navController', [
 	        var fb_id = '150299182299074'
 	        $rootScope.fb_id = fb_id
 	        window.init_fb(fb_id)
-	    } else if ( window.location.hostname === 'alanrowell.com') {
+	    } else {
 	    	alert('b')
 	        var fb_id = '1771176279582399'
 	        $rootScope.fb_id = fb_id
