@@ -15,7 +15,7 @@ angular.module('portfolio').controller( 'navController', [
 	        $rootScope.fb_id = fb_id
 	        window.init_fb(fb_id)
 	    } else {
-	    	alert('b')
+	    	// alert('b')
 	        var fb_id = '1771176279582399'
 	        $rootScope.fb_id = fb_id
 	        window.init_fb( fb_id)
