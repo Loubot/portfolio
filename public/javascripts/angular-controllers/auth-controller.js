@@ -4,7 +4,8 @@ angular.module( 'portfolio' ).controller( 'authController', [
 	"$scope",
 	'$http',
 	'$state',
-	function( $scope, $http, $state ){
+	'Alertify',
+	function( $scope, $http, $state, Alertify ){
 		console.log( 'authController' )
 
 		$scope.login = function() {
