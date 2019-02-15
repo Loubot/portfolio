@@ -29,7 +29,7 @@ module.exports.controller = function( app, strategy ) {
 			where: { id: req.query.id }
 		}).then( function( photo ) {
 			winston.debug( 'found photo')
-			winston.debug( photo )
+			// winston.debug( photo )
 			res.json( photo )
 		}).catch( function( err ) {
 			winston.debug( err )

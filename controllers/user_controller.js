@@ -5,7 +5,7 @@ var AWS = require('aws-sdk');
 var fs = require( 'fs')
 AWS.config.update({region: 'eu-west-1'});
 var config = require("../config/s3-config")
-// console.log( config )
+// winston.debug( config )
 AWS.config.update(config);
 var s3 = new AWS.S3();
 var winston = require('winston')
@@ -19,8 +19,8 @@ var Jimp = require('jimp')
 module.exports.controller = function( app, strategy ) {
 
 	app.get('/user', strategy.authenticate(), function( req, res ) {
-		console.log( '/user user_controller')
-		// console.log( req.query)
+		winston.debug( '/user user_controller')
+		// winston.debug( req.query)
 		// var params = { 
 		//   Bucket: config.Bucket,
 		//   Prefix: 'stuff/'
@@ -37,7 +37,7 @@ module.exports.controller = function( app, strategy ) {
 		// })
 
 		winston.debug( "User " + req.user )
-		res.json( req.user )
+		// res.json( req.user )
 		return
 
 		models.User.findOne({

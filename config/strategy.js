@@ -11,7 +11,7 @@ var params = {
 
 module.exports = function( passport ) {  
     var strategy = new Strategy(params, function(payload, done) {
-        console.log( payload )
+        // console.log( payload )
         var user = models.User.findOne({
             where: { id: payload.id }
         }).then( user => {

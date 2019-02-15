@@ -23,6 +23,11 @@ a {
   color: #00B7FF; 
 }
 
+.md-dialog-container{
+    opacity: .85 !important;
+    background-color: #FFF !important;
+}
+
 .background_white{
     background-color: #FFF;
 }

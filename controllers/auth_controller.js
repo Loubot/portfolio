@@ -10,7 +10,7 @@ var winston = require('winston')
 
 module.exports.controller = function( app, strategy ) {
 	app.post('/login', function( req, res ) {
-		console.log( 'login' )
+		winston.debug( 'login' )
 		if (req.body.email && req.body.password ) {
 	        
 	        models.User.findOne({
@@ -19,10 +19,10 @@ module.exports.controller = function( app, strategy ) {
 	        			if (user) {
 	        				pw.verify( user.password, req.body.password, function( err, isValid ) {
 	        				  	if (err) { 
-	        				  		console.log(err)
+	        				  		winston.debug(err)
 	        				  		throw err; 
 	        				  	}
-	        				  	console.log(isValid)
+	        				  	winston.debug(isValid)
 	        				  	if ( isValid ) {
 	        				  		var payload = {
 	        				  	    	id: user.id
@@ -50,14 +50,14 @@ module.exports.controller = function( app, strategy ) {
 	var hash_password = function( pass ) {
 		pw.hash(pass, function (err, hash) {
 			if (err) { throw err; }
-			console.log( hash )
+			winston.debug( hash )
 			return hash
 		});
 	}
 
 	app.post('/register', function( req, res ) {
-		console.log('register')
-		// console.log( req.body )
+		winston.debug('register')
+		// winston.debug( req.body )
 
 		pw.hash( req.body.password, function( err, hash ) {
 			if ( err ){

@@ -6,7 +6,7 @@ var fs = Promise.promisifyAll( require( 'fs') )
 AWS.config.update({region: 'eu-west-1'});
 var config = require("../config/s3-config")
 var models = require( '../models' )
-// console.log( config )
+// winston.debug( config )
 AWS.config.update(config);
 var s3 = Promise.promisifyAll( new AWS.S3() )
 var winston = require('winston')
@@ -19,8 +19,8 @@ module.exports.controller = function( app, strategy ) {
 	/* /api/s3-list-all params: { } */
 	/* Get a list of all images in the bucket */
 	app.get( '/api/s3-list-all', function( req, res ) {
-		console.log( '/api/s3-list-all images_controller' )
-		console.log( req.query )
+		winston.debug( '/api/s3-list-all images_controller' )
+		winston.debug( req.query )
 		var params = { 
 		  Bucket: config.Bucket,
 		  Delimiter: ''
@@ -29,7 +29,7 @@ module.exports.controller = function( app, strategy ) {
 		s3.listObjects( params, function( err, data ) {
 			if ( err ) {
 				
-				console.log( err )
+				winston.debug( err )
 				res.status( 404 ).json( err )
 			} else {
 				
@@ -61,7 +61,7 @@ module.exports.controller = function( app, strategy ) {
 		s3.getSignedUrl( req.query.request_type, params, function (err, url) {
 			if ( err ) {
 				res.json( 'no good ')
-				console.log( err)
+				winston.debug( err)
 			} else {
 				// var param = {
 				// 	url: url ,
