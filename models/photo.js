@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         fullSizeUrl: DataTypes.STRING,
         thumbUrl: DataTypes.STRING,
         UserId: DataTypes.INTEGER,
-        CategoryId: DataTypes.INTEGER,
+        subCategoryId: DataTypes.INTEGER,
         fileName: DataTypes.STRING,
         main: DataTypes.BOOLEAN,
         tag: DataTypes.TEXT
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         classMethods: {
             associate: function(models) {
                 models.Photo.belongsTo( models.User )
-                models.Photo.belongsTo( models.Category )
+                models.Photo.belongsTo( models.subCategory )
             }
         }
     });
