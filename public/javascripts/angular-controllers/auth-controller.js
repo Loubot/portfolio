@@ -36,7 +36,7 @@ angular.module( 'portfolio' ).controller( 'authController', [
 				}
 			}).then(function successCallback( res ) {
 				window.localStorage.setItem( 'token', res.data )
-				$state.go('admin')
+				$state.go( 'login' )
 			}, function errorCallback(err) {
 			    console.log( err )
 			    Alertify.error( err.data.errors[0].message )
