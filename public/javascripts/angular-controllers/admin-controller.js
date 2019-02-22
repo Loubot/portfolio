@@ -147,7 +147,7 @@ angular.module('portfolio').controller( 'adminController', [
         
         // Function to choose category before selecting sub category to upload photo
         $scope.catSelect = function( cat ) {
-            console.log( $scope.file )
+            console.log( cat )
             $scope.subCategories = $scope.file.category.subCategories
         }
 
@@ -219,7 +219,6 @@ angular.module('portfolio').controller( 'adminController', [
 				url: window.location.origin + '/api/photo',
 				headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
-					"Authorization": "Bearer " + window.localStorage.getItem( 'token' ),
 					
 					"accept-language":"en-US,en;q=0.9",
 					"x-forwarded-proto": "https"
@@ -227,7 +226,7 @@ angular.module('portfolio').controller( 'adminController', [
 				data: { 
 					Key: file.name, 
 					type: file.type, 
-					category: file.category, 
+					subCategoryId: file.subCategoryId, 
 					request_type: 'putObject' 
 				}
 			}).then( function( res ) {

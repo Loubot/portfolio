@@ -57,11 +57,11 @@ module.exports.controller = function( app, strategy ) {
 	/*Requires { user.id, category.id, key }*/
 	app.post( '/api/photo', strategy.authenticate(), function( req, res ) {
 		winston.debug( '/api/photo photo_controller create' )
-		// winston.debug( req.body )
+		winston.debug( req.body )
 		
 		models.Photo.create({
 			UserId: req.user.id,
-			subCategoryId: req.body.category.id,
+			subCategoryId: req.body.subCategoryId,
 			fileName: req.body.Key
 		}).then( function( photo ) {
 			winston.debug( 'Photo created' )

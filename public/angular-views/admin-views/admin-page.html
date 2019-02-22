@@ -12,7 +12,7 @@
             <div layout-xs="column" layout-align-xs="center center" layout="row" layout-align="space-around center">
                 <div>
                     <md-input-container class=" center_big">
-                        <md-select ng-model="file.category" placeholder="Select category" ng-change="catSelect()"
+                        <md-select ng-model="file.category" placeholder="Select category" ng-change="catSelect( cat )"
                             required>
                             <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
                         </md-select>
