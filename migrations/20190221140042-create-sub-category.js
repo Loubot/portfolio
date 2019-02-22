@@ -7,10 +7,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      photoID: {
-        type: Sequelize.INTEGER
-      },
+      // },
+      // photoID: {
+      //   type: Sequelize.INTEGER
+      // },
       name: {
         type: Sequelize.STRING
       },

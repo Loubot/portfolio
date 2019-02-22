@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var subCategory = sequelize.define('subCategory', {
-    photoID: DataTypes.INTEGER,
+    // photoID: DataTypes.INTEGER,
     name: DataTypes.STRING
   }, {
     classMethods: {
