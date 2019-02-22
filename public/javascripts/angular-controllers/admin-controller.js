@@ -13,7 +13,8 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.upload_in_progress = false
 		$scope.images = new Array()
 		$scope.cat = null
-		$scope.cat_check = {}
+        $scope.cat_check = {}
+        $scope.subCategory = {}
 		// document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
 		// document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
 
@@ -129,6 +130,11 @@ angular.module('portfolio').controller( 'adminController', [
 			}), function error( err ) {
 				console.log( err )
 			}
+		}
+
+		$scope.create_subCategory = function() {
+            console.log( $scope.subCategoryForm )
+			console.log( $scope.subCategory )
 		}
 
 		$scope.add_to_main_screen = function( photo ) {

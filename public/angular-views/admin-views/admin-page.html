@@ -1,129 +1,155 @@
 <div class="height_100 " ng-cloak>
 
-	<div class="background_white big_gutter margin_b_15"  ng-if="categories.length" class="big_gutter center_text margin_b_15">
-		<form ng-submit="upload( file )"  layout="column" layout-align="space-around">
-			
-			<md-input-container class="width_50_big center">
-				<input  name="file" type="file" file  aria-label="file" />
-				
-			</md-input-container>
+    <div class="background_white big_gutter margin_b_15" ng-if="categories.length" class="big_gutter center_text margin_b_15">
+        <form ng-submit="upload( file )" layout="column" layout-align="space-around">
 
-			<h3>Select which category to upload this photo to!</h3>
-			<md-input-container class="width_50_big center_big">
-			  <md-select ng-model="file.category" placeholder="Select category" required>
-			    <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
-			  </md-select>
-			</md-input-container>
+            <md-input-container class="width_50_big center">
+                <input name="file" type="file" file aria-label="file" />
 
-			<md-input-container class="width_50_big center">
-				<input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload" ng-disabled="upload_in_progress">
-			</md-input-container>
-		</form>
+            </md-input-container>
 
-	</div >
+            <h3>Select which category to upload this photo to!</h3>
+            <md-input-container class="width_50_big center_big">
+                <md-select ng-model="file.category" placeholder="Select category" required>
+                    <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
+                </md-select>
+            </md-input-container>
 
-	<div  ng-if="images.length" class="background_white big_gutter margin_b_15">
+            <md-input-container class="width_50_big center">
+                <input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload"
+                    ng-disabled="upload_in_progress">
+            </md-input-container>
+        </form>
 
-		<div >
-			<div class="width_100 center_text">
-				<md-input-container md-no-float class="width_50_big center_big">
-				  	
-				  	<md-select placeholder="Category" ng-model="cat_id" ng-change="select_category( cat_id )">
-				  		<md-option ng-value="-1">All</md-option>
-				    	<md-option ng-value="cat.id" ng-repeat="cat in categories" >{{ cat.name }}</md-option>
-				  	</md-select>
-				</md-input-container>
-			</div>
-			
-			<div  masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
-		        <div class="grid-sizer"></div>
-		        <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
-		            <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" ng-class="{ 'fancy': img.main }" ng-click="add_to_main_screen( img )">
+    </div>
 
-		            <md-menu class="pos_abs overlay_button semi_trans">
-		             	<md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
-		               		<md-icon ><i class="material-icons white_text">info_outline</i></md-icon>
-		             	</md-button>
-		             	<md-menu-content>
-		               		<md-menu-item>
-		                 		<md-button ng-click="delete_pic( img.id )" aria-label="Do something">
-		                   			Delete?
-		                 		</md-button>
-		               		</md-menu-item>
-							<md-menu-item>
-		                 		<md-button ng-click="add_tag( img )" aria-label="Do something">
-		                   			Add tag
-		                 		</md-button>
-		               		</md-menu-item>
+    <div ng-if="images.length" class="background_white big_gutter margin_b_15">
 
-		               		<md-menu-item >
-		               			<md-input-container md-no-float>
-		               			  	<md-select  placeholder="Category" ng-model="someModel" md-container-class="move_down">
-		               			    	
-		               			    	<md-option 
-	               			    				ng-click="change_category( cat, img ); $mdMenu.hide(); $mdSelect.hide();" 
-	               			    				ng-value="cat" 
-	               			    				ng-repeat="cat in categories"
-	               			    				ng-class="{ 'light_blue_background': cat.id === img.CategoryId }">
-	               			    				{{ cat.name }}
-		               			    	</md-option>
-		               			  	</md-select>
-		               			</md-input-container>
-		               </md-menu-item>
-		             </md-menu-content>
-		            </md-menu>
+        <div>
+            <div class="width_100 center_text">
+                <md-input-container md-no-float class="width_50_big center_big">
 
-		        </div>
-		    </div>
+                    <md-select placeholder="Category" ng-model="cat_id" ng-change="select_category( cat_id )">
+                        <md-option ng-value="-1">All</md-option>
+                        <md-option ng-value="cat.id" ng-repeat="cat in categories">{{ cat.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
 
-		    <div class="center_text" layout="row" layout-align="center center">
-		    	<div class="small_fancy"></div>
-		    	<div> means selected for main page</div>
-		    </div>
-			
-		</div>
-		
-	</div> <!-- End of images loop -->
+            <div masonry load-images="true" reload-on-show masonry-options="{'gutter': 10,'horizontalOrder': 'true' }">
+                <div class="grid-sizer"></div>
+                <div class="masonry-brick" ng-repeat="img in images" class="pos_rel">
+                    <img ng-src="{{ img.thumbUrl }}" alt="A masonry brick" ng-class="{ 'fancy': img.main }" ng-click="add_to_main_screen( img )">
 
-	<div class="background_white big_gutter margin_b_15">
-		<form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
-			<h3>Create a category</h3>
-			
-			<md-input-container md-no-float class="width_50_big_big center">
-				
-				<input ng-model="category.name" name="category.name" type="text" aria-label="category" placeholder="Category" />
-			</md-input-container>
-			<md-input-container class="width_50_big_big center">
-				<input 	class="md-button md-primary md-raised" 
-						type="submit" name="Create category" 
-						value="Create category" 
-						aria-label="Create category" 
-						ng-disabled="upload_in_progress">
-			</md-input-container>
-		</form>
+                    <md-menu class="pos_abs overlay_button semi_trans">
+                        <md-button ng-click="$mdMenu.open($event)" class="md-icon-button " aria-label="Open some menu">
+                            <md-icon><i class="material-icons white_text">info_outline</i></md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="delete_pic( img.id )" aria-label="Do something">
+                                    Delete?
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="add_tag( img )" aria-label="Do something">
+                                    Add tag
+                                </md-button>
+                            </md-menu-item>
 
-	</div>
+                            <md-menu-item>
+                                <md-input-container md-no-float>
+                                    <md-select placeholder="Category" ng-model="someModel" md-container-class="move_down">
 
-	<div class="red_border big_gutter background_white" ng-if="categories.length">
-		<form >
-		<div  class="background_white big_gutter" layout="row" layout-align="space-around">
-			<div ng-repeat="cat in categories">
-				<md-checkbox  aria-label="Finished?" ng-model="cat_check.id" ng-true-value="{{cat.id}}" ng-false-value="null">
-	  				{{ cat.name }}
-				</md-checkbox>
-			</div>
-		</div>
+                                        <md-option ng-click="change_category( cat, img ); $mdMenu.hide(); $mdSelect.hide();"
+                                            ng-value="cat" ng-repeat="cat in categories" ng-class="{ 'light_blue_background': cat.id === img.CategoryId }">
+                                            {{ cat.name }}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
 
-		<div layout="row" layout-align="center center" >
-			<md-input-container>
-				<input 	class="md-button md-raised md-warn" 
-						ng-click="delete_category( cat_check )" 
-						type="submit" name="Delete Category" 
-						value="Delete Category" 
-						aria-label="delete category">
-			</md-input-container>
-		</div>
-		</form>
-	</div>
-	
+                </div>
+            </div>
+
+            <div class="center_text" layout="row" layout-align="center center">
+                <div class="small_fancy"></div>
+                <div> means selected for main page</div>
+            </div>
+
+        </div>
+
+    </div> <!-- End of images loop -->
+
+    <div class="background_white big_gutter margin_b_15" layout="row" layout-xs="column" layout-align-xs="center center"
+        layout-align="space-around top">
+        <div flex-gt-xs="50">
+            <form ng-submit="create_category()" class=" " layout="column" layout-align="space-around">
+                <h3>Create a category</h3>
+
+                <md-input-container md-no-float class="width_50_big_big center">
+
+                    <input ng-model="category.name" name="category.name" type="text" aria-label="category" placeholder="Category" />
+                </md-input-container>
+                <md-input-container class="width_50_big_big center">
+                    <input class="md-button md-primary md-raised" type="submit" name="Create category" value="Create category"
+                        aria-label="Create category" ng-disabled="upload_in_progress">
+                </md-input-container>
+            </form>
+        </div>
+
+        <div flex-gt-xs="50">
+            <h3>Select a category, before creating sub-category</h3>
+            <form ng-submit="create_subCategory()" layout="column" name="subCategoryForm" layout-align="space-around"
+                novalidate>
+                <md-input-container>
+                    <md-select ng-model="subCategory.category" name="category" required>
+                        <md-option ng-repeat="cat in categories" ng-value="cat" ng-disabled="$index === 1" 
+                            >
+                            {{ cat.name }}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="subCategoryForm.category.$error">
+                        <div ng-message="required">Category is required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <input ng-model="subCategory.name" name="subCategory.name" type="text" aria-labe="sub category"
+                        placeholder="Sub Category">
+                </md-input-container>
+
+
+                <md-input-container class="width_50">
+                    <input type="submit" value="Submit" class="md-button md-primary md-raised">
+                </md-input-container>
+            </form>
+        </div>
+
+
+
+    </div>
+
+    <div class="red_border big_gutter background_white" ng-if="categories.length">
+        <form>
+            <div class="background_white big_gutter" layout="row" layout-align="space-around">
+                <div ng-repeat="cat in categories">
+                    <md-checkbox aria-label="Finished?" ng-model="cat_check.id" ng-true-value="{{cat.id}}"
+                        ng-false-value="null">
+                        {{ cat.name }}
+                    </md-checkbox>
+                </div>
+            </div>
+
+            <div layout="row" layout-align="center center">
+                <md-input-container>
+                    <input class="md-button md-raised md-warn" ng-click="delete_category( cat_check )" type="submit"
+                        name="Delete Category" value="Delete Category" aria-label="delete category">
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+
 </div>

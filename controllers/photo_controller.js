@@ -61,7 +61,7 @@ module.exports.controller = function( app, strategy ) {
 		
 		models.Photo.create({
 			UserId: req.user.id,
-			CategoryId: req.body.category.id,
+			subCategoryId: req.body.category.id,
 			fileName: req.body.Key
 		}).then( function( photo ) {
 			winston.debug( 'Photo created' )
