@@ -105,8 +105,8 @@
             <form ng-submit="create_subCategory()" layout="column" name="subCategoryForm" layout-align="space-around"
                 novalidate>
                 <md-input-container>
-                    <md-select ng-model="subCategory.category" name="category" required>
-                        <md-option ng-repeat="cat in categories" ng-value="cat" ng-disabled="$index === 1" 
+                    <md-select ng-model="subCategory.CategoryId" name="category" required>
+                        <md-option ng-repeat="cat in categories" ng-value="cat.id" ng-disabled="$index === 1" 
                             >
                             {{ cat.name }}
                         </md-option>

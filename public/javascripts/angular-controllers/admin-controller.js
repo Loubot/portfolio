@@ -15,10 +15,8 @@ angular.module('portfolio').controller( 'adminController', [
 		$scope.cat = null
         $scope.cat_check = {}
         $scope.subCategory = {}
-		// document.getElementsByTagName("html")[0].style = "background-color: #e9ebee;"
-		// document.getElementsByTagName("body")[0].style = "background-color: #e9ebee;"
-
-		$scope.selected = new Array()
+        $scope.selected = new Array()
+        $scope.subCategories = []
 
 
 
@@ -133,8 +131,18 @@ angular.module('portfolio').controller( 'adminController', [
 		}
 
 		$scope.create_subCategory = function() {
-            console.log( $scope.subCategoryForm )
-			console.log( $scope.subCategory )
+            console.log( $scope.subCategory )
+            $http({
+                method: 'POST',
+                url: window.location.origin + '/api/subcategory',
+                headers: {
+					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
+                },
+                data: $scope.subCategory
+            }).then( res => {
+                console.log( res.data )
+                $scope.subCategories = res.data
+            })
 		}
 
 		$scope.add_to_main_screen = function( photo ) {
@@ -144,7 +152,7 @@ angular.module('portfolio').controller( 'adminController', [
 			$http({
 				method: 'PUT',
 				url: window.location.origin + '/api/photo',
-					headers: {
+                headers: {
 					"Authorization": "Bearer " + window.localStorage.getItem( 'token' )
 				},
 				data: { photo: photo }
