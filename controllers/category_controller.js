@@ -7,7 +7,11 @@ module.exports.controller = function( app, strategy ) {
 
 	app.get( '/api/category/index', function( req, res )  {
 		winston.debug( "/category/index categories_controller" )
-		models.Category.findAll()
+		models.Category.findAll({
+			include: [{
+				model: models.subCategory
+			}]
+		})
 		.then( function( categories ) {
 			res.json( categories )
 		}).catch( function( err ) {

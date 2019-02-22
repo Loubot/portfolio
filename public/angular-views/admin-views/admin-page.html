@@ -8,12 +8,28 @@
 
             </md-input-container>
 
-            <h3>Select which category to upload this photo to!</h3>
-            <md-input-container class="width_50_big center_big">
-                <md-select ng-model="file.category" placeholder="Select category" required>
-                    <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
-                </md-select>
-            </md-input-container>
+            <h3>Select which sub-category to upload this photo to!</h3>
+            <div layout-xs="column" layout-align-xs="center center" layout="row" layout-align="space-around center">
+                <div>
+                    <md-input-container class=" center_big">
+                        <md-select ng-model="file.category" placeholder="Select category" ng-change="catSelect()"
+                            required>
+                            <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-input-container>
+                        <md-select ng-model="file.subCategoryId" placeholder="Select category"
+                            required>
+                            <md-option ng-value="subCat.id" ng-repeat="subCat in subCategories">{{ subCat.name }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+            </div>
+
 
             <md-input-container class="width_50_big center">
                 <input class="md-button md-primary md-raised" type="submit" name="Upload" value="Upload" aria-label="Upload"
@@ -106,8 +122,7 @@
                 novalidate>
                 <md-input-container>
                     <md-select ng-model="subCategory.CategoryId" name="category" required>
-                        <md-option ng-repeat="cat in categories" ng-value="cat.id" ng-disabled="$index === 1" 
-                            >
+                        <md-option ng-repeat="cat in categories" ng-value="cat.id">
                             {{ cat.name }}
                         </md-option>
                     </md-select>
