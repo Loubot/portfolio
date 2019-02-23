@@ -6,7 +6,7 @@ var models = require( '../models' )
 module.exports.controller = function( app, strategy ) {
 
 	app.get( '/api/category/index', function( req, res )  {
-		winston.debug( "/category/index categories_controller" )
+		winston.debug( "/api/category/index categories_controller" )
 		models.Category.findAll({
 			include: [{
 				model: models.subCategory
@@ -25,18 +25,22 @@ module.exports.controller = function( app, strategy ) {
 	returns category and photos
 	*/
 	app.get( '/api/category/', function( req, res ) {
-		winston.debug( '/category/ { id }')
+		winston.debug( '/api/category/ { id }')
 		winston.debug( req.query )
 		models.Category.findOne({ 
 			where: { id: req.query.id },
 			include: [
-			    { model: models.Photo, as:'photos' }
+				{ model: models.subCategory, include: [{
+					model: models.Photo, as:'photos'
+				}] }
+			    // { model: models.Photo, as:'photos' }
 			]
 
 		}).then( function( category ) {
-			winston.debug( "Found category" )
+			winston.debug( "Found category subCategruies and photos" )
 			// winston.debug( category )
-			res.json( category )
+			// console.log( return_photos( category ) )
+			res.json( return_photos( category ) )
 		}).catch( function( err ) {
 			winston.debug( 'Find category error' )
 			res.status( 500 ).json( err )
@@ -48,7 +52,7 @@ module.exports.controller = function( app, strategy ) {
 	*/
 
 	app.post( '/api/category', strategy.authenticate(), function( req, res ) {
-		winston.debug( "/category categories_controller" )
+		winston.debug( "/api/category categories_controller" )
 		winston.debug( req.query )
 		models.Category.create({
 			name: req.query.name
@@ -101,4 +105,17 @@ module.exports.controller = function( app, strategy ) {
 
 		
 	})
+}
+
+let return_photos = function( category ) {
+	let photos = []
+	winston.debug( 'return_photos' )
+	category.subCategories.forEach( subC => {
+		winston.debug( 'Subc loop' )
+		subC.photos.forEach( photo => {
+			photos.push( photo )
+		})
+	});
+
+	return photos
 }

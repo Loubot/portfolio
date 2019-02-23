@@ -72,7 +72,7 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images1 = res.data.photos
+			$scope.images1 = res.data
 			$scope.finis = true
 		}), function error( err ) {
 			console.log( err )

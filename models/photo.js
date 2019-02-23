@@ -40,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
         winston.debug( "Photo instance method processImage()")
         var photo = this
         // winston.debug( photo.dataValues )
-        var category = {}
         // return false
         mkdirp( 'tmp/images').then( function() {
             winston.debug( "Created tmp/images" )

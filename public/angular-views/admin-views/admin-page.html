@@ -12,7 +12,7 @@
             <div layout-xs="column" layout-align-xs="center center" layout="row" layout-align="space-around center">
                 <div>
                     <md-input-container class=" center_big">
-                        <md-select ng-model="file.category" placeholder="Select category" ng-change="catSelect( cat )"
+                        <md-select ng-model="file.category" placeholder="Select category" ng-change="catSelect( file.category )"
                             required>
                             <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
                         </md-select>
@@ -21,7 +21,7 @@
 
                 <div>
                     <md-input-container>
-                        <md-select ng-model="file.subCategoryId" placeholder="Select category"
+                        <md-select ng-model="file.subCategoryId" placeholder="Select sub-category"
                             required>
                             <md-option ng-value="subCat.id" ng-repeat="subCat in subCategories">{{ subCat.name }}</md-option>
                         </md-select>
@@ -111,7 +111,7 @@
                 </md-input-container>
                 <md-input-container class="width_50_big_big center">
                     <input class="md-button md-primary md-raised" type="submit" name="Create category" value="Create category"
-                        aria-label="Create category" ng-disabled="upload_in_progress">
+                        aria-label="Create category" ng-disabled="upload_in_progress" aria-label="Create category submit button">
                 </md-input-container>
             </form>
         </div>
@@ -121,7 +121,7 @@
             <form ng-submit="create_subCategory()" layout="column" name="subCategoryForm" layout-align="space-around"
                 novalidate>
                 <md-input-container>
-                    <md-select ng-model="subCategory.CategoryId" name="category" required>
+                    <md-select ng-model="subCategory.CategoryId" name="category" required aria-label="Category">
                         <md-option ng-repeat="cat in categories" ng-value="cat.id">
                             {{ cat.name }}
                         </md-option>
@@ -138,7 +138,7 @@
 
 
                 <md-input-container class="width_50">
-                    <input type="submit" value="Submit" class="md-button md-primary md-raised">
+                    <input type="submit" value="Submit" class="md-button md-primary md-raised" aria-label="Create subcategory submit button">
                 </md-input-container>
             </form>
         </div>
@@ -161,7 +161,7 @@
             <div layout="row" layout-align="center center">
                 <md-input-container>
                     <input class="md-button md-raised md-warn" ng-click="delete_category( cat_check )" type="submit"
-                        name="Delete Category" value="Delete Category" aria-label="delete category">
+                        name="Delete Category" value="Delete Category" aria-label="delete category" aria-label="Delete category button">
                 </md-input-container>
             </div>
         </form>

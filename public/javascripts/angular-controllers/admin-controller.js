@@ -146,9 +146,9 @@ angular.module('portfolio').controller( 'adminController', [
         }
         
         // Function to choose category before selecting sub category to upload photo
-        $scope.catSelect = function( cat ) {
-            console.log( cat )
-            $scope.subCategories = $scope.file.category.subCategories
+        $scope.catSelect = function( category ) {
+            console.log( category )
+            $scope.subCategories = category.subCategories
         }
 
 		$scope.add_to_main_screen = function( photo ) {
