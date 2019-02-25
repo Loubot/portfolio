@@ -82,7 +82,7 @@ angular.module('portfolio').controller('staticController', [
 						$scope.images2 = chunks[1]
 						console.log( $scope.images2 )
 						$scope.$apply()
-					}, 3000);
+					}, 10000);
 					
 					// console.log( $scope.images )
 					// console.log( $scope.images1 )
