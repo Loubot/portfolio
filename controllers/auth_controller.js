@@ -22,7 +22,7 @@ module.exports.controller = function( app, strategy ) {
 	        				  		winston.debug(err)
 	        				  		throw err; 
 	        				  	}
-	        				  	winston.debug(isValid)
+	        				  	// winston.debug(isValid)
 	        				  	if ( isValid ) {
 	        				  		var payload = {
 	        				  	    	id: user.id

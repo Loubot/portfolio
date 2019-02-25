@@ -25,7 +25,7 @@ module.exports.controller = function( app, strategy ) {
             req.body
         ).then( category => {
             winston.debug( 'Created subCategory' )
-            winston.debug( category )
+            // winston.debug( category )
             models.Category.findAll({
                 include: [{
                     model: models.subCategory
@@ -33,7 +33,7 @@ module.exports.controller = function( app, strategy ) {
             }).
             then( categories => {
                 winston.debug( 'Found all categories' )
-                winston.debug( categories )
+                // winston.debug( categories )
                 res.json( categories )
             }).catch( err => {
                 winston.debug( 'Failed to find subCategories' )
