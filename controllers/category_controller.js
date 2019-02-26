@@ -9,7 +9,9 @@ module.exports.controller = function( app, strategy ) {
 		winston.debug( "/api/category/index categories_controller" )
 		models.Category.findAll({
 			include: [{
-				model: models.subCategory
+				model: models.subCategory, include: [{
+					model:  models.Photo, as:'photos'
+				}]
 			}]
 		})
 		.then( function( categories ) {

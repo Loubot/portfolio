@@ -14,12 +14,27 @@ angular.module('portfolio').controller('staticController', [
 	function ($scope, $rootScope, $http, $state, Alertify, imageClass, $mdMedia, $mdDialog, $interval, cfpLoadingBar) {
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
+		$scope.selectedCat = null
 
 
 		$(window).on('scroll', function () {
 			$('.parallax').css('margin-top', $(window).scrollTop() * -.3);
 		});
 
+		$scope.select_cat = function() {
+			console.log( $scope.selectedCat )
+			if ( $scope.selectedCat == "-1" ) {
+				$rootScope.makeVis = false
+				
+			} else{
+				$rootScope.makeVis = true
+				$scope.images1 = pullImages( $scope.selectedCat )
+			}
+		}
+
+		$scope.select_sub_cat = function( a ) {
+			console.log( this.selectedSubCat )
+		}
 
 		$rootScope.fb_share = function (url) {
 			var link;
@@ -115,7 +130,20 @@ angular.module('portfolio').controller('staticController', [
 			})
 		}
 
-
+		function pullImages( cat ) {
+			console.log( cat )
+			$scope.images1 = []
+			$scope.images2 = []
+			cat.subCategories.forEach(subCat => {
+				subCat.photos.forEach( photo => {
+					$scope.images1.push( photo )
+				})
+			});
+			console.log( $scope.images1 )
+			$scope.$digest()
+			
+		}
 
 	}
 ])
+
