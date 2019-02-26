@@ -7,13 +7,33 @@ module.exports.controller = function( app, strategy ) {
     app.get( '/api/subcategories', strategy.authenticate(), function( req, res ) {
         winston.debug( '/api/subcategories sub_category_controller' )
         models.subCategory.findAll().
-        then( categories => {
+        then( subCategories => {
             winston.debug( 'Found subCategories' )
-            winston.debug( categories )
-            res.json( categories )
+            winston.debug( subCategories )
+            res.json( subCategories )
         }).catch( err => {
             winston.debug( 'Failed to find subCategories')
             winston.debug( err )
+            res.status( 500 ).json( err )
+        })
+    })
+
+    app.get( '/api/category/:id/subcategories', function( req, res ) {
+        winston.debug( '/api/category/:id/subcategories sub_category_controller' )
+        winston.debug( req.params )
+        
+        models.Category.findOne({
+            where: { id: req.params.id },
+            include: [{ 
+                model: models.subCategory, include: [
+                    { model: models.Photo, as:'photos'
+                } ]
+            }]
+        }).then( category => {
+            winston.debug( 'Found category with subCategories' )
+            res.json( category )
+        }).catch( err => {
+            winston.debug( 'Failed to find category' )
             res.status( 500 ).json( err )
         })
     })
@@ -23,7 +43,7 @@ module.exports.controller = function( app, strategy ) {
         winston.debug( req.body )
         models.subCategory.create(
             req.body
-        ).then( category => {
+        ).then( subCategory => {
             winston.debug( 'Created subCategory' )
             // winston.debug( category )
             models.Category.findAll({
