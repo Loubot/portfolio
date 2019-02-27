@@ -28,12 +28,13 @@ angular.module('portfolio').controller('staticController', [
 				
 			} else{
 				$rootScope.makeVis = true
-				$scope.images1 = pullImages( $scope.selectedCat )
+				pullImagesFromCat( $scope.selectedCat )
 			}
 		}
 
-		$scope.select_sub_cat = function( a ) {
+		$scope.select_sub_cat = function() {
 			console.log( this.selectedSubCat )
+			pullImagesFromSubCat( this.selectedSubCat  )
 		}
 
 		$rootScope.fb_share = function (url) {
@@ -130,18 +131,27 @@ angular.module('portfolio').controller('staticController', [
 			})
 		}
 
-		function pullImages( cat ) {
+		function pullImagesFromCat( cat ) {
 			console.log( cat )
-			$scope.images1 = []
-			$scope.images2 = []
+			$scope.images3 = []
 			cat.subCategories.forEach(subCat => {
 				subCat.photos.forEach( photo => {
-					$scope.images1.push( photo )
+					console.log( photo.id )
+					$scope.images3.push( photo )
 				})
 			});
-			console.log( $scope.images1 )
+			console.log( $scope.images3 )
 			$scope.$digest()
 			
+		}
+
+		function pullImagesFromSubCat( subCat ) {
+			console.log( subCat )
+			$scope.images3 = []
+			subCat.photos.forEach( photo => {
+				$scope.images3.push( photo )
+			})
+			return $scope.images3
 		}
 
 	}

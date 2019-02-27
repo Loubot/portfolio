@@ -17,24 +17,52 @@
                 <md-option ng-value="subCat" ng-repeat="subCat in selectedCat.subCategories">{{ subCat.name }}</md-option>
             </md-select>
         </md-input-container>
+
+
+    </div>
+
+    <div id="container3" masonry load-images="true" reload-on-show masonry-options="{'gutter': 15,'horizontalOrder': 'true' }">
+        <div class="grid-sizer"></div>
+        <div class="masonry-brick pos_rel " ng-repeat="img in images3" ng-init="$last && complete()">
+
+            <img ondrag="return false" ondragstart="return false" oncontextmenu="return false" galleryimg="no"
+                onmousedown="return false" ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick"
+                data-pin-url="https://als-portfolio.herokuapp.com" data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )"
+                imageonload="doThis()">
+        </div>
     </div>
 
 
-    <div ng-show="finis" class="big_gutter" ng-cloak>
-        <blockquote  ng-if="!makeVis" class="open_sans_condensed center_text font_1_75">
+    <div ng-show="finis" ng-if="!makeVis" class="big_gutter" ng-cloak>
+        <blockquote ng-if="!makeVis" class="open_sans_condensed center_text font_1_75">
             “The marvels of daily life are exciting; no movie director can arrange the unexpected that you find in the
             street.” <br>
             -Robert Doisneau
         </blockquote>
 
+        <div ng-show="finis" ng-if="makeVis" id="container" masonry load-images="true" reload-on-show masonry-options="{'gutter': 15,'horizontalOrder': 'true' }">
+            <div class="grid-sizer"></div>
+            <div class="masonry-brick pos_rel " ng-repeat="img in images1" ng-init="$last && complete()">
+
+                <img ondrag="return false" ondragstart="return false" oncontextmenu="return false" galleryimg="no"
+                    onmousedown="return false" ng-src="{{ img.thumbUrl }}" class="pointer" alt="A masonry brick"
+                    data-pin-url="https://als-portfolio.herokuapp.com" data-pin-media="{{ img.fullSizeUrl }}" ng-click="open_image( img )"
+                    imageonload="doThis()">
+
+
+            </div>
+        </div>
+
         <div pin></div>
 
 
-        <blockquote ng-if="!makeVis" class="open_sans_condensed center_text font_1_75">
+        <blockquote class="open_sans_condensed center_text font_1_75">
             “I really believe there are things nobody would see if I didn’t photograph them.” <br>
             -Diane Arbus
         </blockquote>
 
         <div pin2></div>
+
     </div>
+    {{ makeVis }}
 </div>
