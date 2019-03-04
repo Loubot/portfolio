@@ -84,7 +84,7 @@ angular.module('portfolio').controller('staticController', [
 							$scope.images2 = chunks[1]
 							console.log($scope.images2)
 							$scope.$apply()
-						}, 10000);
+						}, 7000);
 					} else {
 						$scope.images2 = chunks[1]
 					}
@@ -129,7 +129,14 @@ angular.module('portfolio').controller('staticController', [
 
 		$scope.select_sub_cat = function() {
 			console.log( this.selectedSubCat )
-			pullImagesFromSubCat( this.selectedSubCat  )
+			if ( this.selectedSubCat === -1 ) {
+				console.log( '1' )
+				pullImagesFromCat( $scope.selectedCat )
+			} else {
+				console.log( '2' )
+				pullImagesFromSubCat( this.selectedSubCat  )
+			}
+			
 		}
 
 		function pullImagesFromCat( cat ) { //Extract images from selected category. Loop through all categories then subcategories and add pics
