@@ -1,12 +1,13 @@
 	'use strict'
 
 angular.module('portfolio').controller( 'categoryController', [
-	"$scope",
+    "$scope",
+    "$rootScope",
 	"$stateParams",
 	"$http",
 	'imageClass',
 	'$mdDialog',
-	function( $scope, $stateParams, $http, imageClass, $mdDialog ) {
+	function( $scope, $rootScope, $stateParams, $http, imageClass, $mdDialog ) {
 		console.log( 'categoryController' )
 		console.log( $stateParams.id )
 
@@ -86,6 +87,58 @@ angular.module('portfolio').controller( 'categoryController', [
 				$scope.imageCounter ++
 				if ( $scope.imageCounter == $scope.images.length ) { $scope.finis = true }
 			})
+        }
+        
+        $scope.select_cat = function() {
+            if ( $scope.selectedCat == "-1" ) {
+				$rootScope.makeVis = false //Keep original images visible. 
+				
+			} else{
+				
+				pullImagesFromCat( $scope.selectedCat )
+			}
+        }
+
+        $scope.select_sub_cat = function() {
+			console.log( this.selectedSubCat )
+			pullImagesFromSubCat( this.selectedSubCat  )
+		}
+
+        function pullImagesFromCat( cat ) { //Extract images from selected category. Loop through all categories then subcategories and add pics
+			console.log( cat )
+			let tempArray = []
+			cat.subCategories.forEach(subCat => {
+				subCat.photos.forEach( photo => {
+					console.log( photo.id )
+					tempArray.push( photo )
+				})
+			});
+			if	( tempArray.length === 0 ) {
+				Alertify.error( 'No pics in that Category ')
+				
+			} else {
+				$scope.images3 = tempArray
+				$rootScope.makeVis = true // Make images container invisible and display original images
+			}
+			// $scope.$digest()
+			
+        }
+        
+
+        function pullImagesFromSubCat( subCat ) { // Extract images from subCategory. Loop through each pic and add it
+			console.log( subCat )
+			let tempArray = []
+			console.log( subCat.photos.length )
+			subCat.photos.forEach( photo => {
+				tempArray.push( photo )
+			})
+			if	( tempArray.length === 0 ) {
+				Alertify.error( 'No pics in that Category ')
+				
+			} else {
+				$scope.images3 = tempArray
+				$rootScope.makeVis = true // Make images container invisible and display original images
+			}
 		}
 	}
 

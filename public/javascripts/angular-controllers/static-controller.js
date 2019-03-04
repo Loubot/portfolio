@@ -21,21 +21,6 @@ angular.module('portfolio').controller('staticController', [
 			$('.parallax').css('margin-top', $(window).scrollTop() * -.3);
 		});
 
-		$scope.select_cat = function() {
-			console.log( $scope.selectedCat )
-			if ( $scope.selectedCat == "-1" ) {
-				$rootScope.makeVis = false //Keep original images visible. 
-				
-			} else{
-				
-				pullImagesFromCat( $scope.selectedCat )
-			}
-		}
-
-		$scope.select_sub_cat = function() {
-			console.log( this.selectedSubCat )
-			pullImagesFromSubCat( this.selectedSubCat  )
-		}
 
 		$rootScope.fb_share = function (url) {
 			var link;
@@ -129,6 +114,22 @@ angular.module('portfolio').controller('staticController', [
 					cfpLoadingBar.complete()
 				}
 			})
+		}
+
+		$scope.select_cat = function() {
+			console.log( $scope.selectedCat )
+			if ( $scope.selectedCat == "-1" ) {
+				$rootScope.makeVis = false //Keep original images visible. 
+				
+			} else{
+				
+				pullImagesFromCat( $scope.selectedCat )
+			}
+		}
+
+		$scope.select_sub_cat = function() {
+			console.log( this.selectedSubCat )
+			pullImagesFromSubCat( this.selectedSubCat  )
 		}
 
 		function pullImagesFromCat( cat ) { //Extract images from selected category. Loop through all categories then subcategories and add pics
