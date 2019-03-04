@@ -24,10 +24,10 @@ angular.module('portfolio').controller('staticController', [
 		$scope.select_cat = function() {
 			console.log( $scope.selectedCat )
 			if ( $scope.selectedCat == "-1" ) {
-				$rootScope.makeVis = false
+				$rootScope.makeVis = false //Keep original images visible. 
 				
 			} else{
-				$rootScope.makeVis = true
+				
 				pullImagesFromCat( $scope.selectedCat )
 			}
 		}
@@ -131,27 +131,40 @@ angular.module('portfolio').controller('staticController', [
 			})
 		}
 
-		function pullImagesFromCat( cat ) {
+		function pullImagesFromCat( cat ) { //Extract images from selected category. Loop through all categories then subcategories and add pics
 			console.log( cat )
-			$scope.images3 = []
+			let tempArray = []
 			cat.subCategories.forEach(subCat => {
 				subCat.photos.forEach( photo => {
 					console.log( photo.id )
-					$scope.images3.push( photo )
+					tempArray.push( photo )
 				})
 			});
-			console.log( $scope.images3 )
-			$scope.$digest()
+			if	( tempArray.length === 0 ) {
+				Alertify.error( 'No pics in that Category ')
+				
+			} else {
+				$scope.images3 = tempArray
+				$rootScope.makeVis = true // Make images container invisible and display original images
+			}
+			// $scope.$digest()
 			
 		}
 
-		function pullImagesFromSubCat( subCat ) {
+		function pullImagesFromSubCat( subCat ) { // Extract images from subCategory. Loop through each pic and add it
 			console.log( subCat )
-			$scope.images3 = []
+			let tempArray = []
+			console.log( subCat.photos.length )
 			subCat.photos.forEach( photo => {
-				$scope.images3.push( photo )
+				tempArray.push( photo )
 			})
-			return $scope.images3
+			if	( tempArray.length === 0 ) {
+				Alertify.error( 'No pics in that Category ')
+				
+			} else {
+				$scope.images3 = tempArray
+				$rootScope.makeVis = true // Make images container invisible and display original images
+			}
 		}
 
 	}
