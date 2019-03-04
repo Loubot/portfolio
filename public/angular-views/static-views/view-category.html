@@ -1,17 +1,12 @@
 <div class="margin_t_15 big_gutter">
 
     <div layout="row" layout-align="space-around center">
-        <md-input-container>
-            <md-select ng-model="selectedCat" placeholder="Select a Category" ng-change="select_cat()">
-                <md-option ng-value="-1">All</md-option>
-                <md-option ng-value="cat" ng-repeat="cat in categories">{{ cat.name }}</md-option>
-            </md-select>
-        </md-input-container>
+        
 
-        <md-input-container ng-if="makeVis" class="fade_nice">
+        <md-input-container  class="fade_nice">
             <md-select ng-model="selectedSubCat" placeholder="Select a Sub Category" ng-change="select_sub_cat()">
                     <md-option ng-value="-1">All</md-option>
-                <md-option ng-value="subCat" ng-repeat="subCat in selectedCat.subCategories">{{ subCat.name }}</md-option>
+                <md-option ng-value="subCat" ng-repeat="subCat in category.subCategories">{{ subCat.name }}</md-option>
             </md-select>
         </md-input-container>
 

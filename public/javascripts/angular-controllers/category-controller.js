@@ -73,8 +73,8 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
-			$scope.images1 = res.data
-			$scope.finis = true
+            pullImagesFromCat( res.data )
+            $scope.category = res.data
 		}), function error( err ) {
 			console.log( err )
 		}
@@ -89,20 +89,7 @@ angular.module('portfolio').controller( 'categoryController', [
 			})
         }
         
-        $scope.select_cat = function() {
-            if ( $scope.selectedCat == "-1" ) {
-				$rootScope.makeVis = false //Keep original images visible. 
-				
-			} else{
-				
-				pullImagesFromCat( $scope.selectedCat )
-			}
-        }
-
-        $scope.select_sub_cat = function() {
-			console.log( this.selectedSubCat )
-			pullImagesFromSubCat( this.selectedSubCat  )
-		}
+        
 
         function pullImagesFromCat( cat ) { //Extract images from selected category. Loop through all categories then subcategories and add pics
 			console.log( cat )

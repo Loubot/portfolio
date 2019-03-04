@@ -42,7 +42,7 @@ module.exports.controller = function( app, strategy ) {
 			winston.debug( "Found category subCategruies and photos" )
 			// winston.debug( category )
 			// console.log( return_photos( category ) )
-			res.json( return_photos( category ) )
+			res.json( category )
 		}).catch( function( err ) {
 			winston.debug( 'Find category error' )
 			res.status( 500 ).json( err )
