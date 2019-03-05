@@ -70,18 +70,14 @@ module.exports.controller = function( app, strategy ) {
 
     app.delete( '/api/subcategory/:id', strategy.authenticate(), function( req, res ) {
         winston.debug( 'api/subcategory/:id Delete sub_category_controller' )
-        winston.debug( req.params ) //use findone
-        models.subCategory.destroy({
-            where: { id: req.params.id }
-        }).then( deleted => {
-            winston.debug( 'Deleted subCategory' )
-            winston.debug( deleted.dataValues )
-            res.json( deleted )
-        }).catch( err => {
-            winston.debug( 'Failed to delete subCategory' )
-            winston.debug( err )
-            res.status( 500 ).json( err )
-        })
+        winston.debug( req.params ) 
+        models.subCategory.findOne({
+			where: { id: req.params.id }
+		}).then( function( sub ) {
+			sub.destroy().then( function( deleted ) {
+				res.json( deleted )
+			})
+		})
         
     })
 }

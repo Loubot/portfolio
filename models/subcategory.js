@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    subCategory.hook( 'beforeBulkDestroy', function( category, done ) {
+    subCategory.hook( 'beforeDestroy', function( category, options, fn ) {
         winston.debug( 'subCategory beforeDestroy hook' )
         // winston.debug( category.dataValues.photos[0].dataValues )
-        done()
-      })
+        fn( null, category )
+    })
     return subCategory;
 };
