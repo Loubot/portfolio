@@ -1,3 +1,4 @@
+var winston = require( 'winston' )
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     var subCategory = sequelize.define('subCategory', {
@@ -14,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    subCategory.hook('beforeDestroy', function (subCategory, options, fn) {
-        console.log( 'subCategory beforeDestroy' )
-        console.log( subCategory.dataValues )
-        fn( null, deleted )
-    })
+    subCategory.hook( 'beforeBulkDestroy', function( category, done ) {
+        winston.debug( 'subCategory beforeDestroy hook' )
+        // winston.debug( category.dataValues.photos[0].dataValues )
+        done()
+      })
     return subCategory;
 };
