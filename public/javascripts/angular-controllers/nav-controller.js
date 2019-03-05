@@ -30,10 +30,26 @@ angular.module('portfolio').controller( 'navController', [
 		
 		$http({
 			method: "GET",
-			url: window.location.origin + "/api/category/index"
+			url: window.location.origin + "/api/categories"
 		}).then( function success( res ) {
 			console.log( res )
 			$rootScope.categories = res.data
+			$rootScope.$emit( 'categories_done', 'loaded ok' )
+		}), function error( err ) {
+			console.log( err )
+		}
+
+		$scope.view_category = function( id ) {
+			console.log( id )
+			$state.go( 'category', { id: id } )
+		}
+		
+		$http({
+			method: "GET",
+			url: window.location.origin + "/api/subcategories"
+		}).then( function success( res ) {
+			console.log( res )
+			$rootScope.subCategories = res.data
 			$rootScope.$emit( 'categories_done', 'loaded ok' )
 		}), function error( err ) {
 			console.log( err )

@@ -10,7 +10,9 @@ module.exports.controller = function( app, strategy ) {
 		winston.debug( "/api/photos photo_controller" )
 		winston.debug( req.query )
 
-		models.Photo.findAll().then( function( photos ) {
+		models.Photo.findAll({
+			include: [{ model: models.subCategory }]
+		}).then( function( photos ) {
 			winston.debug( 'Find all photos' )
 			// winston.debug( photos )
 			res.json( { photos: photos } )

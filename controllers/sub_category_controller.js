@@ -4,12 +4,12 @@ var winston = require( 'winston' )
 var models = require( '../models' )
 
 module.exports.controller = function( app, strategy ) {
-    app.get( '/api/subcategories', strategy.authenticate(), function( req, res ) {
+    app.get( '/api/subcategories', function( req, res ) {
         winston.debug( '/api/subcategories sub_category_controller' )
         models.subCategory.findAll().
         then( subCategories => {
             winston.debug( 'Found subCategories' )
-            winston.debug( subCategories )
+            // winston.debug( subCategories )
             res.json( subCategories )
         }).catch( err => {
             winston.debug( 'Failed to find subCategories')
@@ -66,4 +66,22 @@ module.exports.controller = function( app, strategy ) {
             res.status( 500 ).json( err )
         })
     } )
+
+
+    app.delete( '/api/subcategory/:id', strategy.authenticate(), function( req, res ) {
+        winston.debug( 'api/subcategory/:id Delete sub_category_controller' )
+        winston.debug( req.params )
+        models.subCategory.destroy({
+            individualHooks: true,
+            where: { id: req.params.id }
+        }).then( deleted => {
+            winston.debug( 'Deleted subcategory' )
+            winston.debug( deleted )
+            res.json( deleted )
+        }).catch( err => {
+            winston.debug( 'Failed to delete subcategory' )
+            winston.debug( err )
+            res.status( 500 ).json( err )
+        })
+    })
 }
