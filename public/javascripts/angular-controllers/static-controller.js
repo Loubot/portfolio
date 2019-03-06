@@ -122,7 +122,7 @@ angular.module('portfolio').controller('staticController', [
 				$rootScope.makeVis = false //Keep original images visible. 
 				
 			} else{
-				
+				$rootScope.makeVis = true
 				pullImagesFromCat( $scope.selectedCat )
 			}
 		}
