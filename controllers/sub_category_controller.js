@@ -38,6 +38,7 @@ module.exports.controller = function( app, strategy ) {
         })
     })
 
+    //  Create subCategory. Requires name, CategoryId
     app.post( '/api/subcategory', strategy.authenticate(), (req, res) => {
         winston.debug( '/api/subcategories sub_category_controller post' )
         winston.debug( req.body )

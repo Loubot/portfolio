@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
     subCategory.hook( 'beforeDestroy', function( category, options, fn ) {
         winston.debug( 'subCategory beforeDestroy hook' )
-        // winston.debug( category.dataValues.photos[0].dataValues )
+        winston.debug( category.dataValues )
         fn( null, category )
     })
     return subCategory;
