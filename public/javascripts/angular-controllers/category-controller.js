@@ -73,6 +73,7 @@ angular.module('portfolio').controller( 'categoryController', [
 			}
 		}).then( function success( res ) {
 			console.log( res )
+			$scope.selectedCat = res.data
             pullImagesFromCat( res.data )
             $scope.category = res.data
 		}), function error( err ) {
@@ -87,7 +88,21 @@ angular.module('portfolio').controller( 'categoryController', [
 				$scope.imageCounter ++
 				if ( $scope.imageCounter == $scope.images.length ) { $scope.finis = true }
 			})
-        }
+		}
+		
+
+
+		$scope.select_sub_cat = function() {
+			console.log( this.selectedSubCat )
+			if ( this.selectedSubCat === -1 ) {
+				console.log( '1' )
+				pullImagesFromCat( $scope.selectedCat )
+			} else {
+				console.log( '2' )
+				pullImagesFromSubCat( this.selectedSubCat  )
+			}
+			
+		}
         
         
 
