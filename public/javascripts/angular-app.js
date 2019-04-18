@@ -112,6 +112,7 @@ app.config( [ "$stateProvider" , "$urlRouterProvider", "$locationProvider",
                 }
             },
             onEnter: [ '$rootScope', '$mdDialog', function( $rootScope, $mdDialog ) {
+                
                 $mdDialog.hide()
             }] 
             

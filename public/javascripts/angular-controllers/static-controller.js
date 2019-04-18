@@ -15,6 +15,7 @@ angular.module('portfolio').controller('staticController', [
 		console.log('staticController')
 		$scope.$mdMedia = $mdMedia
 		$scope.selectedCat = null
+		$rootScope.makeVis = false //Make all pics visibe on first load
 
 
 		$(window).on('scroll', function () {
