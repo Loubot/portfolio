@@ -20,7 +20,8 @@ if (process.env.NODE_ENV === 'production' ) {
 
 sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
 .then(function(results) {
-    db.sequelize.sync({force: true});
+  console.log( 'made it here')
+    sequelize.sync({force: true});
 });
 
 fs
