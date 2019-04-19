@@ -79,7 +79,6 @@ angular.module('portfolio').controller('staticController', [
 						if (chunkLength * (i + 1) <= arr.length) chunks.push(arr.slice(chunkLength * i, chunkLength * (i + 1)));
 					}
 					$scope.images1 = chunks[0]
-<<<<<<< HEAD
 					if (arr.length > 7) {
 						setTimeout(function () {
 
@@ -91,15 +90,6 @@ angular.module('portfolio').controller('staticController', [
 						$scope.images2 = chunks[1]
 					}
 
-=======
-					setTimeout(function () {
-						
-						$scope.images2 = chunks[1]
-						console.log( $scope.images2 )
-						$scope.$apply()
-					}, 10000);
-					
->>>>>>> master
 					// console.log( $scope.images )
 					// console.log( $scope.images1 )
 					// console.log( $scope.images2 )
