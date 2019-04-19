@@ -117,7 +117,6 @@ angular.module('portfolio').controller('staticController', [
 			})
 		}
 
-<<<<<<< HEAD
 		$scope.select_cat = function() {
 			console.log( $scope.selectedCat )
 			if ( $scope.selectedCat == "-1" ) {
@@ -176,9 +175,6 @@ angular.module('portfolio').controller('staticController', [
 				$rootScope.makeVis = true // Make images container invisible and display original images
 			}
 		}
-=======
-
->>>>>>> master
 
 	}
 ])
