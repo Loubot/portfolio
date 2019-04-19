@@ -18,6 +18,11 @@ if (process.env.NODE_ENV === 'production' ) {
   var sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, config.development);
 }
 
+sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
+.then(function(results) {
+    db.sequelize.sync({force: true});
+});
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -37,10 +42,7 @@ Object.keys(db).forEach(modelName => {
 });
 
 // sequelize.sync( { force: true } )
-sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
-.then(function(results) {
-    db.sequelize.sync({force: true});
-});
+
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize;
