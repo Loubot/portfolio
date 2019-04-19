@@ -37,11 +37,12 @@ Object.keys(db).forEach(modelName => {
 });
 
 // sequelize.sync( { force: true } )
-
-db.sequelize = sequelize.query('SET FOREIGN_KEY_CHECKS = 0', null, {raw: true})
+sequelize.query('SET FOREIGN_KEY_CHECKS = 0', null, {raw: true})
 .success(function(results) {
     db.sequelize.sync({force: true});
 });
+
+db.sequelize = sequelize
 db.Sequelize = Sequelize;
 
 module.exports = db;
