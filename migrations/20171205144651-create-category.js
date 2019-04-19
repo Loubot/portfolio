@@ -22,6 +22,7 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Categories');
+    return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(
+     queryInterface.dropTable('Categories'))
   }
 };

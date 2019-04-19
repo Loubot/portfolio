@@ -13,6 +13,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-     return queryInterface.removeColumn('Users', 'admin')
+    return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(
+      queryInterface.removeColumn('Users', 'admin'))
   }
 };

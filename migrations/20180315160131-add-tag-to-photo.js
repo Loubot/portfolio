@@ -14,6 +14,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Photos', 'tag')
+    return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(
+     queryInterface.removeColumn('Photos', 'tag'))
   }
 };
