@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         classMethods: {
             associate: function (models) {
-                // models.subCategory.belongsTo(models.Category)
-                // models.subCategory.hasMany(models.Photo, {
-                //     as: 'photos'
-                // })
+                models.subCategory.belongsTo(models.Category)
+                models.subCategory.hasMany(models.Photo, {
+                    as: 'photos'
+                })
             }
         }
     });
