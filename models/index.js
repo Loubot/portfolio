@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production' ) {
   var sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, config.development);
 }
 
-let promise = sequelize.query("set FOREIGN_KEY_CHECKS=0")
+
 
 fs
   .readdirSync(__dirname)
@@ -38,7 +38,7 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-sequelize.sync( { force: true } )
+sequelize.sync( { alter: true } )
 
 
 db.sequelize = sequelize
