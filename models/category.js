@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // models.Category.hasMany( models.Photo, { as: 'photos'} )
-        models.Category.hasMany( models.subCategory )
+        // models.Category.hasMany( models.subCategory )
       }
     }
   });

@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         classMethods: {
             associate: function(models) {
-                models.Photo.belongsTo( models.User )
-                models.Photo.belongsTo( models.subCategory )
+                // models.Photo.belongsTo( models.User )
+                // models.Photo.belongsTo( models.subCategory )
             }
         }
     });
