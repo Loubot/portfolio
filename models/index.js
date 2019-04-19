@@ -37,8 +37,8 @@ Object.keys(db).forEach(modelName => {
 });
 
 // sequelize.sync( { force: true } )
-sequelize.query('SET FOREIGN_KEY_CHECKS = 0', {}, {raw: true})
-.success(function(results) {
+sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
+.then(function(results) {
     db.sequelize.sync({force: true});
 });
 
